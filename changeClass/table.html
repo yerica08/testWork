@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ------------------예시1---------------------- */
+        /*
+         추가 속성
+        table{
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        td{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+         꾸밈 속성 
+        .table_wrap{
+            width: 500px;
+            height: fit-content;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        table{
+            width: 400px;
+            background-color: white;
+        }
+        thead tr{
+            background-color: #f9f9f9;
+            border-top: 1px solid #777;
+            border-bottom: 1px solid #777;
+        }
+        thead th{
+            padding: 10px;
+        }
+        tbody tr{
+            border-bottom: 1px solid #ececec;
+        }
+        tbody tr:hover{
+            background-color: #eff9fd;
+            cursor: pointer;
+        }
+        td{
+            padding: 20px;
+        } */
+        /* ------------------예시2---------------------- */
+        /* 추가 속성
+        .table_wrap{
+            overflow: auto;
+            white-space: nowrap;
+        }
+        table{
+            border-collapse: collapse;
+        }
+         꾸밈 속성 
+        .table_wrap{
+            width: 500px;
+            height: fit-content;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #777;
+        }
+        table{
+            width: fit-content;
+            background-color: white;
+        }
+        thead tr{
+            background-color: #f9f9f9;
+            border-top: 1px solid #777;
+            border-bottom: 1px solid #777;
+        }
+        thead th{
+            padding: 10px;
+        }
+        tbody tr{
+            border-bottom: 1px solid #ececec;
+        }
+        tbody tr:hover{
+            background-color: #eff9fd;
+            cursor: pointer;
+        }
+        td{
+            padding: 20px;
+        } */
+        /* ------------------예시3---------------------- */
+        /* 추가 속성 */
+        table{
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        td{
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        /* 꾸밈 속성  */
+        .table_wrap{
+            width: 500px;
+            height: fit-content;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #777;
+        }
+        table{
+            width: 400px;
+            background-color: white;
+        }
+        thead tr{
+            background-color: #f9f9f9;
+            border-top: 1px solid #777;
+            border-bottom: 1px solid #777;
+        }
+        thead th{
+            padding: 10px;
+        }
+        tbody tr{
+            border-bottom: 1px solid #ececec;
+        }
+        tbody tr:hover{
+            background-color: #eff9fd;
+            cursor: pointer;
+        }
+        td{
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="table_wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>영어</th>
+                    <th>공백</th>
+                    <th>한글</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>abcdabcdabcdabcdabcdabcd</td>
+                    <td>   </td>
+                    <td>아아아아아아아아아아아아아아아</td>
+                </tr>
+                <tr>
+                    <td>Where there is a will there is a way</td>
+                    <td></td>
+                    <td>내용이 엄청나게 길어졌을 경우</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>

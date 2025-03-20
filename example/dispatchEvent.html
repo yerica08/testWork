@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+   </head>
+   <body>
+      <button type="button">클릭해보세요</button>
+
+      <script>
+         window.addEventListener('load', () => {
+            // detail은 고정
+            const myClickEvent = new CustomEvent('click', {
+               detail: { name: '악어', remainTime: '100일' },
+            })
+            document.querySelector('button').addEventListener('click', (e) => {
+               console.log(e)
+            })
+
+            document.querySelector('button').dispatchEvent(myClickEvent)
+         })
+      </script>
+   </body>
+</html>

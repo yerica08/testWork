@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="./reset.css" />
+      <style>
+         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+         body {
+            font-family: 'Noto Sans KR', sans-serif;
+         }
+         input {
+            outline: none;
+         }
+         /* 로그인 전체창 */
+         .log_in {
+            margin: 0 auto;
+            width: 458px;
+            height: 308px;
+            position: relative;
+         }
+         .log_in h1 {
+            width: 100%;
+         }
+         h1 img {
+            width: fit-content;
+            margin: 30px auto;
+         }
+         .login_form {
+            width: 458px;
+            height: fit-content;
+            background-color: #fff;
+            padding: 30px 25px;
+            border: 1px solid #c6c6c6;
+            border-radius: 0 6px 6px 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+         }
+         .login_form input[type='text'] {
+            display: table-cell;
+            width: 100%;
+            font-size: 16px;
+            line-height: 19px;
+            border: transparent;
+         }
+         .login_form input[type='password'] {
+            display: table-cell;
+            width: 100%;
+            font-size: 16px;
+            line-height: 19px;
+            border: transparent;
+         }
+
+         /* 아이디 */
+         .id_box {
+            width: 100%;
+            border: 1px solid #c6c6c6;
+            border-bottom: 0;
+            border-radius: 6px 6px 0 0;
+            display: table;
+            table-layout: fixed;
+            padding: 14px;
+            box-sizing: border-box;
+         }
+         .id_box input,
+         .pw_box input {
+            padding-left: 10px;
+         }
+
+         .id_box input[type='checkbox'] {
+            outline: none;
+            border-radius: 5px;
+         }
+         /* 패스워드 */
+         .pw_box {
+            width: 100%;
+            border: 1px solid #c6c6c6;
+            border-radius: 0 0 6px 6px;
+            display: table;
+            table-layout: fixed;
+            padding: 14px;
+            box-sizing: border-box;
+         }
+         /* 체크박스 */
+         .check_box {
+            width: 410px;
+            height: 17px;
+            margin: 30px 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+         }
+         input[type='checkbox'] {
+            display: inline-block;
+         }
+         .check_box p {
+            line-height: 17px;
+            display: inline-block;
+         }
+         /* 로그인 버튼 */
+         .com_box {
+            margin-top: 38px;
+         }
+         .btn_login {
+            display: block;
+            width: 100%;
+            padding: 13px 0 13px;
+            border-radius: 6px;
+            border: solid 1px rgba(0, 0, 0, 0.15);
+            background-color: #2289b4;
+            box-sizing: border-box;
+         }
+         .btn_login:hover {
+            background-color: #177299;
+            transition: 0.5s;
+         }
+         .button_text {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+            color: #fff;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="log_in">
+         <form class="login_form" id="form1" runat="server">
+            <h1><img src="/" alt="로고" /></h1>
+            <div class="id_box">
+               <input type="text" placeholder="아이디" />
+            </div>
+            <div class="pw_box">
+               <input type="password" placeholder="비밀번호" />
+            </div>
+            <div class="check_box">
+               <div class="id_save">
+                  <input type="checkbox" />
+                  <p>아이디 저장</p>
+               </div>
+               <p>고객센터 1670-0944</p>
+            </div>
+            <button type="submit" class="btn_login">
+               <span class="button_text">로그인</span>
+            </button>
+         </form>
+      </div>
+   </body>
+</html>

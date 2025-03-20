@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="/reset.css" />
+      <link rel="stylesheet" href="/orderbasic.css" />
+   </head>
+   <body>
+      <main class="basic_style1">
+         <div class="page_title">
+            <h2>주문관리</h2>
+            <nav>
+               <ul class="breadcrumb">
+                  <li class="active"><a href="#">주문접수</a></li>
+                  <li><a href="#">주문현황</a></li>
+               </ul>
+               <ul class="path">
+                  <li>
+                     <a href="#"><i class="home">h</i> </a>
+                  </li>
+                  <li><a href="#">주문관리</a></li>
+                  <li><a href="#">주문접수</a></li>
+               </ul>
+            </nav>
+         </div>
+
+         <section class="search_box">
+            <form action="#" method="GET">
+               <ul class="search-list">
+                  <!-- 주문기간 -->
+                  <li class="search-item">
+                     <label for="start-date">주문기간</label>
+                     <div class="date-range">
+                        <input
+                           type="date"
+                           name="start-date"
+                           id="start-date"
+                           required
+                        />
+                        <span>~</span>
+                        <input
+                           type="date"
+                           name="end-date"
+                           id="end-date"
+                           required
+                        />
+                     </div>
+                  </li>
+
+                  <!-- 주문상태 -->
+                  <li class="search-item">
+                     <label for="order-status">주문상태</label>
+                     <select name="order-status" id="order-status">
+                        <option value="">전체</option>
+                        <option value="pending">접수중</option>
+                        <option value="completed">접수완료</option>
+                        <option value="shipping">출고지시</option>
+                        <option value="shipped">출고확정</option>
+                        <option value="received">입고완료</option>
+                     </select>
+                  </li>
+
+                  <!-- 사업장 -->
+                  <li class="search-item">
+                     <label for="business-location">사업장</label>
+                     <select name="business-location" id="business-location">
+                        <option value="">전체</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                        <option value="ochang">오창허브</option>
+                     </select>
+                  </li>
+
+                  <!-- 회사 -->
+                  <li class="search-item">
+                     <label for="company">회사</label>
+                     <select name="company" id="company">
+                        <option value="">전체</option>
+                        <option value="responsible">책임</option>
+                        <option value="general">일반</option>
+                     </select>
+                  </li>
+
+                  <!-- 상품코드 -->
+                  <li class="search-item">
+                     <label for="product-code">상품코드</label>
+                     <input
+                        type="text"
+                        name="product-code"
+                        id="product-code"
+                        placeholder="상품코드 입력"
+                     />
+                  </li>
+
+                  <!-- 주문번호 -->
+                  <li class="search-item">
+                     <label for="order-number">주문번호</label>
+                     <input
+                        type="text"
+                        name="order-number"
+                        id="order-number"
+                        placeholder="주문번호 입력"
+                     />
+                  </li>
+
+                  <!-- 상품명 -->
+                  <li class="search-item">
+                     <label for="product-name">상품명</label>
+                     <input
+                        type="text"
+                        name="product-name"
+                        id="product-name"
+                        placeholder="상품명 입력"
+                     />
+                  </li>
+
+                  <!-- 유형 -->
+                  <li class="search-item">
+                     <label for="order-type">유형</label>
+                     <select name="order-type" id="order-type">
+                        <option value="">전체</option>
+                        <option value="general">일반</option>
+                        <option value="special">특수</option>
+                     </select>
+                  </li>
+               </ul>
+
+               <div class="button-group">
+                  <!-- 조회 버튼 -->
+                  <button type="submit" class="search-btn">조회</button>
+                  <!-- 초기화 버튼 -->
+                  <button type="reset" class="reset-btn">초기화</button>
+               </div>
+            </form>
+         </section>
+      </main>
+   </body>
+</html>

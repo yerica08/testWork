@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="/reset.css" />
+      <link rel="stylesheet" href="/orderbasic.css" />
+   </head>
+   <body>
+      <main class="basic_style1">
+         <div class="page_title">
+            <h2>주문관리</h2>
+            <nav>
+               <ul class="breadcrumb">
+                  <li class="active"><a href="#">주문접수</a></li>
+                  <li><a href="#">주문현황</a></li>
+               </ul>
+               <ul class="path">
+                  <li>
+                     <a href="#"><i class="home"></i> </a>
+                  </li>
+                  <li><a href="#">주문관리</a></li>
+                  <li><a href="#">주문접수</a></li>
+               </ul>
+            </nav>
+         </div>
+
+         <section class="search_box">
+            <form action="#" method="GET">
+               <ul class="search-list">
+                  <!-- 주문기간 -->
+                  <li class="search-item">
+                     <label for="start-date">주문기간</label>
+                     <div class="date-range">
+                        <input
+                           type="date"
+                           name="start-date"
+                           id="start-date"
+                           required
+                        />
+                        <span>~</span>
+                        <input
+                           type="date"
+                           name="end-date"
+                           id="end-date"
+                           required
+                        />
+                     </div>
+                  </li>
+
+                  <!-- 주문상태 -->
+                  <li class="search-item">
+                     <label for="order-status">주문상태</label>
+                     <select name="order-status" id="order-status">
+                        <option value="">전체</option>
+                        <option value="pending">접수중</option>
+                        <option value="completed">접수완료</option>
+                        <option value="shipping">출고지시</option>
+                        <option value="shipped">출고확정</option>
+                        <option value="received">입고완료</option>
+                     </select>
+                  </li>
+
+                  <!-- 사업장 -->
+                  <li class="search-item">
+                     <label for="business-location">사업장</label>
+                     <select name="business-location" id="business-location">
+                        <option value="">전체</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                        <option value="ochang">오창허브</option>
+                     </select>
+                  </li>
+
+                  <!-- 회사 -->
+                  <li class="search-item">
+                     <label for="company">회사</label>
+                     <select name="company" id="company">
+                        <option value="">전체</option>
+                        <option value="responsible">책임</option>
+                        <option value="general">일반</option>
+                     </select>
+                  </li>
+
+                  <!-- 상품코드 -->
+                  <li class="search-item">
+                     <label for="product-code">상품코드</label>
+                     <input
+                        type="text"
+                        name="product-code"
+                        id="product-code"
+                        placeholder="상품코드 입력"
+                     />
+                  </li>
+
+                  <!-- 주문번호 -->
+                  <li class="search-item">
+                     <label for="order-number">주문번호</label>
+                     <input
+                        type="text"
+                        name="order-number"
+                        id="order-number"
+                        placeholder="주문번호 입력"
+                     />
+                  </li>
+
+                  <!-- 상품명 -->
+                  <li class="search-item">
+                     <label for="product-name">상품명</label>
+                     <input
+                        type="text"
+                        name="product-name"
+                        id="product-name"
+                        placeholder="상품명 입력"
+                     />
+                  </li>
+
+                  <!-- 유형 -->
+                  <li class="search-item">
+                     <label for="order-type">유형</label>
+                     <select name="order-type" id="order-type">
+                        <option value="">전체</option>
+                        <option value="general">일반</option>
+                        <option value="special">특수</option>
+                     </select>
+                  </li>
+               </ul>
+
+               <div class="button-group">
+                  <!-- 조회 버튼 -->
+                  <button type="submit" class="search-btn">조회</button>
+                  <!-- 초기화 버튼 -->
+                  <button type="reset" class="reset-btn">초기화</button>
+               </div>
+            </form>
+         </section>
+         <section class="order_list">
+            <figcaption>
+               &#42; 주문번호를 클릭하여 상세페이지에서 주문 접수가 가능합니다.
+            </figcaption>
+            <table>
+               <thead>
+                  <tr>
+                     <th class="order-date">주문일자</th>
+                     <th class="type">유형</th>
+                     <th class="company">회사</th>
+                     <th class="business">사업장</th>
+                     <th class="order-code">주문번호</th>
+                     <th class="product-code">상품코드</th>
+                     <th class="product-name">상품명</th>
+                     <th class="remarks">비고</th>
+                     <th class="order-status">주문상태</th>
+                     <th class="spec">규격</th>
+                     <th class="unit">단위</th>
+                     <th class="quantity">수량</th>
+                     <th class="unit-price">주문단가</th>
+                     <th class="order-amount">주문금액</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     data-order-code="12345"
+                     data-date="2024.12.22"
+                     data-type="일반"
+                     data-company="책임"
+                     data-business="서울"
+                     data-product-code="P001"
+                     data-product-name="상품A"
+                     data-remarks="비고 내용"
+                     data-order-status="접수중"
+                     data-spec="규격A"
+                     data-unit="박스"
+                     data-quantity="100"
+                     data-unit-price="5000"
+                     data-order-amount="500000"
+                  >
+                     <td class="order-date"></td>
+                     <td class="type"></td>
+                     <td class="company"></td>
+                     <td class="business"></td>
+                     <td class="order-code"></td>
+                     <td class="product-code"></td>
+                     <td class="product-name"></td>
+                     <td class="remarks"></td>
+                     <td class="order-status"></td>
+                     <td class="spec"></td>
+                     <td class="unit"></td>
+                     <td class="quantity"></td>
+                     <td class="unit-price"></td>
+                     <td class="order-amount"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <!-- 페이지네이션 버튼 -->
+            <div class="pagination">
+               <button id="prev-page" disabled>이전</button>
+               <span id="page-number">1</span>
+               <button id="next-page">다음</button>
+            </div>
+         </section>
+      </main>
+      <script>
+         // 데이터 예시 (서버에서 받은 데이터)
+         const rowData = {
+            orderDate: '2024.12.22',
+            type: '일반',
+            company: '책임',
+            business: '서울',
+            orderCode: '12345',
+            productCode: 'P001',
+            productName: '상품A',
+            remarks: '비고 내용',
+            orderStatus: '접수중',
+            spec: '규격A',
+            unit: '박스',
+            quantity: 100,
+            unitPrice: 5000,
+            orderAmount: 500000,
+         }
+
+         // tbody 안의 첫 번째 tr을 찾기
+         const row = document.querySelector('tbody tr')
+
+         // data- 속성으로 값을 채우기
+         Object.keys(rowData).forEach((key) => {
+            const td = row.querySelector(
+               `.${key.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)}`
+            ) // camelCase를 kebab-case로 변환
+
+            // td에 데이터 삽입
+            if (td) {
+               td.textContent = rowData[key] // td 안에 텍스트 삽입
+            }
+         })
+
+         function scrollBar(selector) {
+            // 선택한 요소를 변수로 저장
+            const orderList = document.querySelector(selector)
+
+            // 휠 이벤트 리스너 추가
+            orderList.addEventListener('wheel', function (e) {
+               handleScroll(e, orderList)
+            })
+         }
+
+         // 휠 이벤트를 처리하는 함수
+         function handleScroll(e, orderList) {
+            // 가로 스크롤 처리 (deltaY === 0일 경우 deltaX 사용)
+            if (e.deltaY === 0) {
+               orderList.scrollLeft += e.deltaX
+            }
+
+            // 세로 스크롤 처리 (deltaY !== 0일 경우)
+            if (e.deltaY !== 0) {
+               // order_list가 가장 왼쪽에 있을 때 위로 스크롤
+               if (orderList.scrollLeft === 0 && e.deltaY < 0) {
+                  window.scrollBy(0, -40) // 화면을 위로 40px 스크롤
+               }
+               // order_list가 가장 오른쪽에 있을 때 아래로 스크롤
+               else if (
+                  orderList.scrollLeft + orderList.offsetWidth >=
+                     orderList.scrollWidth &&
+                  e.deltaY > 0
+               ) {
+                  window.scrollBy(0, 40) // 화면을 아래로 40px 스크롤
+               } else {
+                  // 화면 스크롤을 막고, order_list만 스크롤
+                  orderList.scrollLeft += e.deltaY
+               }
+            }
+
+            // 기본 스크롤 동작을 방지
+            e.preventDefault()
+         }
+
+         // 사용 예시
+         scrollBar('.order_list')
+
+         // 클래스 형식으로 변환
+         /* class ScrollBar {
+            constructor(selector) {
+               // 선택한 요소를 클래스 인스턴스의 프로퍼티로 저장
+               this.orderList = document.querySelector(selector)
+
+               // 이벤트 리스너를 등록
+               this.init()
+            }
+
+            // 이벤트 리스너 초기화 함수
+            init() {
+               // 요소에 wheel 이벤트 리스너 추가
+               this.orderList.addEventListener('wheel', (e) =>
+                  this.handleScroll(e)
+               )
+            }
+
+            // 휠 이벤트를 처리하는 메서드
+            handleScroll(e) {
+               // 가로 스크롤을 할 때
+               if (e.deltaY === 0) {
+                  // 수평 스크롤 값이 있을 때, 수평 스크롤 이동
+                  this.orderList.scrollLeft += e.deltaX
+               }
+
+               // 세로 스크롤을 할 때
+               if (e.deltaY !== 0) {
+                  // order_list의 가로 스크롤이 맨 왼쪽일 때는 화면을 위로 스크롤
+                  if (this.orderList.scrollLeft === 0 && e.deltaY < 0) {
+                     window.scrollBy(0, -40) // 화면을 위로 40px 스크롤
+                  }
+                  // order_list의 가로 스크롤이 맨 오른쪽일 때는 화면을 아래로 스크롤
+                  else if (
+                     this.orderList.scrollLeft + this.orderList.offsetWidth >=
+                        this.orderList.scrollWidth &&
+                     e.deltaY > 0
+                  ) {
+                     window.scrollBy(0, 40) // 화면을 아래로 40px 스크롤
+                  } else {
+                     // 화면 스크롤을 막고, order_list만 스크롤
+                     this.orderList.scrollLeft += e.deltaY
+                  }
+               }
+
+               // 기본 스크롤 동작을 방지
+               e.preventDefault()
+            }
+         }
+
+         // 클래스를 사용하여 스크롤 기능 적용
+         const scrollBarInstance = new ScrollBar('.order_list')*/
+      </script>
+   </body>
+</html>

@@ -1,0 +1,28 @@
+[
+    {
+        "ORDERCODE": "",
+        "ORDERDATE": "",
+        "DELIVERYREQUESTDATE": "",
+        "DELIVERYAVAILABLEDATE": "",
+        "DELAYREASON": "",
+        "DELIVERYDUEDATE": "",
+        "ORDERTYPE": "",
+        "ORDERCOMPANY": "",
+        "ORDERBUSINESS": "",
+        "ORDERUSER": "",
+        "ORDERPHONE": "",
+        "ORDERADDRESS": "",
+        "DELIVERYMETHOD": "",
+        "ORDERSTATUS": "",
+        "PRODUCTCODE": "",
+        "PRODUCTNAME": "",
+        "PRODUCTBRAND": "",
+        "PRODUCTSPEC": "",
+        "PRODUCTUNIT": "",
+        "PRODUCTUNITPRICE": "",
+        "PRODUCTQUANTITY": "",
+        "PRODUCTTOTALPRICE": "",
+        "PRODUCTREMARKS": "",
+        "INVOICENUMBER": ""
+    }
+]

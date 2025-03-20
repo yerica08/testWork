@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="/reset.css" />
+      <link rel="stylesheet" href="/orderbasic.css" />
+   </head>
+   <body>
+      <main class="basic_style1">
+         <div class="page_title">
+            <h2>출고관리</h2>
+            <nav>
+               <ul class="breadcrumb">
+                  <li class="active"><a href="#">출고지시</a></li>
+                  <li><a href="#">출고확정</a></li>
+               </ul>
+               <ul class="path">
+                  <li>
+                     <a href="#"><i class="home"></i> </a>
+                  </li>
+                  <li><a href="#">출고관리</a></li>
+                  <li><a href="#">출고지시</a></li>
+               </ul>
+            </nav>
+         </div>
+
+         <section class="search_box">
+            <form action="#" method="GET">
+               <ul class="search-list">
+                  <!-- 주문기간 -->
+                  <li class="search-item">
+                     <label for="state-date">주문기간</label>
+                     <div id="date-range">
+                        <input type="date" name="state-date" id="start-date1" />
+                        <span>~</span>
+                        <input type="date" name="state-date" id="end-date1" />
+                     </div>
+                  </li>
+
+                  <!-- 주문상태 -->
+                  <li class="search-item">
+                     <label for="state-date">납품요청일</label>
+                     <div id="delivery-date">
+                        <input
+                           type="date"
+                           name="state-date"
+                           id="start-date2"
+                           required
+                        />
+                        <span>~</span>
+                        <input
+                           type="date"
+                           name="state-date"
+                           id="end-date2"
+                           required
+                        />
+                     </div>
+                  </li>
+
+                  <!-- 사업장 -->
+                  <li class="search-item">
+                     <label for="business-location">사업장</label>
+                     <select name="business-location" id="business-location">
+                        <option value="all">전체</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                        <option value="ochang">오창허브</option>
+                     </select>
+                  </li>
+
+                  <!-- 회사 -->
+                  <li class="search-item">
+                     <label for="company">회사</label>
+                     <select name="company" id="company">
+                        <option value="all">전체</option>
+                        <option value="responsible">책임</option>
+                        <option value="general">일반</option>
+                     </select>
+                  </li>
+
+                  <!-- 상품코드 -->
+                  <li class="search-item">
+                     <label for="product-code">상품코드</label>
+                     <input
+                        type="text"
+                        name="product-code"
+                        id="product-code"
+                        placeholder="상품코드 입력"
+                     />
+                  </li>
+
+                  <!-- 주문번호 -->
+                  <li class="search-item">
+                     <label for="order-number">주문번호</label>
+                     <input
+                        type="text"
+                        name="order-number"
+                        id="order-number"
+                        placeholder="주문번호 입력"
+                     />
+                  </li>
+
+                  <!-- 상품명 -->
+                  <li class="search-item">
+                     <label for="product-name">상품명</label>
+                     <input
+                        type="text"
+                        name="product-name"
+                        id="product-name"
+                        placeholder="상품명 입력"
+                     />
+                  </li>
+
+                  <!-- 유형 -->
+                  <li class="search-item">
+                     <label for="order-type">유형</label>
+                     <select name="order-type" id="order-type">
+                        <option value="all">전체</option>
+                        <option value="general">일반</option>
+                        <option value="special">특수</option>
+                     </select>
+                  </li>
+               </ul>
+
+               <div class="button-group">
+                  <!-- 조회 버튼 -->
+                  <button type="button" class="search-btn">조회</button>
+                  <!-- 초기화 버튼 -->
+                  <button type="button" class="reset-btn">초기화</button>
+               </div>
+            </form>
+         </section>
+         <section class="order_list">
+            <figcaption>&#42; 아래 품목을 선택해 주세요</figcaption>
+            <div class="table_wrap">
+               <table>
+                  <thead>
+                     <tr>
+                        <th class="order-check">
+                           <label for="checkedAll"></label>
+                           <input type="checkbox" name="all" id="checkedAll" />
+                        </th>
+                        <th class="order-date">주문일자</th>
+                        <th class="delivery-date">납품요청일</th>
+                        <th class="type">유형</th>
+                        <th class="company">회사</th>
+                        <th class="business">사업장</th>
+                        <th class="order-code">주문번호</th>
+                        <th class="product-code">상품코드</th>
+                        <th class="product-name">상품명</th>
+                        <th class="remarks">비고</th>
+                        <th class="order-status">주문상태</th>
+                        <th class="spec">규격</th>
+                        <th class="unit">단위</th>
+                        <th class="quantity">수량</th>
+                        <th class="unit-price">주문단가</th>
+                        <th class="order-amount">주문금액</th>
+                     </tr>
+                  </thead>
+                  <tbody id="order-body">
+                     <tr class="nothing">
+                        <td colspan="13">조회된 데이터가 없습니다.</td>
+                     </tr>
+                  </tbody>
+                  <template class="item-row-template">
+                     <tr>
+                        <td class="order-check">
+                           <label for="checkedItem"></label>
+                           <input
+                              type="checkbox"
+                              name="all"
+                              class="checkedItem"
+                              id="checkedItem"
+                           />
+                        </td>
+                        <td class="order-date">
+                           <span class="lab-order-date"></span>
+                        </td>
+                        <td class="delivery-date">
+                           <span class="lab-delivery-date"></span>
+                        </td>
+                        <td class="type"><span class="lab-type"></span></td>
+                        <td class="company">
+                           <span class="lab-company"></span>
+                        </td>
+                        <td class="business">
+                           <span class="lab-business"></span>
+                        </td>
+                        <td class="order-code">
+                           <span class="lab-order-code"></span>
+                        </td>
+                        <td class="product-code">
+                           <span class="lab-product-code"></span>
+                        </td>
+                        <td class="product-name">
+                           <span class="lab-product-name"></span>
+                        </td>
+                        <td class="remarks">
+                           <span class="lab-remarks"></span>
+                        </td>
+                        <td class="order-status">
+                           <span class="lab-order-status"></span>
+                        </td>
+                        <td class="spec"><span class="lab-spec"></span></td>
+                        <td class="unit"><span class="lab-unit"></span></td>
+                        <td class="quantity">
+                           <span class="lab-quantity"></span>
+                        </td>
+                        <td class="unit-price">
+                           <span class="lab-unit-price"></span>
+                        </td>
+                        <td class="order-amount">
+                           <span class="lab-order-amount"></span>
+                        </td>
+                     </tr>
+                  </template>
+               </table>
+            </div>
+            <!-- 페이지네이션 버튼 -->
+            <div class="pagination">
+               <button id="prev-page" type="button" disabled></button>
+               <span id="page-number">1</span> / <span id="total-pages">1</span>
+               <button id="next-page" type="button"></button>
+            </div>
+         </section>
+         <section class="order_update">
+            <div>
+               <h3>선택 품목 수정</h3>
+               <div class="actions">
+                  <button type="button" class="cancel">접수취소</button>
+                  <button type="button" class="proceed">출고지시</button>
+               </div>
+            </div>
+            <div class="order_details">
+               <ul>
+                  <li class="selected-order">
+                     <label for="order-number">선택 품목 주문 번호</label>
+                     <select name="order-number" id="select-order-number">
+                        <option value="undefind">
+                           선택된 품목이 없습니다.
+                        </option>
+                     </select>
+                     <p>총 <span>0</span>개</p>
+                  </li>
+                  <li>
+                     <label for="change-delivery-date"
+                        >납품가능일 일괄 변경</label
+                     >
+                     <input type="date" id="change-delivery-date" />
+                     <button type="button" class="change-delivery-date">
+                        변경하기
+                     </button>
+                  </li>
+                  <li>
+                     <label for="delay-reason">지연사유 일괄 변경</label>
+                     <select name="delay-reason" id="delay-reason">
+                        <option value="undefind">사유를 선택해주세요</option>
+                        <option value="out-of-stock">품절</option>
+                        <option value="wrong-shipping">착오발송</option>
+                        <option value="other">기타</option>
+                     </select>
+                     <button type="button" class="delay-reason">
+                        변경하기
+                     </button>
+                  </li>
+                  <li>
+                     <label for="split-delivery-quantity"
+                        >분할 납품 수량 변경</label
+                     >
+                     <button type="button" class="split-delivery-quantity">
+                        수량 변경
+                     </button>
+                  </li>
+                  <li>
+                     <label for="order-management">주문서 관리</label>
+                     <button type="button" class="excel-download">
+                        엑셀다운로드
+                     </button>
+                     <button type="button" class="order-issue">
+                        주문서 발행
+                     </button>
+                  </li>
+               </ul>
+            </div>
+         </section>
+      </main>
+      <script>
+         dateRange('start-date', 'end-date')
+
+         // 조회 기간(날짜) 기본 세팅
+         function dateRange(start, end) {
+            const startDate1 = document.getElementById(start + '1') // 한달전 날짜
+            const startDate2 = document.getElementById(start + '2') // 한달전 날짜
+            const endDate1 = document.getElementById(end + '1') // 현재 날짜
+            const endDate2 = document.getElementById(end + '2') // 현재 날짜
+
+            if (endDate1) endDate1.value = new Date().toISOString().slice(0, 10)
+            if (endDate2) endDate2.value = new Date().toISOString().slice(0, 10)
+            if (startDate1) startDate1.value = getLastMonth()
+            if (startDate2) startDate2.value = getLastMonth()
+
+            // 한 달 전 계산 함수
+            function getLastMonth() {
+               const prevMonthDate = new Date()
+               prevMonthDate.setMonth(prevMonthDate.getMonth() - 1)
+
+               return prevMonthDate.toISOString().slice(0, 10)
+            }
+         }
+
+         // 사용 예시
+         scrollBar('.table_wrap')
+
+         // 스크롤 이벤트 처리 함수 개선
+         function scrollBar(selector) {
+            const orderList = document.querySelector(selector)
+
+            orderList.addEventListener('wheel', function (e) {
+               handleScroll(e, orderList)
+            })
+
+            // 휠 이벤트 처리 함수
+            function handleScroll(e, orderList) {
+               // 가로 스크롤 처리
+               if (e.deltaY === 0) {
+                  orderList.scrollLeft += e.deltaX
+               }
+
+               console.log(orderList.scrollLeft + orderList.offsetWidth)
+               console.log(orderList.scrollWidth)
+               // 세로 스크롤 처리
+               if (e.deltaY !== 0) {
+                  if (orderList.scrollLeft === 0 && e.deltaY < 0) {
+                     window.scrollBy(0, -40)
+                  } else if (
+                     orderList.scrollLeft + orderList.offsetWidth >=
+                        orderList.scrollWidth &&
+                     e.deltaY > 0
+                  ) {
+                     window.scrollBy(0, 40)
+                  } else {
+                     orderList.scrollLeft += e.deltaY
+                  }
+               }
+
+               e.preventDefault() // 기본 스크롤 동작 방지
+            }
+         }
+
+         // 샘플 데이터
+         ;(() => {
+            const sampleObj = {
+               orderDate: '2024.12.22',
+               deliveryDate: '2024.12.28',
+               type: '일반',
+               company: '책임',
+               business: '서울사업장',
+               orderCode: 'P110321859452684',
+               productCode: '1160521',
+               productName: '캐스터(고정)',
+               remarks: '비고 내용',
+               orderStatus: '접수중',
+               spec: 'K-100(600CC)',
+               unit: 'EA',
+               quantity: '100',
+               unitPrice: '56,101',
+               orderAmount: '1,150,110',
+            }
+
+            const rowData = []
+            for (let i = 0; i < 30; i++) {
+               rowData.push({ ...sampleObj })
+            }
+
+            pageSet(rowData, 10)
+         })()
+
+         // 넣고싶은 데이터와 보여주고싶은 페이지 갯수
+         function pageSet(getData, setPageNum = 10) {
+            // 페이지네이션 처리 함수 개선
+            let currentPage = 1
+            const rowsPerPage = setPageNum
+
+            async function updatePagination() {
+               try {
+                  const totalPages = await getTotalPages()
+                  const pageNumber = document.getElementById('page-number')
+                  const totalPagesElement =
+                     document.getElementById('total-pages')
+                  const prevButton = document.getElementById('prev-page')
+                  const nextButton = document.getElementById('next-page')
+
+                  pageNumber.textContent = currentPage
+                  totalPagesElement.textContent = totalPages
+
+                  prevButton.disabled = currentPage === 1
+                  nextButton.disabled = currentPage === totalPages
+
+                  await loadTableData(currentPage)
+
+                  // 이벤트 리스너는 한 번만 설정하도록 수정
+                  prevButton.removeEventListener('click', handlePrevClick)
+                  nextButton.removeEventListener('click', handleNextClick)
+
+                  prevButton.addEventListener('click', handlePrevClick)
+                  nextButton.addEventListener('click', handleNextClick)
+                  labelUpdate()
+               } catch (error) {
+                  console.error('페이지네이션 업데이트 중 오류 발생:', error)
+               }
+            }
+
+            function handlePrevClick() {
+               if (currentPage > 1) {
+                  currentPage--
+                  updatePagination()
+               }
+            }
+
+            function handleNextClick() {
+               currentPage++
+               updatePagination()
+            }
+
+            // 데이터 로드 함수
+            async function loadTableData(page) {
+               const tbody = document.getElementById('order-body')
+               const deliveryDate = document.querySelector(
+                  '.search-item #delivery-date'
+               )
+
+               tbody.innerHTML = ''
+
+               try {
+                  const data = await fetchOrderData()
+                  // 확인을 위한 인덱스 변경
+                  data[11].business = '11번인덱스입니다.'
+                  data[21].business = '21번인덱스입니다.'
+                  data[0].orderCode = '0000000000'
+                  data[1].orderCode = '11111111'
+                  data[2].orderCode = '2222222222'
+                  data[3].orderCode = '3333333'
+                  data[4].orderCode = '41111111'
+                  data[5].orderCode = '555555555'
+                  const startIndex = (page - 1) * rowsPerPage
+                  const endIndex = startIndex + rowsPerPage
+                  const pageData = data.slice(startIndex, endIndex)
+
+                  pageData.forEach((dataItem) => {
+                     const newItem = document
+                        .querySelector('.item-row-template')
+                        .content.cloneNode(true)
+
+                     newItem.querySelector('.lab-order-date').innerHTML =
+                        dataItem.orderDate
+                     if (deliveryDate) {
+                        newItem.querySelector('.lab-delivery-date').innerHTML =
+                           dataItem.deliveryDate
+                     }
+                     newItem.querySelector('.lab-type').innerHTML =
+                        dataItem.type
+                     newItem.querySelector('.lab-company').innerHTML =
+                        dataItem.company
+                     newItem.querySelector('.lab-business').innerHTML =
+                        dataItem.business
+                     newItem.querySelector('.lab-order-code').innerHTML =
+                        dataItem.orderCode
+                     newItem.querySelector('.lab-product-code').innerHTML =
+                        dataItem.productCode
+                     newItem.querySelector('.lab-product-name').innerHTML =
+                        dataItem.productName
+                     newItem.querySelector('.lab-remarks').innerHTML =
+                        dataItem.remarks
+                     newItem.querySelector('.lab-order-status').innerHTML =
+                        dataItem.orderStatus
+                     newItem.querySelector('.lab-spec').innerHTML =
+                        dataItem.spec
+                     newItem.querySelector('.lab-unit').innerHTML =
+                        dataItem.unit
+                     newItem.querySelector('.lab-quantity').innerHTML =
+                        dataItem.quantity
+                     newItem.querySelector('.lab-unit-price').innerHTML =
+                        dataItem.unitPrice
+                     newItem.querySelector('.lab-order-amount').innerHTML =
+                        dataItem.orderAmount
+
+                     tbody.appendChild(newItem)
+                  })
+                  const tableSet =
+                     document.querySelectorAll('tbody .order-check')
+                  let count = 1
+
+                  tableSet.forEach((td) => {
+                     const countNum = `count-${count}`
+                     td.querySelector('input').setAttribute('id', countNum)
+                     td.querySelector('label').setAttribute('for', countNum)
+                     count++
+                  })
+               } catch (error) {
+                  console.error('데이터 로드 중 오류 발생:', error)
+               }
+            }
+
+            async function fetchOrderData() {
+               const rowData = await getData
+               return rowData
+            }
+
+            async function getTotalPages() {
+               const data = await fetchOrderData()
+               return Math.ceil(data.length / rowsPerPage)
+            }
+
+            function labelUpdate() {
+               const allBox = document.querySelector(
+                  'th input[type="checkbox"]'
+               )
+               const tableLabel = document.querySelectorAll(
+                  'label[for="checkedItem"]'
+               )
+               const checkBoxes = document.querySelectorAll(
+                  'tbody input[type="checkbox"]'
+               )
+               tableLabel.forEach((label) => {
+                  label.addEventListener('click', function (e) {
+                     e.preventDefault()
+
+                     let checkBox = label.nextElementSibling
+                     checkBox.checked = !checkBox.checked
+                  })
+               })
+               // "전체 선택" 체크박스 상태 변경 시, 모든 체크박스 상태 변경
+               allBox.addEventListener('change', function () {
+                  checkBoxes.forEach((box) => {
+                     box.checked = allBox.checked // 모든 체크박스 상태를 "전체 선택" 상태로 설정
+                  })
+               })
+            }
+
+            // 페이지네이션 초기화
+            updatePagination()
+         }
+
+         resetBtnFnc('.reset-btn', 'start-date', 'end-date', '.search_box')
+
+         function resetBtnFnc(name, dateStart, dateEnd, parent) {
+            const resetBtn = document.querySelector(name)
+
+            resetBtn.addEventListener('click', reset)
+
+            function reset() {
+               const inputText = document.querySelectorAll(
+                  `${parent} input[type='text']`
+               )
+               const select = document.querySelectorAll(`${parent} select`)
+               const inputDate = document.querySelectorAll(
+                  `${parent} input[type='date']`
+               )
+
+               if (inputText)
+                  inputText.forEach((input) => {
+                     input.value = ''
+                  })
+               if (select)
+                  select.forEach((select) => {
+                     select.value = 'all'
+                  })
+               if (inputDate) dateRange(dateStart, dateEnd)
+            }
+         }
+
+         window.addEventListener('load', shippingFnc)
+         function shippingFnc() {
+            const orderCheck = document.querySelectorAll('td.order-check')
+            const allCheck = document.querySelector('#checkedAll')
+            const orderSelected = document.getElementById('select-order-number')
+            const undefindOption = document.createElement('option')
+            const undefindOptionText =
+               document.createTextNode('선택된 품목이 없습니다.')
+            undefindOption.value = 'undefind'
+            undefindOption.appendChild(undefindOptionText)
+            const selectedNum = document.querySelector(
+               'section.order_update li.selected-order span'
+            )
+
+            orderCheck.forEach((td) => {
+               const checkBox = td.querySelector('input')
+               const name =
+                  td.parentElement.querySelector('.order-code').innerText
+
+               checkBox.addEventListener('change', function changeInput() {
+                  if (checkBox.checked) {
+                     let selectNone = orderSelected.querySelector(
+                        "option[value='undefind']"
+                     )
+                     if (selectNone) orderSelected.removeChild(selectNone)
+
+                     const newList = document.createElement('option')
+                     let text = document.createTextNode(name)
+                     newList.value = name
+                     newList.classList.add('checkList')
+                     newList.selected = true
+                     newList.appendChild(text)
+                     //  orderSelected.appendChild(newList)
+                     orderSelected.insertBefore(newList, orderSelected[0])
+                     let options = orderSelected.querySelectorAll('.checkList')
+                     selectedNum.innerHTML = options.length
+                  } else {
+                     let options = orderSelected.querySelectorAll('.checkList')
+                     for (let i = 0; i < options.length; i++) {
+                        if (options[i].textContent == name) {
+                           orderSelected.removeChild(options[i])
+                           let have = orderSelected.querySelectorAll('option')
+                           selectedNum.innerHTML = have.length
+                           if (have.length == 0) {
+                              orderSelected.appendChild(undefindOption)
+                           }
+                        }
+                     }
+                  }
+               })
+            })
+         }
+      </script>
+   </body>
+</html>

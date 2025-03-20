@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="/reset.css" />
+      <link rel="stylesheet" href="/orderbasic.css" />
+   </head>
+   <body>
+      <main class="basic_style1">
+         <div class="page_title">
+            <h2>주문관리</h2>
+            <nav>
+               <ul class="breadcrumb">
+                  <li class="active"><a href="#">주문접수</a></li>
+                  <li><a href="#">주문현황</a></li>
+               </ul>
+               <ul class="path">
+                  <li>
+                     <a href="#"><i class="home"></i> </a>
+                  </li>
+                  <li><a href="#">주문관리</a></li>
+                  <li><a href="#">주문접수</a></li>
+               </ul>
+            </nav>
+         </div>
+
+         <section class="search_box">
+            <form action="#" method="GET">
+               <ul class="search-list">
+                  <!-- 주문기간 -->
+                  <li class="search-item">
+                     <label for="start-date">주문기간</label>
+                     <div class="date-range">
+                        <input
+                           type="date"
+                           name="start-date"
+                           id="start-date"
+                           required
+                        />
+                        <span>~</span>
+                        <input
+                           type="date"
+                           name="end-date"
+                           id="end-date"
+                           required
+                        />
+                     </div>
+                  </li>
+
+                  <!-- 주문상태 -->
+                  <li class="search-item">
+                     <label for="order-status">주문상태</label>
+                     <select name="order-status" id="order-status">
+                        <option value="">전체</option>
+                        <option value="pending">접수중</option>
+                        <option value="completed">접수완료</option>
+                        <option value="shipping">출고지시</option>
+                        <option value="shipped">출고확정</option>
+                        <option value="received">입고완료</option>
+                     </select>
+                  </li>
+
+                  <!-- 사업장 -->
+                  <li class="search-item">
+                     <label for="business-location">사업장</label>
+                     <select name="business-location" id="business-location">
+                        <option value="">전체</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                        <option value="ochang">오창허브</option>
+                     </select>
+                  </li>
+
+                  <!-- 회사 -->
+                  <li class="search-item">
+                     <label for="company">회사</label>
+                     <select name="company" id="company">
+                        <option value="">전체</option>
+                        <option value="responsible">책임</option>
+                        <option value="general">일반</option>
+                     </select>
+                  </li>
+
+                  <!-- 상품코드 -->
+                  <li class="search-item">
+                     <label for="product-code">상품코드</label>
+                     <input
+                        type="text"
+                        name="product-code"
+                        id="product-code"
+                        placeholder="상품코드 입력"
+                     />
+                  </li>
+
+                  <!-- 주문번호 -->
+                  <li class="search-item">
+                     <label for="order-number">주문번호</label>
+                     <input
+                        type="text"
+                        name="order-number"
+                        id="order-number"
+                        placeholder="주문번호 입력"
+                     />
+                  </li>
+
+                  <!-- 상품명 -->
+                  <li class="search-item">
+                     <label for="product-name">상품명</label>
+                     <input
+                        type="text"
+                        name="product-name"
+                        id="product-name"
+                        placeholder="상품명 입력"
+                     />
+                  </li>
+
+                  <!-- 유형 -->
+                  <li class="search-item">
+                     <label for="order-type">유형</label>
+                     <select name="order-type" id="order-type">
+                        <option value="">전체</option>
+                        <option value="general">일반</option>
+                        <option value="special">특수</option>
+                     </select>
+                  </li>
+               </ul>
+
+               <div class="button-group">
+                  <!-- 조회 버튼 -->
+                  <button type="submit" class="search-btn">조회</button>
+                  <!-- 초기화 버튼 -->
+                  <button type="reset" class="reset-btn">초기화</button>
+               </div>
+            </form>
+         </section>
+         <section class="order_list">
+            <figcaption>
+               &#42; 주문번호를 클릭하여 상세페이지에서 주문 접수가 가능합니다.
+            </figcaption>
+            <div class="table_wrap">
+               <table>
+                  <thead>
+                     <tr>
+                        <th class="order-date">주문일자</th>
+                        <th class="type">유형</th>
+                        <th class="company">회사</th>
+                        <th class="business">사업장</th>
+                        <th class="order-code">주문번호</th>
+                        <th class="product-code">상품코드</th>
+                        <th class="product-name">상품명</th>
+                        <th class="remarks">비고</th>
+                        <th class="order-status">주문상태</th>
+                        <th class="spec">규격</th>
+                        <th class="unit">단위</th>
+                        <th class="quantity">수량</th>
+                        <th class="unit-price">주문단가</th>
+                        <th class="order-amount">주문금액</th>
+                     </tr>
+                  </thead>
+                  <tbody id="order-body">
+                     <tr class="nothing">
+                        <td colspan="13">조회된 데이터가 없습니다.</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- 페이지네이션 버튼 -->
+            <div class="pagination">
+               <button id="prev-page" disabled></button>
+               <span id="page-number">1</span> / <span id="total-pages">1</span>
+               <button id="next-page"></button>
+            </div>
+         </section>
+      </main>
+      <script>
+         const startDate = document.getElementById('start-date')
+         const endDate = document.getElementById('end-date')
+         const nowDate = new Date() // Date 객체로 현재 날짜를 받음
+
+         console.log(nowDate.toISOString().slice(0, 10) + ': 첫시작')
+         endDate.value = nowDate.toISOString().slice(0, 10) // 현재 날짜를 설정
+         startDate.value = DateRange(nowDate) // 시작 날짜 계산
+
+         console.log(DateRange(nowDate) + ': daterange 결과 구경')
+
+         // DateRange 함수 수정
+         function DateRange(nowDate) {
+            const prevMonthDate = new Date(nowDate) // 현재 날짜를 복사하여 새로운 객체 생성
+            prevMonthDate.setMonth(nowDate.getMonth() - 1) // 한 달 전으로 설정
+
+            // YYYY-MM-DD 형식으로 반환
+            const year = prevMonthDate.getFullYear()
+            const month = String(prevMonthDate.getMonth() + 1).padStart(2, '0') // 2자리로 월 보정
+            const day = String(prevMonthDate.getDate()).padStart(2, '0') // 2자리로 일 보정
+
+            return `${year}-${month}-${day}`
+         }
+
+         function scrollBar(selector) {
+            // 선택한 요소를 변수로 저장
+            const orderList = document.querySelector(selector)
+
+            // 휠 이벤트 리스너 추가
+            orderList.addEventListener('wheel', function (e) {
+               handleScroll(e, orderList)
+            })
+         }
+
+         // 휠 이벤트를 처리하는 함수
+         function handleScroll(e, orderList) {
+            // 가로 스크롤 처리 (deltaY === 0일 경우 deltaX 사용)
+            if (e.deltaY === 0) {
+               orderList.scrollLeft += e.deltaX
+            }
+
+            // 세로 스크롤 처리 (deltaY !== 0일 경우)
+            if (e.deltaY !== 0) {
+               // order_list가 가장 왼쪽에 있을 때 위로 스크롤
+               if (orderList.scrollLeft === 0 && e.deltaY < 0) {
+                  window.scrollBy(0, -40) // 화면을 위로 40px 스크롤
+               }
+               // order_list가 가장 오른쪽에 있을 때 아래로 스크롤
+               else if (
+                  orderList.scrollLeft + orderList.offsetWidth >=
+                     orderList.scrollWidth &&
+                  e.deltaY > 0
+               ) {
+                  window.scrollBy(0, 40) // 화면을 아래로 40px 스크롤
+               } else {
+                  // 화면 스크롤을 막고, order_list만 스크롤
+                  orderList.scrollLeft += e.deltaY
+               }
+            }
+
+            // 기본 스크롤 동작을 방지
+            e.preventDefault()
+         }
+
+         // 사용 예시
+         scrollBar('.table_wrap')
+
+         // ---------------------------------------------------
+
+         let currentPage = 1
+         const rowsPerPage = 10 // 한 페이지당 표시할 데이터 개수
+
+         // 페이지네이션을 초기화하는 함수
+         async function updatePagination() {
+            try {
+               const totalPages = await getTotalPages() // 서버에서 전체 페이지 수 가져오기
+               const pageNumber = document.getElementById('page-number')
+               const totalPagesElement = document.getElementById('total-pages') // 총 페이지 수 표시 요소
+               const prevButton = document.getElementById('prev-page')
+               const nextButton = document.getElementById('next-page')
+
+               // 페이지 번호 및 총 페이지 수 업데이트
+               pageNumber.textContent = currentPage
+               totalPagesElement.textContent = totalPages
+
+               // 이전, 다음 버튼 비활성화 여부 설정
+               prevButton.disabled = currentPage === 1
+               nextButton.disabled = currentPage === totalPages
+
+               // 데이터 로드
+               await loadTableData(currentPage)
+
+               // 페이지네이션 버튼 클릭 처리 (이벤트 리스너는 한 번만 설정)
+               prevButton.removeEventListener('click', handlePrevClick)
+               nextButton.removeEventListener('click', handleNextClick)
+
+               prevButton.addEventListener('click', handlePrevClick)
+               nextButton.addEventListener('click', handleNextClick)
+            } catch (error) {
+               console.error('페이지네이션 업데이트 중 오류 발생:', error)
+            }
+         }
+
+         // 이전 페이지 버튼 클릭 핸들러
+         function handlePrevClick() {
+            if (currentPage > 1) {
+               currentPage--
+               updatePagination()
+            }
+         }
+
+         // 다음 페이지 버튼 클릭 핸들러
+         function handleNextClick() {
+            currentPage++
+            updatePagination()
+         }
+
+         // 데이터 로드 함수
+         async function loadTableData(page) {
+            const tbody = document.getElementById('order-body')
+            tbody.innerHTML = '' // 기존 데이터를 지움
+            try {
+               // 서버에서 해당 페이지의 데이터를 가져오기
+               const data = await fetchOrderData()
+               // 확인을 위한 인덱스 변경
+               data[11].business = '11번인덱스입니다.'
+               data[21].business = '21번인덱스입니다.'
+               const startIndex = (page - 1) * rowsPerPage // 시작 인덱스
+               const endIndex = startIndex + rowsPerPage // 끝 인덱스
+               const pageData = data.slice(startIndex, endIndex) // 해당 페이지의 데이터만 추출
+
+               // 테이블에 데이터 추가
+               pageData.forEach((dataItem) => {
+                  const tr = document.createElement('tr')
+                  Object.keys(dataItem).forEach((key) => {
+                     const td = document.createElement('td')
+                     td.textContent = dataItem[key]
+                     tr.appendChild(td)
+                  })
+                  tbody.appendChild(tr)
+               })
+            } catch (error) {
+               console.error('데이터 로드 중 오류 발생:', error)
+            }
+         }
+
+         // 서버에서 주문 데이터 가져오기
+         async function fetchOrderData() {
+            const sampleObj = {
+               orderDate: '2024.12.22',
+               type: '일반',
+               company: '책임',
+               business: '서울',
+               orderCode: '12345',
+               productCode: 'P001',
+               productName: '상품A',
+               remarks: '비고 내용',
+               orderStatus: '접수중',
+               spec: '규격A',
+               unit: '박스',
+               quantity: 100,
+               unitPrice: 5000,
+               orderAmount: 500000,
+            }
+
+            const rowData = []
+            for (let i = 0; i < 30; i++) {
+               rowData.push({ ...sampleObj })
+            }
+
+            return rowData // 데이터 반환
+         }
+
+         // 서버에서 전체 페이지 수 가져오기
+         async function getTotalPages() {
+            const data = await fetchOrderData() // 데이터를 가져와서 전체 페이지 수를 계산
+            const totalPages = Math.ceil(data.length / rowsPerPage) // 전체 페이지 수 계산
+            return totalPages // 총 페이지 수 반환
+         }
+
+         // 페이지네이션 초기화
+         updatePagination()
+      </script>
+   </body>
+</html>

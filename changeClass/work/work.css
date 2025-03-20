@@ -1,0 +1,477 @@
+/* 글꼴 : Noto Sans KR */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+/* 글꼴 : Gamrket */
+@font-face{
+    font-family: "Gmarket";
+    src: url(./GmarketSansMedium.otf);
+    font-weight: 400;
+}
+@font-face{
+    font-family: "Gmarket";
+    src: url(./GmarketSansLight.otf);
+    font-weight: 300;
+}
+/* icon 세팅 */
+i.bell{
+    background-image: url(./sprite.png);
+    background-position: -38px 0px;
+    width: 34px;
+    height: 34px;
+}
+i.round{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    border-radius: 100%;
+    background-color: rgb(233, 45, 21);
+}
+i.clock{
+    background: url(./Frame\ 288.png);
+    background-size: 38px;
+    width: 38px;
+    height: 38px;
+}
+i.run{
+    background-image: url(./sprite.png);
+    background-position: 0px -72px;
+    width: 16px;
+    height: 22px;
+    margin: 10px
+}
+i.plus{
+    width: 10px;
+    height: 2px;
+    position: relative;
+    background-color: #737373;
+    margin-right: 5px;
+    vertical-align: super;
+}
+i.plus::after{
+    display: block;
+    content: "";
+    width: 2px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #737373;
+}
+i.sun2{
+    background-image: url(./sprite.png);
+    background-position: -72px -34px;
+    width: 34px;
+    height: 34px;
+}
+i.calender{
+    background-image: url(./sprite.png);
+    background-position: 0px -38px;
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+    transform: scale(0.7);
+}
+i.sun{
+    background-image: url(./sprite.png);
+    background-position: -72px 0px;
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+    transform: scale(0.7);
+}
+/* 공용 스타일 */
+button{
+    font-family: "Noto Sans KR", serif;
+    font-weight: 400;
+}
+body{
+    font-family: "Noto Sans KR", serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #FAFAFA;
+}
+.wrapper{
+    width: calc(90vw);
+    height: 100vh;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* header */
+header{
+    position: relative;
+}
+header > div{
+    display: flex;
+    gap: 40px;
+    width: 73%;
+    height: 80px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px 80px 15px 100px;
+    margin: 20px auto;
+    background: linear-gradient(180deg, #7e7e7e, #575757);
+    border-radius: 0px 100px 0px 100px;
+    color: #FBFBFB;
+    border: 1px solid #c7c3f3;
+    box-sizing: border-box;
+}
+header h1 {
+    position: absolute;
+    top: 0px;
+    left: -9%;
+}
+header h1 img{
+    height: 80px;
+}
+header p{
+    line-height: 22px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+header .user_name {
+    font-size: 21px;
+    font-weight: 600;
+    text-shadow: 0 2px 2px rgb(51, 51, 51, 0.25);
+}
+header .alert{
+    margin: auto 0;
+    position: relative;
+}
+/* 좌측 메뉴 */
+nav{
+    width: 18vw;
+    min-width: 300px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 120px 40px 0 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 4px 0px 10px rgb(51, 51, 51, 0.05);
+}
+#btnClose{
+    background-image: url(./sprite.png);
+    background-position: -34px -38px;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.gnb{
+    width: 90%;
+    margin: 0 auto;
+}
+nav a {
+    display: block;
+}
+.gnb > li > a{
+    padding: 10px 40px 10px;
+    font-family: "Gmarket";
+    font-size: 20px;
+    font-weight: 600;
+    color: #0c0c0c;
+    border: 1px solid #e4e4e4;
+    border-left: none;
+    border-right: none;
+    opacity: 0.8;
+}
+.lnb {
+    width: 100%;
+    padding: 20px 20px 20px 25%;
+    line-height: 46px;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+.lnb li{
+    width: 100%;
+}
+.lnb a {
+    width: fit-content;
+    padding: 0 20px;
+    color: #737373;
+    border-bottom: 1px solid transparent;
+}
+
+.lnb .active{
+    font-weight: 500;
+    color: #2885ff;
+}
+.lnb li:hover a{
+    font-weight: 500;
+    color: #2885ff;
+    border-bottom: 1px solid #2885ff;
+}
+
+/* section 공용 스타일 */
+main{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 80%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 120px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+section{
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 30px;
+    box-shadow: 2px 2px 10px rgb(51, 51, 51, 0.1);
+    box-sizing: border-box;
+}
+h2{
+    font-family: "Gmarket";
+    width: 100%;
+    height: 32px;
+    font-size: 19px;
+    color: #5f5f5f;
+}
+
+/* 근태 관리 */
+.timekeepling{
+    position: relative;
+    width: 100%;
+}
+.timekeepling .button_wrap{
+    display: flex;
+    gap: 20px;
+    width: fit-content;
+    position: absolute;
+    top: 93px;
+    z-index: 10;
+    margin-left: 5px;
+}
+.timekeepling .button_wrap i:not(.plus){
+    vertical-align: middle;
+}
+#currentTime{
+    display: inline-block;
+    width: 160px;
+    margin-left: 10px;
+    font-family: "Gmarket";
+    font-size: 36px;
+    line-height: 35px;
+    vertical-align: text-top;
+}
+#btnWork{
+    width: 230px;
+    height: 42px;
+    font-size: 18px;
+    line-height: 34px;
+    border-radius: 10px;
+    background-color: #2885ff;
+    color: #fff;
+    margin-left: 10px;
+}
+#btnETC{
+    width: 100px;
+    height: 42px;
+    font-size: 18px;
+    line-height: 34px;
+    color: #737373;
+    border-radius: 10px;
+    border: 1px solid #737373;
+}
+#btnWork:hover{
+    background-color: #146ee4;
+}
+#btnETC:hover{
+    background-color: #e7e7e7;
+}
+
+/* FullCalendar css */
+:root{
+    --fc-border-color: #d8d8d8;
+    --fc-button-bg-color: #197DFF;
+    --fc-button-border-color: transparent;
+    --fc-button-hover-bg-color: #197DFF;
+    --fc-button-hover-border-color: #197DFF;
+    --fc-button-active-bg-color: #197DFF;
+    --fc-button-active-border-color: transparent;
+    --fc-event-bg-color: #197DFF;
+    --fc-event-border-color: #197DFF;
+    --fc-event-text-color: #fff;
+    --fc-today-bg-color: #F0F8FF;
+    --fc-non-business-color: repeating-linear-gradient(45deg, #ffffff, #ffffff 5px, #ECECEC 0, #ECECEC 6px);
+}
+.fc {
+    font-family: "Gmarket";
+}
+.fc .fc-toolbar {
+    flex-direction: column;
+    align-items: end;
+}
+.fc .fc-toolbar.fc-header-toolbar {
+    position: relative;
+    margin: 2em 0;
+}
+.fc .fc-header-toolbar > div:first-of-type{
+    position: absolute;
+    top: -74px;
+    right: -6px;
+}
+.fc .fc-toolbar-title{
+    font-size: 16px;
+}
+.fc-header-toolbar div:first-of-type{
+    display: flex;
+}
+/* FullCalendar - table */
+.fc-theme-standard th{
+    background-color: #FFFCAD;
+    height: 50px;
+    line-height: 50px;
+}
+.fc .fc-col-header-cell-cushion {
+    font-weight: 300;
+}
+/* FullCalendar - 제목 */
+#fc-dom-1{
+    width: fit-content;
+    height: 38px;
+    line-height: 42px;
+    font-weight: 300;
+}
+#fc-dom-1::after{
+    display: none;
+}
+/* FullCalendar 버튼 */
+.fc .fc-button {
+    padding: 0.5em 0.65em;
+}
+.fc .fc-button-primary{
+    background-color: transparent;
+    color: #737373;
+    border: 1px solid #737373;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.fc .fc-button-primary:hover{
+    background-color: #146ee4;
+    border: 1px solid #2885ff;
+}
+.fc .fc-button-active{
+    border: 1px solid #2885ff;
+}
+.fc .fc-button:focus,
+.fc .fc-button-primary:focus,
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus, 
+.fc .fc-button-primary:not(:disabled):active:focus {
+    box-shadow: unset;
+}
+.fc .fc-next-button,
+.fc .fc-prev-button{
+    padding: 0;
+    border: 1px solid transparent;
+    color: #737373;
+}
+
+/* 잔여 휴가 */
+.vacation{
+    width: calc(35% - 10px);
+}
+.vacation > div{
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+.vacation > div > div:first-child{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.vacation > div > div:last-child{
+    width: 35%;
+}
+.vacation > div p{
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+.vacation > div p strong{
+    font-family: "Gmarket";
+    font-size: 32px;
+    margin: 0 2px;
+}
+.vacation .button_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#btnVState{
+    width: 100%;
+    height: 39px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #2885ff;
+    color: #fff;
+}
+#btnVState:hover{
+    background-color: #146ee4;
+}
+#btnVacation{
+    width: 100%;
+    height: 39px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #737373;
+    color: #737373;
+}
+#btnVacation:hover{
+    background-color: #e7e7e7;
+}
+/* 근무 시간 및 근태 현황 */
+.work{
+    width: calc(65% - 10px);
+}
+.work p{
+    font-size: 20px;
+    font-weight: 300;
+}
+.work strong{
+    font-size: 24px;
+}
+.work .line{
+    width: 1px;
+    height: 20px;
+    background-color: #d8d8d8;
+}
+.working_hours h2 .small{
+    font-size: 16px;
+    font-weight: 300;
+    margin-left: 15px;
+}
+.attendance div,
+.working_hours div{
+    display: flex;
+    justify-content: end;
+    gap: 2%;
+    margin: 26px 20px;
+}
+.attendance div{
+    margin: 15px 20px;
+}
+.attendance h2{
+    height: 20px;
+    padding-top: 26px;
+    border-top: 1px solid #d8d8d8;
+}

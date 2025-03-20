@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>프로미스게임</title>
+      <style>
+         body {
+            padding: 0;
+            margin: 0;
+         }
+         h1 {
+            text-align: center;
+            font-size: 48px;
+            width: 100%;
+            color: blue;
+         }
+         ul {
+            list-style: none;
+            text-align: center;
+            width: 100%;
+            padding: 0;
+         }
+         li {
+            width: fit-content;
+            margin: 0 auto;
+         }
+         li > p:last-of-type {
+            font-size: 24px;
+            font-weight: 600;
+         }
+         div {
+            text-align: center;
+            font-size: 48px;
+         }
+         .result {
+            text-decoration: underline;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>가위, 바위, 보!</h1>
+      <ul>
+         <li>
+            <p>첫번째 선택</p>
+            <p>
+               나 : <span class="me1"></span> 컴퓨터 :
+               <span class="you1"></span>
+            </p>
+         </li>
+      </ul>
+      <div>결과는!!!!</div>
+      <div class="result"></div>
+      <script>
+         alert('가위, 바위, 보 중에 선택하세요')
+
+         // 사용자 대답듣기
+         function getUserInput() {
+            return new Promise((resolve, reject) => {
+               let userAnswer = prompt('가위, 바위, 보!').replace(/(\s*)/g, '')
+
+               if (userAnswer === '가위') {
+                  resolve(1)
+               } else if (userAnswer === '바위') {
+                  resolve(2)
+               } else if (userAnswer === '보') {
+                  resolve(3)
+               } else {
+                  reject('잘못된 선택입니다. 가위, 바위, 보 중에 입력해주세요')
+               }
+            })
+         }
+
+         // 컴퓨터 랜덤 숫자 얻기
+         function getAiInput() {
+            return new Promise((resolve, reject) => {
+               let aiAnswer = rand(1, 3)
+               if (aiAnswer >= 1 && aiAnswer <= 3) {
+                  resolve(aiAnswer)
+               } else {
+                  reject('엥? 컴퓨터가 잘못된 선택을 했네요? 오류가 났나봐요!')
+               }
+               // 1 ~ 3까지 랜덤한 숫자 만들기
+               function rand(min, max) {
+                  return Math.floor(Math.random() * (max - min + 1)) + min
+               }
+            })
+         }
+
+         function askConfirmation(message) {
+            let yesOrNo = confirm(message)
+            return yesOrNo
+         }
+
+         function makeLi(level) {
+            const ul = document.querySelector('ul')
+            const li = document.createElement('li')
+            const p1 = document.createElement('p')
+            let levelText
+            if (level == 2) {
+               levelText = '두번째 선택입니다.'
+            } else if (level == 3) {
+               levelText = '세번째 선택입니다.'
+            } else if (level == 4) {
+               levelText = '네번째 선택입니다.'
+            }
+            const p2 = document.createElement('p')
+            const meText = document.createTextNode('나 :')
+            const span1 = document.createElement('span')
+            span1.classList.add(`me${level}`)
+            const comText = document.createTextNode(' 컴퓨터 :')
+            const span2 = document.createElement('span')
+            span2.classList.add(`you${level}`)
+
+            p1.textContent = levelText
+            p2.appendChild(meText)
+            p2.appendChild(span1)
+            p2.appendChild(comText)
+            p2.appendChild(span2)
+            li.appendChild(p1)
+            li.appendChild(p2)
+            ul.appendChild(li)
+         }
+
+         function write(level, a, b) {
+            const result = document.querySelector('.result')
+            const me = document.querySelector(`.me${level}`)
+            const you = document.querySelector(`.you${level}`)
+
+            me.textContent = textSpan(a)
+            you.textContent = textSpan(b)
+
+            if (a == b) {
+               result.textContent = '비겼습니다.'
+               me.style.color = 'orange'
+               you.style.color = 'orange'
+            } else if (a > b) {
+               if (a == 3 && b == 1) {
+                  result.textContent = '졌습니다.'
+                  you.style.color = 'red'
+               } else {
+                  result.textContent = '이겼습니다.'
+                  me.style.color = 'red'
+               }
+            } else if (a < b) {
+               if (a == 1 && b == 3) {
+                  result.textContent = '이겼습니다.'
+                  me.style.color = 'red'
+               } else {
+                  result.textContent = '졌습니다.'
+                  you.style.color = 'red'
+               }
+            }
+
+            function textSpan(result) {
+               if (result == 1) {
+                  return '가위'
+               } else if (result == 2) {
+                  return '바위'
+               } else {
+                  return '보'
+               }
+            }
+         }
+
+         async function really() {
+            try {
+               let choose = await getUserInput()
+               let computer = await getAiInput()
+
+               // 첫 번째 확인
+               let firstConfirmed = askConfirmation(
+                  '정말 이대로 진행하시겠습니까? (확인: 진행, 취소: 다시선택)'
+               )
+               if (!firstConfirmed) {
+                  makeLi(2)
+                  let choose2 = await getUserInput()
+                  let computer2 = await getAiInput()
+                  let secondConfirmed = askConfirmation(
+                     '흠.. 제 생각엔 다시 고르는게 좋을 것 같은데, 어떤가요? (확인: 다시선택, 취소: 진행)'
+                  )
+                  if (!secondConfirmed) {
+                     write(1, choose, computer)
+                     write(2, choose2, computer2)
+                  } else {
+                     makeLi(3)
+                     let choose3 = await getUserInput()
+                     let computer3 = await getAiInput()
+                     let thirdConfirmed = askConfirmation(
+                        '진짜 마지막으로 물어볼게요. 이대로 진행해요? (확인: 진행, 취소: 다시선택)'
+                     )
+                     if (thirdConfirmed) {
+                        write(1, choose, computer)
+                        write(2, choose2, computer2)
+                        write(3, choose3, computer3)
+                     } else {
+                        makeLi(4)
+                        let choose4 = await getUserInput()
+                        let computer4 = await getAiInput()
+                        write(1, choose, computer)
+                        write(2, choose2, computer2)
+                        write(3, choose3, computer3)
+                        write(4, choose4, computer4)
+                     }
+                  }
+               } else {
+                  write(1, choose, computer)
+               }
+            } catch (error) {
+               alert(error) // 오류 발생 시 처리
+            }
+         }
+         really()
+      </script>
+   </body>
+</html>

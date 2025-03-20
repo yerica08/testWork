@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+   </head>
+   <body>
+      <script>
+         const resolvedProm = Promise.resolve(33)
+
+         let thenProm = resolvedProm.then((value) => {
+            console.log(
+               '이 부분은 호출 스택 이후에 실행됩니다. 전달받은 값이자 반환값은 ' +
+                  value +
+                  '입니다.'
+            )
+            return value
+         })
+         // thenProm의 값을 즉시 기록
+         console.log(thenProm)
+
+         // setTimeout으로 함수 실행을 호출 스택이 빌 때까지 미룰 수 있음
+         setTimeout(() => {
+            console.log(thenProm)
+         })
+      </script>
+   </body>
+</html>

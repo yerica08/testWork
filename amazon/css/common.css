@@ -1,0 +1,122 @@
+/* icon */
+.nav-sprite-v1 .nav-sprite, .nav-sprite-v1 .nav-icon {
+    background-image: url(./img/nav-sprite-global-1x-reorg-privacy._CB541706272_.png);
+    background-position: 0 1000px;
+    background-repeat: repeat-x;
+}
+.nav-sprite-v1 .nav-logo-base{
+    display: block;
+    text-indent: -500px;
+    background-position: -9px -125px;
+    width: 98px;
+    height: 34px;
+}
+/* base */
+:root{
+    --orange-color : #febd69;
+    --yellow-color : #ffd814;
+    --white-color : #d6d6d6;
+}
+
+body{
+    width: 100vw;
+}
+.wraaper{
+    width: 100%;
+    height: fit-content;
+}
+/* header */
+#navbar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1em;
+}
+/* header-top */
+#nav-belt {
+    display: flex;
+    width: 100%;
+    padding: 0 15px;
+    background-color: #131921;
+}
+#nav-belt > div{
+    width: 100%;
+    height: 60px;
+}
+.glow-ingress-block,
+#nav-belt a{
+    color: var(--white-color);
+    padding: 0 9px;
+}
+.nav-left{
+    display: flex;
+}
+#nav-belt > .nav-fill{
+    width: 100%;
+}
+.nav-right{
+    display: flex;
+}
+.nav-global-location-popover-link,
+.glow-ingress-block, .nav-a{
+    display: flex;
+    flex-direction: column;
+}
+/* header-bottom */
+#nav-main{
+    display: flex;
+    width: 100%;
+}
+#nav-main > div{
+    max-height: 39px;
+}
+#nav-search{
+    margin: 0 18px;
+    padding: 10px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#nav-search > form{
+    display: flex;
+}
+#nav-search .nav-left{
+    background-color: #e6e6e6;
+    background-image: none;
+    border: 1px solid #cdcdcd;
+    border-left: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    height: 40px;
+    padding-left: 5px;
+    border-radius: 4px 0 0 4px;
+    box-sizing: border-box;
+}
+#nav-search .nav-left span{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #555;
+    font-size: 12px;
+    line-height: 33px;
+    margin-right: 21px;
+    margin-left: 5px;
+    min-width: 19px;
+}
+.nav-triangle{
+    position: absolute;
+    top: 14px;
+    right: 8px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: transparent;
+    border-top: 4px solid #666;
+    border-bottom-width: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}

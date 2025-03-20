@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 주문 접수 -->
+    <table>
+        <thead>
+            <tr>
+                <th class="order-check">
+                    <label for="checkedAll"></label>
+                    <input type="checkbox" name="all" id="checkedAll" />
+                </th>
+                <th class="ORDERDATE">주문일자</th>
+                <th class="DELIVERYREQUESTDATE">납품요청일</th>
+                <th class="ORDERTYPE">유형</th>
+                <th class="ORDERCOMPANY">회사</th>
+                <th class="ORDERBUSINESS">사업장</th>
+                <th class="ORDERSTATUS">주문상태</th>
+                <th class="ORDERCODE">주문번호</th>
+                <th class="ORDERQUANITIY">수량</th>
+                <th class="ORDERAMOUNT">금액</th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- 주문접수 - 상세페이지 -->
+    <table>
+        <thead>
+            <tr>
+                <th class="ORDERCODE">주문번호</th>
+                <th class="ORDERDATE">주문일자</th>
+                <th class="DELIVERYREQUESTDATE">납품요청일</th>
+                <th class="ORDERTYPE">유형</th>
+                <th class="ORDERCOMPANY">회사</th>
+                <th class="ORDERBUSINESS">사업장</th>
+                <th class="order-user">주문자</th>
+                <th class="order-phone">전화번호</th>
+                <th class="order-address">배송지</th>
+                <th class="delivery-method">배송구분</th>
+                <th class="ORDERAMOUNT">금액</th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th class="PRODUCTCODE">상품코드</th>
+                <th class="PRODUCTNAME">상품명</th>
+                <th class="PRODUCTBRAND">브랜드</th>
+                <th class="PRODUCTSPEC">규격</th>
+                <th class="PRODUCTUNIT">단위</th>
+                <th class="PRODUCTTOTALPRICE">단가</th>
+                <th class="PRODUCTQUANTITY">수량</th>
+                <th class="PRODUCTTOTALPRICE">총액</th>
+                <th class="PRODUCTREMARKS">비고</th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- 출고 지시 -->
+    <table>
+        <thead>
+            <tr>
+                <th class="order-check">
+                    <label for="checkedAll"></label>
+                    <input type="checkbox" name="all" id="checkedAll" />
+                </th>
+                <th class="ORDERDATE">주문일자</th>
+                <th class="DELIVERYREQUESTDATE">납품요청일</th>
+                <th class="DELIVERYAVAILABLEDATE">납품가능일</th>
+                <th class="DELAYREASON">지연사유</th>
+                <th class="ORDERTYPE">유형</th>
+                <th class="ORDERCOMPANY">회사</th>
+                <th class="ORDERBUSINESS">사업장</th>
+                <th class="ORDERSTATUS">주문상태</th>
+                <th class="ORDERCODE">주문번호</th>
+                <th class="PRODUCTCODE">상품코드</th>
+                <th class="PRODUCTNAME">상품명</th>
+                <th class="PRODUCTSPEC">규격</th>
+                <th class="PRODUCTUNIT">단위</th>
+                <th class="PRODUCTQUANTITY">수량</th>
+                <th class="PRODUCTTOTALPRICE">총액</th>
+                <th class="PRODUCTREMARKS">비고</th>
+            </tr>
+            <tr>
+                <td class="order-check">
+                    <label for="checkedItem"></label>
+                    <input
+                       type="checkbox"
+                       name="all"
+                       class="checkedItem"
+                       id="checkedItem"
+                    />
+                </td>
+                <td class="ORDERDATE">
+                    <span class="LABORDERDATE"></span>
+                </td>
+                <td class="DELIVERYREQUESTDATE">
+                    <span class="LABDELIVERYREQUESTDATE"></span>
+                </td>
+                <td class="DELIVERYAVAILABLEDATE">
+                    <span class="LABDELIVERYAVAILABLEDATE"></span>
+                </td>
+                <td class="DELAYREASON">
+                    <span class="LABDELAYREASON"></span>
+                </td>
+                <td class="ORDERTYPE">
+                    <span class="LABORDERTYPE"></span>
+                </td>
+                <td class="ORDERCOMPANY">
+                    <span class="LABORDERCOMPANY"></span>
+                </td>
+                <td class="ORDERBUSINESS">
+                    <span class="LABORDERBUSINESS"></span>
+                </td>
+                <td class="ORDERSTATUS">
+                    <span class="LABORDERSTATUS"></span>
+                </td>
+                <td class="ORDERCODE">
+                    <span class="LABORDERCODE"></span>
+                </td>
+                <td class="PRODUCTCODE">
+                    <span class="LABPRODUCTCODE"></span>
+                </td>
+                <td class="PRODUCTNAME">
+                    <span class="LABPRODUCTNAME"></span>
+                </td>
+                <td class="PRODUCTSPEC">
+                    <span class="LABPRODUCTSPEC"></span>
+                </td>
+                <td class="PRODUCTUNIT">
+                    <span class="LABPRODUCTUNIT"></span>
+                </td>
+                <td class="PRODUCTQUANTITY">
+                    <span class="LABPRODUCTQUANTITY"></span>
+                </td>
+                <td class="PRODUCTTOTALPRICE">
+                    <span class="LABPRODUCTTOTALPRICE"></span>
+                </td>
+                <td class="PRODUCTREMARKS">
+                    <span class="LABPRODUCTREMARKS"></span>
+                </td>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- 출고 확정 -->
+    <table>
+        <thead>
+            <tr>
+                <th class="blank_cell"></th>
+                <th class="INVOICENUMBER">거래명세번호</th>
+                <th class="DELIVERYDUEDATE">납품예정일</th>
+                <th class="ORDERCOMPANY">회사</th>
+                <th class="ORDERBUSINESS">사업장</th>
+                <th class="ORDERSTATUS">주문상태</th>
+                <th class="ORDERCODE">주문번호</th>
+                <th class="ORDERQUANITIY">수량</th>
+                <th class="ORDERAMOUNT">금액</th>
+                <th class="blank_cell"></th>
+            </tr>
+        </thead>
+    </table>
+    <!-- 출고확정 - 상세페이지 -->
+    <table>
+        <thead>
+            <tr>
+                <th class="INVOICENUMBER">거래명세번호</th>
+                <th class="DELIVERYDUEDATE">납품예정일</th>
+                <th class="ORDERTYPE">유형</th>
+                <th class="ORDERCOMPANY">회사</th>
+                <th class="ORDERBUSINESS">사업장</th>
+                <th class="ORDERSTATUS">주문상태</th>
+                <th class="order-user">주문자</th>
+                <th class="order-phone">전화번호</th>
+                <th class="order-address">배송지</th>
+                <th class="delivery-method">배송구분</th>
+                <th class="order-supply-amount">공급가액</th>
+                <th class="order-vat">부가세</th>
+                <th class="ORDERAMOUNT">합계 금액</th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th class="ORDERCODE">주문번호</th>
+                <th class="PRODUCTCODE">상품코드</th>
+                <th class="PRODUCTNAME">상품명</th>
+                <th class="PRODUCTBRAND">브랜드</th>
+                <th class="PRODUCTSPEC">규격</th>
+                <th class="PRODUCTUNIT">단위</th>
+                <th class="PRODUCTTOTALPRICE">단가</th>
+                <th class="PRODUCTQUANTITY">수량</th>
+                <th class="PRODUCTTOTALPRICE">총액</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>

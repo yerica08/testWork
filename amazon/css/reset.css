@@ -1,0 +1,218 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+/* 리셋 */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font: inherit;
+   vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+   display: block;
+}
+body {
+   line-height: 1;
+}
+ol,
+ul {
+   list-style: none;
+}
+blockquote,
+q {
+   quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+   content: '';
+   content: none;
+}
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+}
+/* 추가 */
+a {
+   text-decoration: none;
+   color: black;
+}
+img {
+   display: block;
+   border: none;
+}
+input {
+   border: none;
+   outline: none;
+}
+button {
+   border: none;
+   background-color: transparent;
+   border: 0px;
+   cursor: pointer;
+}
+i {
+   display: inline-block;
+   cursor: pointer;
+}
+textarea {
+   background-color: transparent;
+   resize: none;
+   border: none;
+   outline: none;
+   padding: 0;
+}
+
+/* input 태그 초기화 */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+input[type="number"]:hover::-webkit-outer-spin-button,
+input[type="number"]:hover::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+/* 파이어폭스에서의 초기화 방법 */
+input[type=number] {
+   -moz-appearance: textfield !important;
+}
+input[type=number]:hover {
+   -moz-appearance: textfield !important;
+}
+
+input[type="date"] {
+   cursor: text;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+   cursor: pointer;
+}
+select,
+option,
+input {
+    cursor: pointer;
+}
+
+/* ------------------커스텀 해야하는 내용 */
+/* table 속성 */
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+   table-layout: fixed;
+}
+td {
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   overflow: hidden;
+}
+/* 드레그 */
+::selection{
+   color: #fff;
+   background-color: #2c9fce;
+}
+/* 폰트 */
+*{
+   font-family: "Noto Sans KR", serif;
+   font-optical-sizing: auto;
+}

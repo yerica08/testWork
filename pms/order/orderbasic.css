@@ -1,0 +1,530 @@
+body {
+   min-width: 1280px;
+   padding: 50px;
+}
+
+main.basic_style1 {
+   width: 1620px;
+   margin: 0 auto;
+}
+
+main.basic_style1 .page_title {
+   display: flex;
+   gap: 60px;
+   align-items: baseline;
+   padding: 20px 30px;
+}
+
+main.basic_style1 .page_title h2 {
+   width: 150px;
+   font-size: 38px;
+   font-weight: 600;
+   color: #333;
+}
+
+main.basic_style1 .page_title nav {
+   width: calc(100% - 150px);
+   display: flex;
+   justify-content: space-between;
+}
+
+main.basic_style1 .page_title nav ul {
+   display: flex;
+   gap: 20px;
+}
+
+main.basic_style1 .page_title .breadcrumb {
+   font-size: 20px;
+}
+
+main.basic_style1 .page_title .breadcrumb li.active {
+   font-weight: 600;
+}
+
+main.basic_style1 .page_title .breadcrumb li {
+   position: relative;
+}
+main.basic_style1 .page_title .breadcrumb li:hover a {
+   font-weight: 600;
+   color: #2c9fce;
+}
+main.basic_style1 .page_title .breadcrumb li:not(:last-child)::after {
+   display: block;
+   content: '';
+   font-size: 0;
+   width: 1px;
+   height: 80%;
+   background-color: #777;
+   position: absolute;
+   top: 20%;
+   right: -10px;
+}
+
+main.basic_style1 .page_title .path {
+   font-size: 12px;
+   color: #777;
+}
+main.basic_style1 .page_title .path i {
+   background-image: url(sprite.png);
+   background-position: -42.84px -22.92px;
+   background-size: 62.5px;
+   width: 18px;
+   height: 18px;
+}
+main.basic_style1 .page_title .path li {
+   position: relative;
+   line-height: 18px;
+}
+main.basic_style1 .page_title .path li:hover {
+   text-decoration: underline;
+}
+main.basic_style1 .page_title .path li:not(:last-child)::after {
+   display: block;
+   content: '';
+   font-size: 0;
+   width: 18px;
+   height: 18px;
+   background: url(/right.png);
+   background-size: 100%;
+   width: 18px;
+   height: 18px;
+   position: absolute;
+   top: 0;
+   right: -18px;
+}
+
+main.basic_style1 ul.search-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 20px 40px;
+   width: 100%;
+   padding: 40px 150px;
+   background-color: #f9f9f9;
+   border: 1px solid #777;
+   border-left: 0;
+   border-right: 0;
+   box-sizing: border-box;
+}
+
+main.basic_style1 .search-item {
+   width: calc(50% - 20px);
+   display: flex;
+   align-items: center;
+   margin-bottom: 5px;
+}
+
+main.basic_style1 .search-item label {
+   display: flex;
+   align-items: center;
+   font-weight: bold;
+   position: relative;
+   padding-left: 25px;
+   width: 30%;
+   white-space: nowrap;
+   font-size: 18px;
+   font-weight: 600;
+   letter-spacing: 1px;
+}
+
+main.basic_style1 .search-item label::before {
+   content: '';
+   font-size: 0;
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   left: 0;
+   top: 50%;
+   transform: translateY(-50%);
+   border-radius: 50%;
+   background-color: #2c9fce;
+}
+
+main.basic_style1 .search-item input,
+main.basic_style1 .search-item select {
+   width: 70%;
+   padding: 8px;
+   font-size: 14px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+main.basic_style1 .search-item select {
+   cursor: pointer;
+}
+main.basic_style1 #date-range input,
+main.basic_style1 #delivery-date input {
+   width: calc(50% - 10px);
+   cursor: text;
+}
+main.basic_style1 #date-range input::-webkit-calendar-picker-indicator,
+main.basic_style1 #delivery-date input::-webkit-calendar-picker-indicator {
+   cursor: pointer;
+}
+
+main.basic_style1 #date-range,
+main.basic_style1 #delivery-date {
+   width: 70%;
+   display: flex;
+   gap: 10px;
+}
+main.basic_style1 #date-range span,
+main.basic_style1 #delivery-date span {
+   line-height: 36px;
+}
+
+main.basic_style1 .button-group {
+   width: fit-content;
+   margin: 30px auto;
+   display: flex;
+   gap: 20px;
+}
+
+main.basic_style1 .search-btn,
+main.basic_style1 .reset-btn {
+   width: 150px;
+   padding: 10px 20px;
+   font-size: 20px;
+   border: none;
+   background-color: #2c9fce;
+   color: white;
+   border-radius: 5px;
+}
+
+main.basic_style1 .reset-btn {
+   background-color: #ccc;
+}
+
+main.basic_style1 .search-btn:hover {
+   background-color: #ffbb00;
+}
+
+main.basic_style1 .reset-btn:hover {
+   background-color: #ffbb00;
+}
+
+/* 표 */
+main.basic_style1 section.order_list {
+   position: relative;
+}
+main.basic_style1 section.order_list .table_wrap {
+   width: 100%;
+   height: 620px;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   padding-bottom: 20px;
+   white-space: nowrap;
+}
+
+main.basic_style1 ::-webkit-scrollbar {
+   height: 15px;
+}
+main.basic_style1 ::-webkit-scrollbar-track {
+   background-color: #f1f1f1;
+   border-radius: 5px;
+}
+main.basic_style1 ::-webkit-scrollbar-thumb {
+   border-radius: 5px;
+   background-color: #2c9fce;
+}
+main.basic_style1 section.order_list figcaption {
+   position: absolute;
+   top: -32px;
+   font-size: 16px;
+   color: #ff3838;
+   text-decoration: underline;
+   margin-bottom: 10px;
+}
+main.basic_style1 section.order_list table {
+   width: fit-content;
+   table-layout: fixed;
+   text-align: center;
+   line-height: 54px;
+}
+main.basic_style1 section.order_list td {
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   overflow: hidden;
+}
+main.basic_style1 section.order_list thead tr {
+   font-weight: 600;
+   background-color: #f9f9f9;
+   border: 1px solid #777;
+   border-left: 0;
+   border-right: 0;
+}
+main.basic_style1 section.order_list tbody tr {
+   border-bottom: 1px solid #ececec;
+   font-weight: 300;
+}
+main.basic_style1 section.order_list tbody tr:hover {
+   background-color: #eff9fd;
+   font-weight: 400;
+   cursor: pointer;
+}
+main.basic_style1 section.order_list .order-check label {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   z-index: 1;
+   display: block;
+   background-color: transparent;
+   cursor: pointer;
+}
+main.basic_style1 section.order_list .order-check {
+   width: 50px;
+   position: relative;
+}
+main.basic_style1 section.order_list .business,
+main.basic_style1 section.order_list .product-code,
+main.basic_style1 section.order_list .unit-price,
+main.basic_style1 section.order_list .order-amount {
+   width: 150px;
+}
+
+main.basic_style1 section.order_list .type,
+main.basic_style1 section.order_list .company {
+   width: 80px;
+}
+main.basic_style1 section.order_list .order-code,
+main.basic_style1 section.order_list .product-name,
+main.basic_style1 section.order_list .remarks {
+   width: 250px;
+}
+main.basic_style1 section.order_list .order-date,
+main.basic_style1 section.order_list .delivery-request-date,
+main.basic_style1 section.order_list .delivery-available-date,
+main.basic_style1 section.order_list .delay-reason,
+main.basic_style1 section.order_list .order-status {
+   width: 120px;
+}
+main.basic_style1 section.order_list td.delivery-request-date,
+main.basic_style1 section.order_list td.delivery-available-date {
+   font-weight: 400;
+   color: #2c9fce;
+}
+main.basic_style1 section.order_list .spec {
+   width: 120px;
+}
+main.basic_style1 section.order_list .unit,
+main.basic_style1 section.order_list .quantity {
+   width: 100px;
+}
+main.basic_style1 section.order_list .nothing {
+   width: 100%;
+   text-align: center;
+}
+main.basic_style1 section.order_list .nothing td {
+   padding-right: calc(16%);
+}
+.pagination {
+   display: flex;
+   width: 100%;
+   justify-content: center;
+   gap: 20px;
+   text-align: center;
+   margin-top: 30px;
+   font-size: 18px;
+   line-height: 34px;
+   color: #777;
+}
+.pagination button {
+   background-color: transparent;
+   background: url(/right.png) center;
+   background-size: 28px;
+   width: 38px;
+   height: 38px;
+   border: none;
+   padding: 10px;
+   border-radius: 100%;
+}
+
+.pagination button:disabled {
+   opacity: 0.5;
+}
+.pagination button#prev-page {
+   transform: scale(-1, 1);
+}
+#total-pages {
+   color: #777;
+}
+#page-number {
+   color: #333;
+   font-weight: bold;
+}
+.pagination button:hover {
+   opacity: 1;
+   background: url(/white_right.png) #ffbb00 center;
+   background-size: 28px;
+}
+
+/* top popup */
+section.order_update {
+   display: none;
+   width: 100vw;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 100;
+   background-color: #2c9fce;
+   box-shadow: 0px 6px 4px rgb(51, 51, 51, 0.25);
+}
+section.order_update > div:first-child,
+section.order_update ul {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   row-gap: 20px;
+   width: 100%;
+   box-sizing: border-box;
+}
+section.order_update > div:first-child {
+   padding: 10px 8%;
+}
+section.order_update h3 {
+   font-size: 26px;
+   color: #fff;
+   position: relative;
+   line-height: 40px;
+}
+section.order_update .order-management {
+   display: flex;
+   gap: 4%;
+   width: 18%;
+}
+section.order_update .excel-download,
+section.order_update .order-issue {
+   width: 48%;
+   background-color: rgb(255, 255, 255, 0.15);
+   border: 1px solid #fff;
+   color: #fff;
+   border-radius: 5px;
+}
+section.order_update .excel-download:hover,
+section.order_update .order-issue:hover {
+   background-color: #777;
+   color: #fff;
+}
+section.order_update ul {
+   width: 100%;
+   padding: 30px 8%;
+   background-color: #fff;
+}
+section.order_update ul li {
+   width: 18%;
+}
+section.order_update .actions {
+   display: flex;
+   justify-content: center;
+   align-items: end;
+   gap: 10px;
+}
+section.order_update .actions button {
+   width: 50%;
+   height: 36px;
+   letter-spacing: 1px;
+}
+section.order_update .actions .proceed {
+   border: none;
+   color: #fff;
+   background-color: #2c9fce;
+}
+section.order_update .actions .proceed:hover {
+   color: #fff;
+   background-color: #ffaf38;
+}
+section.order_update .actions .cancel {
+   border: none;
+   color: #fff;
+   background-color: #ff3838;
+}
+section.order_update .actions .cancel:hover {
+   color: #fff;
+   background-color: #ffaf38;
+}
+section.order_update ul li label {
+   display: block;
+   width: 100%;
+   padding-left: 20px;
+   line-height: 40px;
+   position: relative;
+   box-sizing: border-box;
+}
+section.order_update ul li label::before {
+   display: block;
+   content: '선택지 옆 동그라미입니다.';
+   font-size: 0;
+   background-color: #333;
+   width: 8px;
+   height: 8px;
+   border-radius: 100%;
+   position: absolute;
+   top: 50%;
+   left: 0px;
+   transform: translateY(-50%);
+}
+section.order_update ul li input,
+section.order_update ul li select {
+   width: 68%;
+   padding: 8px;
+   font-size: 14px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+section.order_update ul li.delay input {
+   width: 32%;
+   margin-right: 2%;
+}
+section.order_update ul li.delay select {
+   width: 40%;
+   margin-right: 2%;
+}
+section.order_update ul li button {
+   width: 20%;
+   border: 1px solid #2c9fce;
+   border-radius: 5px;
+   color: #2c9fce;
+   font-size: 16px;
+   line-height: 32px;
+   vertical-align: bottom;
+   transition: 0.3s;
+}
+section.order_update ul li button:hover {
+   background-color: #2c9fce;
+   color: #fff;
+}
+section.order_update ul li.selected-order {
+   position: relative;
+}
+section.order_update ul li.delay {
+   width: 30%;
+}
+section.order_update ul li.selected-order #select-order-number {
+   width: 100%;
+}
+section.order_update ul li.selected-order p {
+   position: absolute;
+   top: -5px;
+   right: 0;
+   color: #777;
+}
+section.order_update ul li.selected-order p span {
+   font-size: 32px;
+   font-weight: 600;
+   color: #2c9fce;
+}
+section.order_update ul li button.change-delivery-date,
+section.order_update ul li button.delay-reason {
+   margin-left: 2%;
+}
+section.order_update ul li button.split-delivery-quantity {
+   width: 100%;
+   background-color: #ffaf38;
+   border-color: #ffaf38;
+   color: #fff;
+}
+section.order_update ul li button.split-delivery-quantity:hover {
+   background-color: #f88417;
+   border-color: #f88417;
+   color: #fff;
+}

@@ -1,0 +1,76 @@
+<!-- 주문 접수 -->
+<section class="search_box">
+    <ul class="search-list">
+        <!-- 주문기간 -->
+        <li class="search-item what_date">
+            <label for="order-status">기간선택</label>
+            <select name="whatDate" id="whatDate">
+                <option value="주문기간" selected>주문기간</option>
+            </select>
+            <div id="date-range">
+                <input type="date" name="state-date" id="start-date" />
+                <span>~</span>
+                <input type="date" name="state-date" id="end-date" />
+            </div>
+        </li>
+
+        <!-- 주문상태 -->
+        <li class="search-item">
+            <label for="order-status">주문상태</label>
+            <select name="order-status" id="order-status">
+                <option value="all">전체</option>
+                <option value="pending" selected>접수중</option>
+                <option value="completed">접수완료</option>
+            </select>
+        </li>
+
+        <!-- 주문번호 -->
+        <li class="search-item">
+            <label for="order-number">주문번호</label>
+            <input
+                type="text"
+                name="order-number"
+                id="order-number"
+                placeholder="주문번호 입력" />
+        </li>
+
+        <!-- 회사 -->
+        <li class="search-item">
+            <label for="company">회사</label>
+            <select name="company" id="company">
+                <option value="all">전체</option>
+                <option value="dongshin">동신</option>
+                <option value="toolpia">툴피아</option>
+            </select>
+        </li>
+
+        <!-- 사업장 -->
+        <li class="search-item">
+            <label for="business-location">사업장</label>
+            <select name="business-location" id="business-location">
+                <option value="all">전체</option>
+                <option value="seoul">서울사업장</option>
+                <option value="busan">부산사업장</option>
+                <option value="ochang">오창허브사업장</option>
+            </select>
+        </li>
+
+        <!-- 유형 -->
+        <li class="search-item">
+            <label for="order-type">유형</label>
+            <select name="order-type" id="order-type">
+                <option value="all">전체</option>
+                <option value="general">일반</option>
+                <option value="special">특수</option>
+            </select>
+        </li>
+    </ul>
+
+    <div class="button-group">
+        <!-- 조회 버튼 -->
+        <button type="button" class="search-btn">조회</button>
+        <!-- 초기화 버튼 -->
+        <button type="button" class="reset-btn">초기화</button>
+        <button type="button" class="btnTest">팝업 테스트</button>
+    </div>
+</section>

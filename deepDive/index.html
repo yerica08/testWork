@@ -1,0 +1,149 @@
+<html>
+<head>
+    <style type="text/css">
+        <!--
+        font {
+            font-family: "굴림";
+            font-size: 9pt;
+            line-height: 17px;
+        }
+
+        td {
+            font-family: "굴림";
+            font-size: 9pt;
+            line-height: 17px;
+        }
+
+        a:visited {
+            color: #000000;
+            text-decoration: none
+        }
+
+        a:link {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #FFA217;
+            text-decoration: underline;
+        }
+
+        p, br, body, td, select, input, form, textarea, option {
+            font-size: 9pt;
+            font-family: 돋움;
+        }
+
+        .cont {
+            line-height: 140%
+        }
+
+        BODY {
+            scrollbar-face-color: #ffffff;
+            scrollbar-shadow-color: #c0c0c0;
+            scrollbar-highlight-color: #c0c0c0;
+            scrollbar-3dlight-color: #ffffff;
+            scrollbar-darkshadow-color: #ffffff;
+            scrollbar-track-color: #ffffff;
+            scrollbar-arrow-color: #ffffff
+        }
+
+        input {
+            color: black;
+            font-size: 9pt;
+            background-color: #c0c0c0;
+            border: 1 solid #808080;
+            size = 30;
+            height: 20px
+        }
+
+        textarea {
+            color: black;
+            font-size: 9pt;
+            background-color: white;
+            border: 1 solid #808080
+        }
+        -->
+    </style>
+    <script>
+        let menuStatus = true;
+        let retryCount = 0; // slideBtn 찾기 시도 횟수 제한
+
+        function menuBtn() {
+            const mainSection = document.getElementById("mainSection");
+            const menuIframe = document.getElementById("menu");
+            const masterIframe = document.getElementById("master")
+
+            if (!menuIframe || !menuIframe.contentWindow || !menuIframe.contentWindow.document) {
+                console.error("menu iframe을 찾을 수 없습니다.");
+                return;
+            }
+
+            const slideBtn = menuIframe.contentWindow.document.getElementById("slideBtn");
+            const sidebar = menuIframe.contentWindow.document.querySelector(".sidebar");
+
+            // slideBtn이 아직 생성되지 않았으면 일정 횟수만 재시도
+            if (!slideBtn) {
+                if (retryCount < 10) { // 10번까지만 시도
+                    retryCount++;
+                    setTimeout(menuBtn, 500);
+                } else {
+                    console.error("slideBtn을 찾을 수 없습니다.");
+                }
+                return;
+            }
+
+            // 중복 이벤트 리스너 방지
+            if (!slideBtn.dataset.listenerAdded) {
+                slideBtn.addEventListener("click", function () {
+                    mainSection.setAttribute("cols", "0, *");
+                    masterIframe.contentWindow.document.querySelector(".closeMenu").style.backgroundColor = "#000";
+                    menuStatus = false;
+                });
+                slideBtn.dataset.listenerAdded = "true"; // 이벤트 리스너 등록 표시
+            }
+
+            const newDiv = document.createElement("div");
+            newDiv.style.width = "24px";
+            newDiv.style.height = "24px";
+            newDiv.style.backgroundColor = "transparent";
+            newDiv.classList.add("closeMenu");
+            newDiv.addEventListener("click", function () {
+                if (!menuStatus) {
+                    mainSection.setAttribute("cols", "190, *");
+                    newDiv.style.backgroundColor = "transparent";
+                } else {
+                    return;
+                }
+            })
+
+            const masterBody = masterIframe.contentWindow.document.querySelector("body");
+            masterBody.insertBefore(newDiv, masterBody.firstChild);
+
+            console.log("토글 버튼 활성화됨");
+        }
+
+        // 페이지 로드 후 menuBtn 실행
+        window.onload = menuBtn;
+    </script>
+</head>
+<frameset rows="70, *" cols="1*">
+    <frame name="banner" src="top.aspx" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" namo_target_frame="detail" noresize>
+        <frameset id="mainSection" framespacing="0" border="false" frameborder="0" cols="190,*">
+            <!--<frame name="menu" src="leftmenu_1.htm" frameborder="0" marginwidth="0" marginheight="0" framespacing="0"  namo_target_frame="master" scrolling="auto" noresize>-->
+            <frame id="menu" name="menu" src="LeftMenu_New.aspx" frameborder="0" marginwidth="0" marginheight="0" framespacing="0" namo_target_frame="master" scrolling="auto" noresize>
+            <frame id="master" name="master" src="master.aspx" frameborder="0" marginwidth="10" marginheight="10" framespacing="0" scrolling="auto">
+        </frameset><noframes>
+            <body bgcolor="#FFFFFF">
+                o Frames!
+                o frames in your browser!
+            </body>
+        </noframes>
+</frameset>
+
+</html>

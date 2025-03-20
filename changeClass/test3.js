@@ -1,0 +1,1 @@
+const module = await import(`/script/browser/page/Index2.js?version=${new Date() * 1}`);

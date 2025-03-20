@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <!-- css -->
+      <link rel="stylesheet" href="./layout.css" />
+   </head>
+   <body>
+      <div class="wrapper">
+         <!-- display:none opacity:0 transition:0.4s z-index:49 -->
+         <div class="black_blur"></div>
+         <header>
+            <h1>
+               <a href="/"><img src="/Image/b2b_logo.png" alt="로고" /></a>
+            </h1>
+            <ul class="gnb">
+               <li>
+                  <a href="#">주문관리</a>
+                  <ul class="lnb">
+                     <li><a href="#">주문접수</a></li>
+                     <li><a href="#">접수현황</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#">출고관리</a>
+                  <ul class="lnb">
+                     <li><a href="#">출고지시</a></li>
+                     <li><a href="#">출고확정</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#">정산관리</a>
+                  <ul class="lnb">
+                     <li><a href="#">원장조회</a></li>
+                     <li><a href="#">정산현황</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#">고객센터</a>
+                  <ul class="lnb">
+                     <li><a href="#">공지사항</a></li>
+                     <li><a href="#">자주 묻는 질문</a></li>
+                     <li><a href="#">마이페이지</a></li>
+                  </ul>
+               </li>
+            </ul>
+            <div class="header_right">
+               <div class="user_info">
+                  <a href="#" class="user_name"><span>(주)동신툴피아</span></a>
+                  <span>님</span>
+                  <button type="button" class="logout">로그아웃</button>
+               </div>
+            </div>
+         </header>
+
+         <div class="contents_wrapper"></div>
+         <footer>
+            <a href="/"><img src="/Image/b2b_logo.png" alt="로고" /></a>
+            <ul>
+               <li>
+                  <h6>주문마감시간</h6>
+                  <p><span>평일&ensp;</span><strong>16:00</strong></p>
+               </li>
+               <li>
+                  <h6>고객센터</h6>
+                  <p><strong>1670 - 0944</strong></p>
+               </li>
+               <li>
+                  <h6>서울</h6>
+                  <p>서울특별시 금천구 벚꽃로 142</p>
+                  <p>T. 1670 - 0944 &ensp;&#124;&ensp; FAX. 080 - 005 - 0003</p>
+               </li>
+               <li>
+                  <h6>부산</h6>
+                  <p>부산광역시 사상구 새벽시장로 9번길 56</p>
+                  <p>
+                     T. 051 - 322 - 9041 &ensp;&#124;&ensp; FAX. 051 - 322 -8611
+                  </p>
+               </li>
+               <li>
+                  <h6>오창허브</h6>
+                  <p>충청북도 청주시 청원구 오창읍 두릉유리로 113</p>
+                  <p>
+                     T. 02 - 6363 - 2102 &ensp;&#124;&ensp; FAX. 070 - 4722 -
+                     6104
+                  </p>
+               </li>
+            </ul>
+         </footer>
+      </div>
+      <script>
+         'use strict'
+         const gnb = document.querySelector('.gnb')
+         const blackBlur = document.querySelector('.black_blur')
+         function blackBlurIn() {
+            blackBlur.style.display = 'block'
+            setTimeout(() => {
+               blackBlur.style.opacity = 1
+            }, 100)
+         }
+         function blackBlurOut() {
+            blackBlur.style.display = 'none'
+            setTimeout(() => {
+               blackBlur.style.opacity = 0
+            }, 100)
+         }
+         gnb.addEventListener('mouseover', blackBlurIn)
+         gnb.addEventListener('mouseleave', blackBlurOut)
+      </script>
+   </body>
+</html>

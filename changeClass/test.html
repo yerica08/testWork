@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><span>안되긴뭘안돼</span></th>
+                <th><span>안되긴뭘안돼2</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="item-row" data-index="1">
+                <td>석렬</td>
+                <td>건희</td>
+            </tr>
+            <tr class="item-row" data-index="2">
+                <td>재명</td>
+                <td>혜경</td>
+            </tr>            
+        </tbody>
+    </table>
+
+    <script>
+        window.addEventListener("load", () => {
+            [...document.querySelectorAll(".item-row")].forEach(x => {
+                x.addEventListener("click", e => {
+                    alert(`클릭한 행의 인덱스는 : ${e.currentTarget.dataset.index}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

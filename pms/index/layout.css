@@ -1,0 +1,547 @@
+@charset "utf-8";
+@import url(./reset.css);
+.wrapper {
+   width: 100vw;
+   height: auto;
+   overflow: hidden;
+}
+.black_blur {
+   display: none;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgb(17, 17, 17, 0.4);
+   backdrop-filter: blur(24px);
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 49;
+   opacity: 0;
+   transition: 0.4s;
+}
+
+/* header */
+header {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   height: 100px;
+   padding: 31px 150px;
+   box-sizing: border-box;
+   background-color: #fff;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 100;
+   line-height: 38px;
+}
+header::after {
+   display: block;
+   content: 'header의 배경이미지입니다.';
+   font-size: 0;
+   width: 100vw;
+   height: 30px;
+   /* background-color: blue; */
+   background: url(/Image/haederBG.jpg) no-repeat center center / cover;
+   position: absolute;
+   top: 100px;
+   left: 0;
+   box-shadow: 0 2px 4px #c6d1e4;
+}
+/* header - logo */
+h1 {
+   height: 38px;
+}
+h1 img {
+   height: 100%;
+   position: relative;
+   z-index: 100;
+}
+/* header - 1차 메뉴 */
+.gnb {
+   display: flex;
+   gap: 30px;
+   width: fit-content;
+   font-size: 18px;
+   text-align: center;
+   z-index: 100;
+}
+.gnb::after {
+   display: block;
+   content: 'header아래 남색 바탕입니다.';
+   font-size: 0;
+   width: 100vw;
+   height: 0;
+   background-color: #2a2c3b;
+   position: absolute;
+   top: 100px;
+   left: 0;
+   transition: 0.5s;
+   z-index: 50;
+}
+.gnb:hover::after {
+   height: 200px;
+}
+.gnb > li {
+   width: 140px;
+   height: 38px;
+   cursor: pointer;
+}
+.gnb > li > a {
+   width: 100%;
+   height: 100%;
+   line-height: 38px;
+   font-weight: 600;
+}
+.gnb > li > a::after {
+   display: block;
+   content: 'a태그 밑의 밑줄입니다.';
+   font-size: 0;
+   width: 0;
+   height: 2px;
+   background-color: #64acca;
+   position: relative;
+   left: 10%;
+}
+.gnb > li:hover > a {
+   color: #64acca;
+}
+.gnb > li:hover > a::after {
+   width: 80%;
+   border: 1px;
+   transition: 0.5s;
+}
+/* header - 2차 메뉴 */
+.gnb:hover .lnb {
+   height: auto;
+   opacity: 1;
+   transition: 0.5s;
+}
+.lnb {
+   height: 0;
+   opacity: 0;
+   overflow: hidden;
+   padding-top: 50px;
+   font-size: 16px;
+   line-height: 50px;
+   transition: 0.5s;
+   position: relative;
+   z-index: 51;
+}
+.lnb a {
+   color: #fff;
+}
+.lnb li:hover a {
+   color: #93d3ee;
+   font-weight: 600;
+}
+/* header - right */
+.header_right .user_info a.user_name {
+   font-size: 18px;
+   font-weight: 600;
+}
+.header_right .user_info a.user_name:hover span {
+   text-decoration: underline;
+}
+.header_right .user_info button.logout {
+   margin: 10px;
+   padding: 3px 8px;
+   border: 1px solid #777;
+   border-radius: 10px;
+   transition: 0.3s;
+}
+button.logout:hover {
+   background-color: #777;
+   color: #fff;
+}
+/* footer */
+footer {
+   width: 100%;
+   padding: 50px 150px;
+   box-sizing: border-box;
+   background-color: #f5f5f5;
+}
+footer a {
+   display: block;
+   height: 38px;
+   margin-bottom: 30px;
+   opacity: 0.6;
+   filter: saturate(0);
+}
+footer ul {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+footer ul li {
+   padding: 15px 0;
+   box-sizing: border-box;
+}
+footer ul li h6 {
+   font-size: 16px;
+   padding: 15px 0;
+   margin-bottom: 15px;
+   color: #838085;
+   border-bottom: 1px solid #ccc;
+}
+footer ul li p {
+   line-height: 26px;
+   font-size: 16px;
+   font-weight: 300;
+   color: #2a2c3b;
+}
+footer ul li p:last-child {
+   color: #585858;
+}
+footer ul li:nth-child(1),
+footer ul li:nth-child(2) {
+   width: 49%;
+}
+footer ul li:nth-child(1) span {
+   font-size: 24px;
+}
+footer ul li:nth-child(1) strong,
+footer ul li:nth-child(2) strong {
+   font-size: 40px;
+   font-weight: 600;
+}
+footer ul li:nth-child(3),
+footer ul li:nth-child(4),
+footer ul li:nth-child(5) {
+   width: 32%;
+}
+footer ul li:nth-child(3) p:first-of-type,
+footer ul li:nth-child(4) p:first-of-type,
+footer ul li:nth-child(5) p:first-of-type {
+   font-weight: 400;
+}
+/* index.html > section 공통 디자인 */
+/* BACK! 이 부분 좀 더 고민해봐야함 */
+.section_wrap {
+   width: 100%;
+   margin-top: 130px;
+   padding: 20px 150px;
+   box-sizing: border-box;
+}
+main.main_page section h3:not(h3.border_bottom),
+main.main_page section h3 a {
+   display: flex;
+   width: 100%;
+   height: 70px;
+   padding: 0 20px;
+   line-height: 70px;
+   font-size: 18px;
+   font-weight: 500;
+   color: #333;
+   box-sizing: border-box;
+   position: relative;
+}
+main.main_page h3 a:hover span {
+   font-weight: 600;
+}
+main.main_page section h3.border_bottom {
+   border-bottom: 2px solid #777;
+}
+/* 
+   icon 사이즈 현재 112px 에서 25%크기인 28px 로 맞춘 상태입니다.
+   아이콘의 사용용도를 확인하여 수정할 예정입니다. 
+*/
+main.main_page {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+main.main_page section h3 i {
+   background-image: url(/Image/sprite.png);
+   background-size: 84px;
+   width: 28px;
+   height: 28px;
+   margin: 21px 10px;
+}
+main.main_page i.step {
+   background-position: -112px -224px;
+}
+main.main_page i.graph {
+   background-position: -56px 0px;
+}
+main.main_page i.notice {
+   background-position: 0px 0px;
+}
+main.main_page i.call {
+   background-position: -28px 0px;
+}
+main.main_page i.plus {
+   width: 28px;
+   height: 28px;
+   position: absolute;
+   top: 50%;
+   right: 20px;
+   transform: translateY(-50%);
+   margin: 0px;
+   padding: 2px;
+   background-image: none;
+   border-radius: 100%;
+   transition: 0.3s;
+}
+main.main_page h3 a:hover i.plus {
+   background-color: #ececec;
+}
+main.main_page i.plus::before,
+main.main_page i.plus::after {
+   display: block;
+   content: 'plus버튼의 선입니다.';
+   font-size: 0;
+   position: relative;
+   background-color: #333;
+}
+main.main_page i.plus::before {
+   width: 2px;
+   height: 24px;
+   top: 2px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+main.main_page i.plus::after {
+   width: 24px;
+   height: 2px;
+   bottom: 48%;
+   left: 2px;
+   transform: translateY(50%);
+}
+/* main.main_page > section.odering_info */
+section.ordering_info {
+   width: 800px;
+}
+
+section.ordering_info ul {
+   display: flex;
+   width: 100%;
+}
+section.ordering_info ul li {
+   width: 25%;
+}
+section.ordering_info li p:nth-child(1) {
+   height: 62px;
+   padding-left: 15px;
+   position: relative;
+   font-size: 18px;
+   line-height: 62px;
+   text-align: center;
+   letter-spacing: 1px;
+   color: #fff;
+}
+section.ordering_info li p:nth-child(1)::after {
+   display: block;
+   content: 'p태그 오른쪽 삼각형 모양입니다.';
+   font-size: 0;
+   width: 0;
+   height: 0;
+   position: absolute;
+   top: 0;
+   right: 0;
+   z-index: 1;
+   transform: translateX(100%);
+   border: 31px solid transparent;
+}
+section.ordering_info li:nth-child(1) p:nth-child(1) {
+   background-color: #899cc1;
+}
+section.ordering_info li:nth-child(1) p:nth-child(1)::after {
+   border-left-color: #899cc1;
+}
+section.ordering_info li:nth-child(2) p:nth-child(1) {
+   background-color: #2a2c3b;
+}
+section.ordering_info li:nth-child(2) p:nth-child(1)::after {
+   border-left-color: #2a2c3b;
+}
+section.ordering_info li:nth-child(3) p:nth-child(1) {
+   background-color: #4f4a51;
+}
+section.ordering_info li:nth-child(3) p:nth-child(1)::after {
+   border-left-color: #4f4a51;
+}
+section.ordering_info li:nth-child(4) p:nth-child(1) {
+   background-color: #64acca;
+}
+section.ordering_info li:nth-child(4) p:nth-child(1)::after {
+   border-left-color: #64acca;
+}
+section.ordering_info li p:nth-child(2) {
+   height: 130px;
+   position: relative;
+   padding-left: 17px;
+   font-size: 40px;
+   font-weight: 600;
+   line-height: 130px;
+   text-align: center;
+   letter-spacing: 1px;
+   color: #333;
+}
+section.ordering_info li p:nth-child(2) span {
+   font-size: 16px;
+   color: #777;
+   font-weight: 400;
+   padding-left: 5px;
+}
+section.ordering_info li:not(:last-child) p:nth-child(2)::after {
+   display: block;
+   content: '건별 구분 실선입니다.';
+   font-size: 0;
+   width: 1px;
+   height: 72px;
+   position: absolute;
+   top: 50%;
+   right: -10px;
+   background-color: #ccc;
+   transform: translateY(-50%);
+}
+
+/* main.main_page > section.due_date */
+section.due_date {
+   width: 660px;
+}
+section.due_date div.graph {
+   width: 100%;
+   height: 165px;
+   background-color: #ccc;
+}
+/* main.main_page > section.notice */
+section.notice {
+   width: 30%;
+   height: 500px;
+   overflow: hidden;
+}
+section.notice table {
+   width: 100%;
+   font-size: 18px;
+}
+section.notice tr {
+   width: 100%;
+   height: 72px;
+   line-height: 72px;
+   border-bottom: 1px solid #d3d8db;
+   box-sizing: border-box;
+}
+section.notice td {
+   padding: 0 20px;
+}
+section.notice td.date {
+   padding-left: 40px;
+   padding-right: 20px;
+   width: 100px;
+   color: #64acca;
+   box-sizing: border-box;
+}
+section.notice td.title {
+   padding-left: 20px;
+   padding-right: 40px;
+}
+
+/* main.main_page > section.gallery */
+section.gallery {
+   width: 30%;
+}
+section.gallery .photos {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   width: 100%;
+   padding: 30px;
+   box-sizing: border-box;
+}
+section.gallery .photo {
+   width: 48%;
+   margin-bottom: 4%;
+}
+section.gallery .photo img,
+section.gallery .photo a {
+   width: 100%;
+   position: relative;
+}
+section.gallery .photo a::before {
+   display: block;
+   content: '이미지 호버시 블러처리';
+   font-size: 0;
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 1;
+   background-color: rgb(51, 51, 51, 0.3);
+   backdrop-filter: blur(6px);
+   opacity: 0;
+   transition: 0.3s;
+}
+section.gallery .photo a::after {
+   display: block;
+   content: url(/Image/white_arrow.png);
+   width: 36px;
+   height: 36px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   z-index: 1;
+   transform: translate(-50%, -50%);
+   padding: 5px 6px;
+   box-sizing: border-box;
+   background-color: rgb(100, 172, 202, 0.6);
+   border: 1px solid rgb(129, 215, 235, 0.8);
+   border-radius: 100%;
+   opacity: 0;
+   transition: 0.3s;
+}
+section.gallery .photo:hover a::before,
+section.gallery .photo:hover a::after {
+   opacity: 1;
+}
+/* main.main_page > section.service_center */
+section.service_center {
+   width: 30%;
+}
+section.service_center p {
+   padding: 30px 0;
+   font-size: 40px;
+   font-weight: 600;
+   text-align: center;
+}
+section.service_center p span {
+   font-size: 20px;
+   font-weight: 400;
+   color: #64acca;
+}
+section.service_center i.phone {
+   display: inline-block;
+   background-image: url(/Image/sprite.png);
+   background-position: -224px -224px;
+   width: 50px;
+   height: 51px;
+   vertical-align: sub;
+}
+section.service_center table {
+   width: 100%;
+}
+section.service_center tr:not(:last-child) {
+   border-bottom: 1px solid #ccc;
+}
+section.service_center td {
+   height: 72px;
+}
+section.service_center td:first-child {
+   width: 100px;
+   line-height: 72px;
+   text-align: center;
+   letter-spacing: 1px;
+   background-color: #2a2c3b;
+   color: #fff;
+}
+section.service_center td:last-child {
+   padding: 0 20px;
+   font-size: 14px;
+   line-height: 24px;
+   vertical-align: middle;
+   background-color: #f9f9f9;
+}
+section.service_center td:last-child span {
+   color: #585858;
+}

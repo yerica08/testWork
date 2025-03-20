@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>promise</title>
+   </head>
+   <body>
+      <script>
+         const ourPromise = new Promise((resolve, reject) => {
+            let 우정 = Number(prompt('우정이의 파워는?'))
+            let 예리 = Number(prompt('예리의 파워는?'))
+
+            if (우정 > 예리) {
+               resolve('19:30')
+            } else if (우정 < 예리) {
+               resolve('20:00')
+            } else {
+               reject('약속 파토')
+            }
+         })
+
+         // 오리지날 promise형태
+         function 약속이행1() {
+            ourPromise
+               .then((pTime) => alert(pTime))
+               .catch((message) => alert(message))
+         }
+
+         // promise를 async와 await로 변경
+         async function 약속이행2() {
+            try {
+               const pTime = await ourPromise
+               alert(pTime)
+            } catch (message) {
+               alert(message)
+            }
+         }
+
+         //  약속이행1()
+         약속이행2()
+      </script>
+   </body>
+</html>

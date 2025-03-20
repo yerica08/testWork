@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+   </head>
+   <body>
+      <script>
+         'use strict'
+
+         const MyClass = class MySpecialClass {
+            constructor(height) {
+               this.height = height
+            }
+            printClassName() {
+               console.log(MySpecialClass.name) // "MySpecialClass"
+            }
+         }
+
+         const obj = new MyClass('Alice')
+         obj.printClassName() // MySpecialClass
+         //  MyClass.printClassName() // Uncaught TypeError: MyClass.printClassName is not a function
+
+         console.log(MyClass.name) // "MySpecialClass"
+         // console.log(MySpecialClass.name) // Uncaught ReferenceError: MySpecialClass is not defined
+
+         class MySpecialClass2 {
+            constructor(name) {
+               this.name = name
+            }
+            printClassName() {
+               console.log(MySpecialClass2.name) // "MySpecialClass"
+            }
+         }
+         console.log(MySpecialClass2.name) // "MySpecialClass2"
+
+         // --------------------------------------------------------------------
+         /*
+         const MyClass = class AnotherClass {
+            constructor() {
+               this.name = 'Class 1'
+            }
+         }
+
+         const obj1 = new MyClass()
+         console.log(obj1.name) // "Class 1"
+
+         // 같은 이름을 사용하려고 하면 오류 발생
+         const MyClass2 = class AnotherClass {
+            constructor() {
+               this.name = 'Class 2'
+            }
+         }
+         class className {
+            constructor() {
+               this.name = 'Class 1'
+            }
+         }
+         let con1 = new className()
+         let con2 = class className {
+            constructor() {
+               this.name = 'Class 2'
+            }
+         }
+         console.log(className)
+         console.log(con1)
+         console.log(con2)
+
+         */
+      </script>
+   </body>
+</html>

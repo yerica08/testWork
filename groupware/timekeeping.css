@@ -1,0 +1,438 @@
+<style type="text/css">
+        body {
+            font-family: Malgun Gothic, 맑은 고딕, Apple SD Gothic Neo, 돋움, dotum, sans-serif;
+        }
+
+
+        .ds-time-keeping-wrap {
+            width: 100%;
+            height: auto;
+            float: left;
+        }
+
+        .ds-time-keeping {
+            width: 100%;
+            height: auto;
+            float: left;
+        }
+
+        .label100, .label99 {
+            font-size: 12pt;
+            font-weight: 800;
+            color: #323232
+        }
+
+
+        .ds-time-keeping-date {
+            width: 100%;
+            height: 80px;
+            float: left;
+            margin-top: 18px;
+            background-color: #f5f6f8;
+            border: 0px solid red;
+            box-sizing: border-box
+        }
+
+        .labDate {
+            width: 50%;
+            height: 40px;
+            display: inline-block;
+            text-align: left;
+            color: #47484a;
+            padding: 14px 10px;
+            font-size: 13pt;
+            font-weight: 600;
+            border: 0px solid red;
+            box-sizing: border-box
+        }
+
+        .ds-time-keeping-date-span {
+            width: 100%;
+            height: 40px;
+            float: left;
+            font-size: 14px;
+            padding-left: 10px;
+            line-height: 1.9;
+            color: #919294;
+            border: 0px solid red;
+            box-sizing: border-box
+        }
+
+        .ds-time-keeping-CurrentTime {
+            width: 100%;
+            height: auto;
+            float: left;
+            display: inline-block;
+            margin-top: 4px;
+            padding: 4px 0px;
+            border: 0px solid red;
+            box-sizing: border-box;
+        }
+
+        .labCurrentTime {
+            width: 180px;
+            height: auto;
+            display: inline-block;
+            color: #333;
+            float: left;
+            text-align: left;
+            padding: 3px 2px;
+            font-size: 29pt;
+            font-weight: 600;
+            border: 0px solid red;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        .labeTime2 {
+            width: 120px;
+            height: 40px;
+            display: inline-block;
+            text-align: center;
+            float: left;
+            padding: 8px 2px;
+            margin-left: 0px;
+            margin-top: 10px;
+            font-size: 11pt;
+            background-color: #f2f9ff;
+            color: #0979db;
+            font-weight: 800;
+            border: 0px solid red;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+
+        .ds-time-keeping-CheckTime {
+            width: 100%;
+            height: 42px;
+            float: left;
+            background-color: #f5f6f8;
+            margin-top: 10px;
+            border: 0px solid red;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        .labeTime1 {
+            width: calc(100% - 30px);
+            height: 40px;
+            display: inline-block;
+            color: #2e2f31;
+            float: left;
+            text-align: left;
+            margin-top: 0px;
+            padding: 9px 0px;
+            font-size: 10pt;
+            border: 0px solid #ececec;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        .CheckTime-Dot {
+            width: 30px;
+            height: 40px;
+            color: #208ae2;
+            display: inline-block;
+            font-size: 20pt;
+            line-height: 35px;
+            text-align: center;
+            float: left;
+            border: 0px solid red;
+            box-sizing: border-box
+        }
+
+
+
+
+
+        .btnCheckIn {
+            width: 100%;
+            height: 36px;
+            margin-top: 8px;
+            border: 1px solid #d6d6d6;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        .btnCheckOut {
+            width: 100%;
+            height: 42px;
+            margin-top: 8px;
+            float: left;
+            font-size: 11pt;
+            border: 0px solid #d6d6d6;
+            box-sizing: border-box;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #6d88a5
+        }
+
+
+
+        .ds-time-keeping-week {
+            width: 100%;
+            height: 90px;
+            float: left;
+            padding: 0px 2px;
+            margin-top: 22px;
+            font-size: 10pt;
+            border-top: 1px solid #ecedef;
+            box-sizing: border-box
+        }
+
+        .ds-time-keeping-week-title {
+            width: 100%;
+            height: 36px;
+            float: left;
+            text-align: left;
+            padding: 6px 0px;
+            font-size: 13pt;
+            margin-top: 12px;
+            border-top: 0px solid #ecedef;
+            border-bottom: 0px solid #d6d6d6;
+            box-sizing: border-box
+        }
+        /*
+        .ds-time-keeping-week-con {
+            width: 100%;
+            height: 36px;
+            float: left;
+            text-align: center;
+            padding: 5px 2px;
+        }
+
+        .cmdNow {
+            width: 70px;
+            height: 26px;
+            float: right;
+            margin-right: 10px;
+            color: #565656;
+            border: 1px solid #d6d6d6;
+            box-sizing: border-box;
+            border-radius: 12px;
+            margin-top: 2px;
+            margin-left: 10px;
+            background-color: #fff;
+        }
+
+        .cmdPre {
+            width: 32px;
+            height: 24px;
+            border: 1px solid #fff;
+            background-color: #fff;
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 15pt;
+            color: #979797
+        }
+
+        .cmdNext {
+            width: 32px;
+            height: 24px;
+            border: 1px solid #fff;
+            background-color: #fff;
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 15pt;
+            color: #979797
+        }
+
+        .labDateFrom {
+            font-size: 18pt;
+            line-height: 1.2;
+            color: #303030
+        }
+
+
+        .ds-time-keeping-day {
+            width: 100%;
+            height: auto;
+            float: left;
+            font-size: 9pt;
+            margin-top: 14px;
+            border: 0px solid red;
+            box-sizing: border-box
+        }
+
+        .fpsList td {
+            width: auto;
+            height: 40px;
+            border: 1px solid #d6d6d6;
+            box-sizing: border-box;
+        }
+
+        .labs1 {
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            line-height: 3;
+            border-bottom: 0px solid #d6d6d6;
+            box-sizing: border-box;
+            display: block;
+            border: 0px solid red;
+        }
+
+        .labs2 {
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 2.1;
+            border-bottom: 0px solid #d6d6d6;
+            box-sizing: border-box;
+            display: block;
+            border: 0px solid red;
+        }
+
+        .labs3 {
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 2.1;
+            border-bottom: 0px solid #d6d6d6;
+            box-sizing: border-box;
+            display: block;
+            border: 0px solid red;
+        }*/
+
+        /*.labs4 {
+            width:100%; height:26px; text-align:center; padding:6px 1px; border-bottom:1px solid red; box-sizing:border-box; display:inline-block
+        }*/
+        #cmdPre, #cmdNext {
+            display: none;
+        }
+
+        .cmdPre, .cmdNext {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            border-radius: 100%;
+            outline: none;
+            border: 0;
+            position: relative;
+            cursor: pointer;
+            transform: scale(0.8);
+        }
+
+        .cmdNext {
+            transform: scaleX(-1) scale(0.8);
+        }
+
+            .cmdPre:hover, .cmdNext:hover {
+                background-color: #efefef;
+            }
+
+            .cmdPre::after, .cmdPre::before, .cmdNext::after, .cmdNext:before {
+                display: block;
+                content: "";
+                width: 14px;
+                height: 1px;
+                background-color: #595959;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+
+            .cmdPre::after, .cmdNext::after {
+                transform: rotate(45deg);
+                top: 19px;
+                left: 6px;
+            }
+
+            .cmdPre::before, .cmdNext:before {
+                transform: rotate(-45deg);
+                top: 10px;
+                left: 6px;
+            }
+
+        #cmdNow {
+            font-size: 12px;
+            background-color: #f9f9f9;
+            border: 1px solid #dbdbdb;
+            padding: 5px 13px;
+            border-radius: 5px;
+            color: #474747;
+            cursor: pointer;
+        }
+
+            #cmdNow:hover {
+                background-color: #eee;
+            }
+        /*휴가 현황 css*/
+        .ds-time-keeping-week-con {
+            display: flex;
+            justify-content: center;
+            padding: 4px 0;
+            margin-top: 15px;
+            align-items: center;
+            gap: 15px;
+            background-color: #eff4fc;
+            border: 1px solid #d6d6d6;
+            border-bottom: 0;
+        }
+
+        .calender_wrap {
+            display: flex;
+            height: 90px;
+            align-items: center;
+            text-align: center;
+            border: 1px solid #d6d6d6;
+        }
+
+            .calender_wrap .arrow {
+                width: 40px;
+                height: 120px;
+                border-right: 1px solid #d6d6d6;
+            }
+
+                .calender_wrap .arrow:last-child {
+                    border-right: 0;
+                }
+
+        .ds-time-keeping-day {
+            flex-grow: 1;
+            height: 100%;
+        }
+
+            .ds-time-keeping-day table {
+                border-collapse: collapse;
+                width: 100%;
+                height: 100%;
+                border: 0;
+                table-layout: fixed;
+            }
+
+            .ds-time-keeping-day tr {
+                border: 0;
+            }
+
+            .ds-time-keeping-day td {
+                border-right: 1px solid #d6d6d6;
+                padding: 0;
+            }
+
+                .ds-time-keeping-day td:last-child {
+                    border-right: 0;
+                }
+
+            .ds-time-keeping-day input {
+                font-family: "Noto Sans KR", sans-serif;
+                font-size: 12px;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                outline: none;
+                padding: 0;
+                margin: 0;
+                border: 0;
+                cursor: pointer;
+                border-left: 0;
+                border-right: 0;
+                white-space: normal;
+            }
+
+                .ds-time-keeping-day input:hover {
+                    background-color: #eff4fc;
+                }
+    </style>

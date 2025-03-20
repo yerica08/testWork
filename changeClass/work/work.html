@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>근태관리</title>
+    <!-- FullCalendar v6.1.15 CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet"> -->
+    <!-- css -->
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./work.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div>
+                <h1><img src="./logo.svg" alt="logo"></h1>
+                <div>
+                    <p><strong class="user_name">윤예리</strong>님</p>
+                    <p>(주)동신툴피아 <span class="position">정보팀 계장</span></p>
+                </div>
+                <div class="alert">
+                    <i class="bell"></i>
+                    <i class="round"></i>
+                </div>
+                
+            </div>
+            <nav>
+                <button type="button" id="btnClose"></button>
+                <ul class="gnb">
+                    <li>
+                        <a href="#"><i class="calender"></i>내 근무</a>
+                        <ul class="lnb">
+                            <li><a href="#" class="active">근무 체크</a></li>
+                            <li><a href="#">근무 현황</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="sun"></i>휴가</a>
+                        <ul class="lnb">
+                            <li><a href="#">휴가 신청</a></li>
+                            <li><a href="#">휴가 현황</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="timekeepling">
+                <h2><span>근태 관리</span></h2>
+                <div class="button_wrap">
+                    <div>
+                        <i class="clock"></i>
+                        <span id="currentTime">00:00:00</span>
+                    </div>
+                    <button type="button" id="btnWork"><i class="run"></i>출근하기</button>
+                    <button type="button" id="btnETC"><i class="plus"></i>기타</button>
+                </div>
+                <div id="calendar"></div>
+            </section>
+            <section class="vacation">
+                <h2><span>잔여 휴가</span></h2>
+                <div>
+                    <div>
+                        <i class="sun2"></i>
+                        <p><strong class="day">0</strong>일 <strong class="hour">0</strong>시간</p>
+                    </div>
+                    <div class="button_wrap">
+                        <button type="button" id="btnVState">휴가 현황</button>
+                        <button type="button" id="btnVacation">휴가 신청</button>
+                    </div>
+                </div>
+            </section>
+            <section class="work">
+                <div class="working_hours">
+                    <h2><span>근무 시간</span><span class="small">08:30 ~ 17:45 (소정근로시간 8시간)</span></h2>
+                    <div>
+                        <p>근무일수 <strong>17</strong>일</p>
+                        <i class="line"></i>
+                        <p>총근무시간<strong> 136</strong>시간</p>
+                        <i class="line"></i>
+                        <p>보정평균 <strong>8</strong>시간</p>
+                    </div>
+                </div>
+                <div class="attendance">
+                    <h2><span>근태 현황</span></h2>
+                    <div>
+                        <p>지각 <strong>0</strong>회</p>
+                        <i class="line"></i>
+                        <p>조기퇴근 <strong>0</strong>회</p>
+                        <i class="line"></i>
+                        <p>결근 <strong>0</strong>회</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- FullCalendar v6.1.15 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script src="./work.js"></script>
+</body>
+</html>
