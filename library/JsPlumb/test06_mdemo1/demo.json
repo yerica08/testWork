@@ -1,0 +1,190 @@
+{
+   "nodes": [
+      {
+         "id": "start",
+         "type": "ellipse",
+         "text": "영업팀",
+         "left": 100,
+         "top": 50,
+         "width": 120,
+         "height": 60,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "decision1",
+         "type": "decision",
+         "text": "외근,내근",
+         "left": 100,
+         "top": 150,
+         "width": 120,
+         "height": 120,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+
+      {
+         "id": "task1",
+         "type": "process",
+         "text": "거래처관리",
+         "left": 400,
+         "top": 50,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task2",
+         "type": "process",
+         "text": "시장동향파악",
+         "left": 400,
+         "top": 120,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task3",
+         "type": "process",
+         "text": "신규업체개발",
+         "left": 400,
+         "top": 190,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task4",
+         "type": "process",
+         "text": "목표관리",
+         "left": 400,
+         "top": 260,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task5",
+         "type": "process",
+         "text": "지원업무",
+         "left": 400,
+         "top": 330,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+
+      {
+         "id": "task6",
+         "type": "process",
+         "text": "업체관리",
+         "left": 100,
+         "top": 300,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task7",
+         "type": "process",
+         "text": "업체단가관리",
+         "left": 100,
+         "top": 370,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task8",
+         "type": "process",
+         "text": "미결관리",
+         "left": 100,
+         "top": 440,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task9",
+         "type": "process",
+         "text": "반품관리",
+         "left": 100,
+         "top": 510,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task10",
+         "type": "process",
+         "text": "여신체크",
+         "left": 100,
+         "top": 580,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task11",
+         "type": "process",
+         "text": "전표관리",
+         "left": 100,
+         "top": 650,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task12",
+         "type": "process",
+         "text": "상품홍보(Fax)",
+         "left": 100,
+         "top": 720,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      },
+      {
+         "id": "task13",
+         "type": "process",
+         "text": "수주관리",
+         "left": 100,
+         "top": 790,
+         "width": 150,
+         "height": 50,
+         "fill": "#FFFFFF",
+         "outline": "#000000"
+      }
+   ],
+   "edges": [
+      { "source": "start", "target": "decision1", "data": { "label": "" } },
+
+      { "source": "decision1", "target": "task1", "data": { "label": "외근" } },
+      { "source": "decision1", "target": "task2", "data": { "label": "외근" } },
+      { "source": "decision1", "target": "task3", "data": { "label": "외근" } },
+      { "source": "decision1", "target": "task4", "data": { "label": "외근" } },
+      { "source": "decision1", "target": "task5", "data": { "label": "외근" } },
+
+      { "source": "decision1", "target": "task6", "data": { "label": "내근" } },
+
+      { "source": "task6", "target": "task7", "data": { "label": "" } },
+      { "source": "task7", "target": "task8", "data": { "label": "" } },
+      { "source": "task8", "target": "task9", "data": { "label": "" } },
+      { "source": "task9", "target": "task10", "data": { "label": "" } },
+      { "source": "task10", "target": "task11", "data": { "label": "" } },
+      { "source": "task11", "target": "task12", "data": { "label": "" } },
+      { "source": "task12", "target": "task13", "data": { "label": "" } }
+   ]
+}

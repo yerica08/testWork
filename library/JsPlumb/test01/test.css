@@ -1,0 +1,26 @@
+body {
+   font-family: Arial;
+   padding: 20px;
+}
+.box {
+   width: 100px;
+   height: 60px;
+   border: 2px solid #555;
+   border-radius: 8px;
+   background-color: #eef;
+   text-align: center;
+   line-height: 60px;
+   position: absolute;
+   cursor: move;
+}
+#box1 {
+   top: 100px;
+   left: 100px;
+}
+#box2 {
+   top: 100px;
+   left: 300px;
+}
+button {
+   margin-top: 200px;
+}

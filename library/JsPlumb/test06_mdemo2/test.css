@@ -1,0 +1,56 @@
+.flow-node {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   position: absolute;
+   background: #fff;
+   text-align: center;
+   cursor: move;
+}
+.ellipse {
+   border-radius: 30px;
+   width: 120px;
+   height: 60px;
+   background-color: #f4f4f4;
+}
+.rectangle1 {
+   border-radius: 10px;
+   width: 140px;
+   height: 50px;
+   background-color: #aeb8c3;
+   color: #fff;
+}
+.rectangle2 {
+   border-radius: 10px;
+   width: 140px;
+   height: 50px;
+   background-color: #fff;
+   border: 1px solid #dddddf;
+}
+.diamond {
+   width: 100px;
+   height: 100px;
+   transform: rotate(45deg);
+   background-color: #fff;
+   border: 1px dotted #a7a7a7;
+}
+.diamond span {
+   display: block;
+   transform: rotate(-45deg);
+   line-height: 100px;
+}
+
+/* 노드 내부 스타일 */
+.node_wrapper {
+   width: 100%;
+}
+.node_title {
+   text-align: center;
+}
+/* end point */
+.jtk-endpoint {
+   opacity: 0;
+}
+.jtk-endpoint:hover {
+   opacity: 1;
+}

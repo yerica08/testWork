@@ -1,0 +1,21 @@
+.node {
+   width: 150px;
+   height: 80px;
+   border: 2px solid #333;
+   position: absolute;
+   background: #eef;
+   text-align: center;
+   line-height: 80px;
+}
+#box1 {
+   top: 100px;
+   left: 100px;
+}
+#box2 {
+   top: 100px;
+   left: 400px;
+}
+#box3 {
+   top: 200px;
+   left: 400px;
+}

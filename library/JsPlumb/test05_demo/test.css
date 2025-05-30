@@ -1,0 +1,65 @@
+.node {
+   position: absolute;
+   padding: 10px 15px;
+   background: #fff;
+   text-align: center;
+   cursor: move;
+}
+.ellipse {
+   border-radius: 30px;
+   width: 120px;
+   height: 60px;
+   line-height: 60px;
+   background-color: #f4f4f4;
+}
+.rectangle1 {
+   border-radius: 10px;
+   width: 140px;
+   height: 50px;
+   line-height: 50px;
+   background-color: #aeb8c3;
+   color: #fff;
+}
+.rectangle2 {
+   border-radius: 10px;
+   width: 140px;
+   height: 50px;
+   line-height: 50px;
+   background-color: #fff;
+   border: 1px solid #dddddf;
+}
+.diamond {
+   width: 100px;
+   height: 100px;
+   transform: rotate(45deg);
+   background-color: #fff;
+   border: 1px dotted #afafaf;
+}
+.diamond span {
+   display: block;
+   transform: rotate(-45deg);
+   line-height: 100px;
+}
+
+/* 예제 */
+.node {
+   position: absolute;
+   text-align: center;
+   border: 2px solid #000;
+   background: #fff;
+   box-sizing: border-box;
+   padding: 10px;
+   font-family: Arial;
+}
+.decision {
+   transform: rotate(45deg);
+}
+.decision span {
+   display: block;
+   transform: rotate(-45deg);
+   line-height: normal;
+}
+.terminus {
+   border-radius: 10px;
+   color: white;
+}

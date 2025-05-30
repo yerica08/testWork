@@ -1,0 +1,148 @@
+body {
+   font-size: 13px;
+}
+
+.flow-node {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   position: absolute;
+   background: #fff;
+   text-align: center;
+   cursor: move;
+}
+.ellipse {
+   border-radius: 30px;
+   width: 120px;
+   height: 60px;
+   background-color: #f4f4f4;
+}
+.rectangle1 {
+   border-radius: 10px;
+   width: 140px;
+   height: 50px;
+   background-color: #aeb8c3;
+   color: #fff;
+}
+.rectangle2 {
+   border-radius: 10px;
+   width: 140px;
+   height: 50px;
+   background-color: #fff;
+   border: 1px solid #dddddf;
+}
+/* .diamond {
+   width: 100px;
+   height: 100px;
+   transform: rotate(45deg);
+   background-color: #fff;
+   border: 1px dotted #a7a7a7;
+}
+.diamond span {
+   display: block;
+   transform: rotate(-45deg);
+   line-height: 100px;
+} */
+.diamond {
+   position: relative;
+   width: 150px;
+   height: 80px;
+   text-align: center;
+   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="none"><polygon points="80,0 160,50 80,100 0,50" stroke="%23a7a7a7" stroke-width="1" fill="none"/></svg>');
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   background-position: center center;
+}
+/* 노드 내부 스타일 */
+.node_wrapper {
+   width: 100%;
+}
+.node_title {
+   text-align: center;
+}
+/* end point */
+#canvas .jtk-endpoint {
+   opacity: 0;
+   pointer-events: none; /* ⭐️ 클릭 방지도 가능! */
+}
+#canvas .my-endpoint {
+   width: 10px;
+   height: 10px;
+   background: gray;
+   border-radius: 50%;
+   position: absolute;
+   opacity: 0;
+   transition: opacity 0.2s;
+   z-index: 10;
+}
+
+#canvas .flow-node:hover .my-endpoint {
+   opacity: 1;
+}
+
+.my-endpoint-top {
+   top: -5px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.my-endpoint-bottom {
+   bottom: -5px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+.my-endpoint-left {
+   left: -5px;
+   top: 50%;
+   transform: translateY(-50%);
+}
+.my-endpoint-right {
+   right: -5px;
+   top: 50%;
+   transform: translateY(-50%);
+}
+/* 
+.diamond .my-endpoint-top {
+   top: -5px;
+   left: -5px;
+   transform: translateX(0);
+}
+.diamond .my-endpoint-bottom {
+   bottom: -5px;
+   right: -5px;
+   left: auto;
+   transform: translateX(0);
+}
+
+.diamond .my-endpoint-left {
+   left: -5px;
+   bottom: -5px;
+   top: auto;
+   transform: translateY(0);
+}
+
+.diamond .my-endpoint-right {
+   right: -5px;
+   top: -5px;
+   transform: translateY(0);
+} */
+
+/* zindex 정렬 */
+.jtk-connector {
+   z-index: 0; /* 선은 가장 뒤에 */
+}
+
+.jtk-overlay {
+   z-index: 1; /* overlay(화살표)는 선 위에 */
+}
+
+.my-endpoint {
+   z-index: 10; /* endpoint는 여전히 제일 위 */
+}
+
+/*.jtk-connector path {
+   stroke: gray;
+   stroke-width: 2;
+   /* "dash" 패턴으로 jump 처럼 보이게 만들기 (가장 단순한 해법) 
+   stroke-dasharray: /* 10 4 10 4;  예시 값 → 직접 조정 가능 
+}*/

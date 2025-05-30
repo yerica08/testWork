@@ -1,0 +1,25 @@
+.diamond {
+   position: absolute;
+   width: 120px;
+   height: 120px;
+   transform: rotate(45deg);
+   background: #fff;
+   border: 2px solid black;
+}
+
+.diamond span {
+   display: block;
+   transform: rotate(-45deg);
+   text-align: center;
+   line-height: 120px;
+}
+
+.resizer {
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   background: red;
+   right: -5px;
+   bottom: -5px;
+   cursor: se-resize;
+}

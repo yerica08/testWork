@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
+      <link rel="stylesheet" href="./test.css" />
+   </head>
+   <body>
+      <div
+         id="canvas"
+         style="
+            position: relative;
+            width: 1000px;
+            height: 1000px;
+            border: 1px solid #ccc;
+         "
+      ></div>
+      <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+         <defs>
+            <clipPath id="diamondClip" clipPathUnits="objectBoundingBox">
+               <polygon points="0.5 0, 1 0.5, 0.5 1, 0 0.5" />
+            </clipPath>
+         </defs>
+      </svg>
+
+      <script src="./test.js"></script>
+   </body>
+</html>

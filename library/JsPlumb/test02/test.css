@@ -1,0 +1,30 @@
+body {
+   font-family: Arial;
+   height: 100vh;
+   position: relative;
+}
+.node {
+   position: absolute;
+   padding: 10px 20px;
+   border: 2px solid #333;
+   border-radius: 5px;
+   background: #f9f9f9;
+   text-align: center;
+   cursor: move;
+}
+.diamond {
+   width: 120px;
+   height: 120px;
+   transform: rotate(45deg);
+   line-height: 120px;
+}
+.diamond span {
+   display: block;
+   transform: rotate(-45deg);
+}
+.green {
+   background: #c8facc;
+}
+.red {
+   background: #fbb;
+}
