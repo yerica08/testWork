@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <script src="./jsplumb.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/elkjs/lib/elk.bundled.js"></script>
+      <link rel="stylesheet" href="./test.css" />
+   </head>
+   <body>
+      <div
+         id="canvas"
+         style="
+            position: relative;
+            width: 1000px;
+            height: 1000px;
+            border: 1px solid #ccc;
+         "
+      ></div>
+      <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+         <defs>
+            <clipPath id="diamondClip" clipPathUnits="objectBoundingBox">
+               <polygon points="0.5 0, 1 0.5, 0.5 1, 0 0.5" />
+            </clipPath>
+         </defs>
+      </svg>
+      <script src="./lineJump.js"></script>
+      <script src="./test.js"></script>
+   </body>
+</html>

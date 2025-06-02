@@ -1,5 +1,6 @@
 body {
    font-size: 13px;
+   /* background-color: #eee; */
 }
 
 .flow-node {
@@ -7,6 +8,7 @@ body {
    justify-content: center;
    flex-direction: column;
    position: absolute;
+   z-index: 10;
    background: #fff;
    text-align: center;
    cursor: move;
@@ -48,10 +50,11 @@ body {
    width: 150px;
    height: 80px;
    text-align: center;
-   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="none"><polygon points="80,0 160,50 80,100 0,50" stroke="%23a7a7a7" stroke-width="1" fill="none"/></svg>');
+   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="none" ><polygon points="80,0 160,50 80,100 0,50" stroke="%23a7a7a7" stroke-width="1" fill="white"/></svg>');
    background-size: 100% 100%;
    background-repeat: no-repeat;
    background-position: center center;
+   background-color: transparent;
 }
 /* 노드 내부 스타일 */
 .node_wrapper {
@@ -146,3 +149,7 @@ body {
    /* "dash" 패턴으로 jump 처럼 보이게 만들기 (가장 단순한 해법) 
    stroke-dasharray: /* 10 4 10 4;  예시 값 → 직접 조정 가능 
 }*/
+
+.jtk-connector {
+   filter: url(#white-outline);
+}
