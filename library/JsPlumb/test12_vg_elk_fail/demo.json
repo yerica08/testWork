@@ -1,0 +1,43 @@
+{
+   "id": "root",
+   "layoutOptions": {
+      "elk.algorithm": "layered",
+      "elk.direction": "DOWN",
+      "elk.hierarchyHandling": "INCLUDE_CHILDREN"
+   },
+   "children": [
+      { "id": "영업팀", "width": 150, "height": 38 },
+      { "id": "외근내근", "width": 150, "height": 80 },
+      { "id": "외근", "width": 80, "height": 40 },
+      { "id": "내근", "width": 80, "height": 40 },
+      { "id": "거래처관리", "width": 140, "height": 30 },
+      { "id": "시장동향파악", "width": 140, "height": 30 },
+      { "id": "신규업체개발", "width": 140, "height": 30 },
+      { "id": "목표관리", "width": 140, "height": 30 },
+      { "id": "지원업무", "width": 140, "height": 30 },
+      { "id": "업체단가관리", "width": 140, "height": 30 },
+      { "id": "미결관리", "width": 140, "height": 30 },
+      { "id": "반품관리", "width": 140, "height": 30 },
+      { "id": "여신체크", "width": 140, "height": 30 },
+      { "id": "전표관리", "width": 140, "height": 30 },
+      { "id": "상품홍보Fax", "width": 140, "height": 30 },
+      { "id": "수주관리", "width": 140, "height": 30 }
+   ],
+   "edges": [
+      { "sources": ["영업팀"], "targets": ["외근내근"] },
+      { "sources": ["외근내근"], "targets": ["외근"] },
+      { "sources": ["외근내근"], "targets": ["내근"] },
+      { "sources": ["외근"], "targets": ["거래처관리"] },
+      { "sources": ["외근"], "targets": ["시장동향파악"] },
+      { "sources": ["외근"], "targets": ["신규업체개발"] },
+      { "sources": ["외근"], "targets": ["목표관리"] },
+      { "sources": ["외근"], "targets": ["지원업무"] },
+      { "sources": ["내근"], "targets": ["업체단가관리"] },
+      { "sources": ["내근"], "targets": ["미결관리"] },
+      { "sources": ["내근"], "targets": ["반품관리"] },
+      { "sources": ["내근"], "targets": ["여신체크"] },
+      { "sources": ["내근"], "targets": ["전표관리"] },
+      { "sources": ["내근"], "targets": ["상품홍보Fax"] },
+      { "sources": ["내근"], "targets": ["수주관리"] }
+   ]
+}

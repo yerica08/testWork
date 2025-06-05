@@ -4,8 +4,8 @@
          "id": "영업팀",
          "label": "<div class='node_wrapper'><div class='node_title'><span>영업팀</span></div></div>",
          "type": "ellipse",
-         "x": 290,
-         "y": 40,
+         "x": 70,
+         "y": 50,
          "width": 150,
          "height": 38
       },
@@ -13,28 +13,29 @@
          "id": "외근내근",
          "label": "외근/내근",
          "type": "diamond",
-         "x": 290,
-         "y": 120,
+         "x": 70,
+         "y": 130,
          "width": 150,
          "height": 80
       },
+
       {
          "id": "외근",
          "label": "외근",
-         "type": "rectangle-gray",
-         "x": 145,
-         "y": 305,
-         "width": 80,
-         "height": 40
+         "type": "rectangle2",
+         "x": 120,
+         "y": 310,
+         "width": 40,
+         "height": 30
       },
       {
          "id": "내근",
          "label": "내근",
-         "type": "rectangle-gray",
-         "x": 505,
-         "y": 570,
-         "width": 80,
-         "height": 40
+         "type": "rectangle2",
+         "x": 120,
+         "y": 580,
+         "width": 40,
+         "height": 30
       },
 
       {
@@ -145,51 +146,6 @@
          "y": 700,
          "width": 140,
          "height": 30
-      },
-      {
-         "id": "수주서입력",
-         "label": "수주서입력",
-         "type": "rectangle2",
-         "x": 295,
-         "y": 760,
-         "width": 140,
-         "height": 30
-      },
-      {
-         "id": "여신확인요청",
-         "label": "여신확인<br/>요청",
-         "type": "diamond",
-         "x": 290,
-         "y": 860,
-         "width": 150,
-         "height": 80
-      },
-      {
-         "id": "여신증액한도판단",
-         "label": "여신증액,<br/>한도판단",
-         "type": "diamond",
-         "x": 45,
-         "y": 750,
-         "width": 150,
-         "height": 80
-      },
-      {
-         "id": "여신문제보완",
-         "label": "업체서류 보완 및<br/>문제사항 통보 후<br/>매출제제",
-         "type": "rectangle-gray",
-         "x": 45,
-         "y": 610,
-         "width": 150,
-         "height": 80
-      },
-      {
-         "id": "재고유무",
-         "label": "재고유무",
-         "type": "diamond",
-         "x": 45,
-         "y": 980,
-         "width": 150,
-         "height": 80
       }
    ],
    "connections": [
@@ -198,8 +154,8 @@
          "target": "외근내근",
          "anchors": ["Bottom", "Top"]
       },
-      { "source": "외근내근", "target": "외근", "anchors": ["Left", "Top"] },
-      { "source": "외근내근", "target": "내근", "anchors": ["Right", "Top"] },
+      { "source": "외근내근", "target": "외근", "anchors": ["Left", "Left"] },
+      { "source": "외근내근", "target": "내근", "anchors": ["Left", "Left"] },
 
       {
          "source": "외근",
@@ -222,58 +178,17 @@
       {
          "source": "내근",
          "target": "업체단가관리",
-         "anchors": ["Left", "Right"]
+         "anchors": ["Right", "Left"]
       },
-      { "source": "내근", "target": "미결관리", "anchors": ["Left", "Right"] },
-      { "source": "내근", "target": "반품관리", "anchors": ["Left", "Right"] },
-      { "source": "내근", "target": "여신체크", "anchors": ["Left", "Right"] },
-      { "source": "내근", "target": "전표관리", "anchors": ["Left", "Right"] },
+      { "source": "내근", "target": "미결관리", "anchors": ["Right", "Left"] },
+      { "source": "내근", "target": "반품관리", "anchors": ["Right", "Left"] },
+      { "source": "내근", "target": "여신체크", "anchors": ["Right", "Left"] },
+      { "source": "내근", "target": "전표관리", "anchors": ["Right", "Left"] },
       {
          "source": "내근",
          "target": "상품홍보Fax",
-         "anchors": ["Left", "Right"]
+         "anchors": ["Right", "Left"]
       },
-      { "source": "내근", "target": "수주관리", "anchors": ["Left", "Right"] },
-      {
-         "source": "수주관리",
-         "target": "수주서입력",
-         "anchors": ["Bottom", "Top"]
-      },
-      {
-         "source": "수주서입력",
-         "target": "여신확인요청",
-         "anchors": ["Bottom", "Top"]
-      },
-      {
-         "source": "여신확인요청",
-         "target": "여신증액한도판단",
-         "anchors": ["Left", "Right"],
-         "label": "문제있음",
-         "labelType": "pink"
-      },
-      {
-         "source": "여신확인요청",
-         "target": "재고유무",
-         "anchors": ["Bottom", "Top"],
-         "label": "문제없음",
-         "labelType": "green"
-      },
-      {
-         "source": "여신증액한도판단",
-         "target": "여신문제보완",
-         "anchors": ["Top", "Bottom"]
-      },
-      {
-         "source": "여신문제보완",
-         "target": "영업팀",
-         "anchors": ["Top", "Left"]
-      },
-      {
-         "source": "여신증액한도판단",
-         "target": "재고유무",
-         "anchors": ["Bottom", "Top"],
-         "label": "문제없음",
-         "labelType": "green"
-      }
+      { "source": "내근", "target": "수주관리", "anchors": ["Right", "Left"] }
    ]
 }

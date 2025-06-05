@@ -1,276 +1,244 @@
 {
    "nodes": [
       {
-         "id": "영업팀",
+         "id": "node-1",
          "label": "<div class='node_wrapper'><div class='node_title'><span>영업팀</span></div></div>",
          "type": "ellipse",
-         "x": 290,
+         "x": 230,
          "y": 40,
          "width": 150,
          "height": 38
       },
       {
-         "id": "외근내근",
+         "id": "node-2",
          "label": "외근/내근",
          "type": "diamond",
-         "x": 290,
+         "x": 230,
          "y": 120,
          "width": 150,
          "height": 80
       },
       {
-         "id": "외근",
+         "id": "node-3",
          "label": "외근",
          "type": "rectangle-gray",
-         "x": 145,
+         "x": 110,
          "y": 305,
          "width": 80,
          "height": 40
       },
       {
-         "id": "내근",
+         "id": "node-4",
          "label": "내근",
          "type": "rectangle-gray",
-         "x": 505,
+         "x": 425,
          "y": 570,
          "width": 80,
          "height": 40
       },
-
       {
-         "id": "거래처관리",
+         "id": "node-5",
          "label": "거래처 관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 230,
          "width": 140,
          "height": 30
       },
       {
-         "id": "시장동향파악",
+         "id": "node-6",
          "label": "시장동향파악",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 270,
          "width": 140,
          "height": 30
       },
       {
-         "id": "신규업체개발",
+         "id": "node-7",
          "label": "신규업체개발",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 310,
          "width": 140,
          "height": 30
       },
       {
-         "id": "목표관리",
+         "id": "node-8",
          "label": "목표관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 350,
          "width": 140,
          "height": 30
       },
       {
-         "id": "지원업무",
+         "id": "node-9",
          "label": "지원업무",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 390,
          "width": 140,
          "height": 30
       },
-
       {
-         "id": "업체단가관리",
+         "id": "node-10",
          "label": "업체단가관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 460,
          "width": 140,
          "height": 30
       },
       {
-         "id": "미결관리",
+         "id": "node-11",
          "label": "미결관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 500,
          "width": 140,
          "height": 30
       },
       {
-         "id": "반품관리",
+         "id": "node-12",
          "label": "반품관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 540,
          "width": 140,
          "height": 30
       },
       {
-         "id": "여신체크",
+         "id": "node-13",
          "label": "여신체크",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 580,
          "width": 140,
          "height": 30
       },
       {
-         "id": "전표관리",
+         "id": "node-14",
          "label": "전표관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 620,
          "width": 140,
          "height": 30
       },
       {
-         "id": "상품홍보Fax",
+         "id": "node-15",
          "label": "상품홍보(Fax)",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 660,
          "width": 140,
          "height": 30
       },
       {
-         "id": "수주관리",
+         "id": "node-16",
          "label": "수주관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 235,
          "y": 700,
          "width": 140,
          "height": 30
       },
       {
-         "id": "수주서입력",
+         "id": "node-17",
          "label": "수주서입력",
          "type": "rectangle2",
-         "x": 295,
-         "y": 760,
+         "x": 235,
+         "y": 770,
          "width": 140,
          "height": 30
       },
       {
-         "id": "여신확인요청",
+         "id": "node-18",
          "label": "여신확인<br/>요청",
          "type": "diamond",
-         "x": 290,
-         "y": 860,
+         "x": 230,
+         "y": 845,
          "width": 150,
          "height": 80
       },
       {
-         "id": "여신증액한도판단",
+         "id": "node-19",
          "label": "여신증액,<br/>한도판단",
          "type": "diamond",
-         "x": 45,
+         "x": 20,
          "y": 750,
          "width": 150,
          "height": 80
       },
       {
-         "id": "여신문제보완",
+         "id": "node-20",
          "label": "업체서류 보완 및<br/>문제사항 통보 후<br/>매출제제",
          "type": "rectangle-gray",
-         "x": 45,
+         "x": 20,
          "y": 610,
          "width": 150,
          "height": 80
       },
       {
-         "id": "재고유무",
+         "id": "node-21",
          "label": "재고유무",
          "type": "diamond",
-         "x": 45,
+         "x": 20,
          "y": 980,
          "width": 150,
          "height": 80
       }
    ],
    "connections": [
+      { "source": "node-1", "target": "node-2", "anchors": ["Bottom", "Top"] },
+      { "source": "node-2", "target": "node-3", "anchors": ["Left", "Top"] },
+      { "source": "node-2", "target": "node-4", "anchors": ["Right", "Top"] },
+      { "source": "node-3", "target": "node-5", "anchors": ["Right", "Left"] },
+      { "source": "node-3", "target": "node-6", "anchors": ["Right", "Left"] },
+      { "source": "node-3", "target": "node-7", "anchors": ["Right", "Left"] },
+      { "source": "node-3", "target": "node-8", "anchors": ["Right", "Left"] },
+      { "source": "node-3", "target": "node-9", "anchors": ["Right", "Left"] },
+      { "source": "node-4", "target": "node-10", "anchors": ["Left", "Right"] },
+      { "source": "node-4", "target": "node-11", "anchors": ["Left", "Right"] },
+      { "source": "node-4", "target": "node-12", "anchors": ["Left", "Right"] },
+      { "source": "node-4", "target": "node-13", "anchors": ["Left", "Right"] },
+      { "source": "node-4", "target": "node-14", "anchors": ["Left", "Right"] },
+      { "source": "node-4", "target": "node-15", "anchors": ["Left", "Right"] },
+      { "source": "node-4", "target": "node-16", "anchors": ["Left", "Right"] },
       {
-         "source": "영업팀",
-         "target": "외근내근",
-         "anchors": ["Bottom", "Top"]
-      },
-      { "source": "외근내근", "target": "외근", "anchors": ["Left", "Top"] },
-      { "source": "외근내근", "target": "내근", "anchors": ["Right", "Top"] },
-
-      {
-         "source": "외근",
-         "target": "거래처관리",
-         "anchors": ["Right", "Left"]
-      },
-      {
-         "source": "외근",
-         "target": "시장동향파악",
-         "anchors": ["Right", "Left"]
-      },
-      {
-         "source": "외근",
-         "target": "신규업체개발",
-         "anchors": ["Right", "Left"]
-      },
-      { "source": "외근", "target": "목표관리", "anchors": ["Right", "Left"] },
-      { "source": "외근", "target": "지원업무", "anchors": ["Right", "Left"] },
-
-      {
-         "source": "내근",
-         "target": "업체단가관리",
-         "anchors": ["Left", "Right"]
-      },
-      { "source": "내근", "target": "미결관리", "anchors": ["Left", "Right"] },
-      { "source": "내근", "target": "반품관리", "anchors": ["Left", "Right"] },
-      { "source": "내근", "target": "여신체크", "anchors": ["Left", "Right"] },
-      { "source": "내근", "target": "전표관리", "anchors": ["Left", "Right"] },
-      {
-         "source": "내근",
-         "target": "상품홍보Fax",
-         "anchors": ["Left", "Right"]
-      },
-      { "source": "내근", "target": "수주관리", "anchors": ["Left", "Right"] },
-      {
-         "source": "수주관리",
-         "target": "수주서입력",
+         "source": "node-16",
+         "target": "node-17",
          "anchors": ["Bottom", "Top"]
       },
       {
-         "source": "수주서입력",
-         "target": "여신확인요청",
+         "source": "node-17",
+         "target": "node-18",
          "anchors": ["Bottom", "Top"]
       },
       {
-         "source": "여신확인요청",
-         "target": "여신증액한도판단",
+         "source": "node-18",
+         "target": "node-19",
          "anchors": ["Left", "Right"],
          "label": "문제있음",
          "labelType": "pink"
       },
       {
-         "source": "여신확인요청",
-         "target": "재고유무",
+         "source": "node-18",
+         "target": "node-21",
          "anchors": ["Bottom", "Top"],
          "label": "문제없음",
          "labelType": "green"
       },
       {
-         "source": "여신증액한도판단",
-         "target": "여신문제보완",
+         "source": "node-19",
+         "target": "node-20",
          "anchors": ["Top", "Bottom"]
       },
+      { "source": "node-20", "target": "node-1", "anchors": ["Top", "Left"] },
       {
-         "source": "여신문제보완",
-         "target": "영업팀",
-         "anchors": ["Top", "Left"]
-      },
-      {
-         "source": "여신증액한도판단",
-         "target": "재고유무",
+         "source": "node-19",
+         "target": "node-21",
          "anchors": ["Bottom", "Top"],
          "label": "문제없음",
          "labelType": "green"

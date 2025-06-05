@@ -62,14 +62,6 @@ fetch('demo.json')
       elk.layout(elkGraph).then((graph) => {
          const nodes = Array.from(document.querySelectorAll('.flow-node'));
          const obstacles = getObstacles(nodes);
-         console.log('DEBUG: Obstacles:');
-         obstacles.forEach((obs, i) => {
-            console.log(
-               `  obstacle[${i}]: left=${obs.left}, top=${obs.top}, right=${
-                  obs.left + obs.width
-               }, bottom=${obs.top + obs.height}`
-            );
-         });
 
          // ⭐⭐ Edge 순회
          graph.edges.forEach((edge) => {
@@ -149,7 +141,7 @@ fetch('demo.json')
             // 1️⃣ slope 계산
             const dx = Math.abs(sourceVertex.x - targetVertex.x);
             const dy = Math.abs(sourceVertex.y - targetVertex.y);
-            const slope = dy / (dx + 1e-6); // 0 division 방지
+            const slope = dy / (dx + 1e-6);
 
             // 2️⃣ intersects 검사
             let intersectsFlag = intersectsAnyObstacle(
@@ -158,30 +150,47 @@ fetch('demo.json')
                obstacles
             );
 
-            // 3️⃣ slope 가 충분히 크면 → intersects false 강제 적용
+            // 3️⃣ slope 보정 적용
             if (slope > 2.0) {
-               // ⭐⭐⭐ 임계치 (2.0 정도면 경사가 거의 수직 느낌)
-               console.log(
-                  `DEBUG: slope=${slope.toFixed(2)} → forcing intersects=false`
-               );
                intersectsFlag = false;
             }
 
-            console.log(
-               `DEBUG FINAL intersects=${intersectsFlag} for ${src} → ${tgt} (slope=${slope.toFixed(
-                  2
-               )})`
-            );
+            // 🔸 overlays 통일 적용
+            const overlays = [];
 
-            // 4️⃣ 최종 분기
+            if (connType === 'current') {
+               overlays.push([
+                  'Custom',
+                  {
+                     create: makeCurrentSvg,
+                     location: 0.5,
+                  },
+               ]);
+            }
+
+            overlays.push(['Arrow', { width: 7, length: 8, location: 1 }]);
+
+            if (connLabel) {
+               overlays.push([
+                  'Label',
+                  {
+                     label: connLabel,
+                     location: 0.5,
+                     cssClass: `label-${connLabelType}`,
+                  },
+               ]);
+            }
+
+            // 🔸 최종 분기
             if (!intersectsFlag) {
-               // ⭐⭐⭐ 직선으로 jsPlumb 연결
+               // 직선 연결
                const connection = instance.connect({
                   source: src,
                   target: tgt,
                   anchors: connData?.anchors || ['Continuous', 'Continuous'],
                   connector: ['Flowchart', { cornerRadius: 5 }],
                   paintStyle: { stroke: '#999', strokeWidth: 1 },
+                  overlays: overlays,
                });
 
                const connSvg = connection.getConnector().canvas;
@@ -203,41 +212,12 @@ fetch('demo.json')
                   connSvg.classList.add(`conn-${connType}`);
                }
 
-               return; // ⭐⭐⭐ 끝내기 (waypoint 처리 안 감)
+               return;
             }
 
-            if (!intersectsAnyObstacle(sourceVertex, targetVertex, obstacles)) {
-               // ⭐ 직선으로 가도 되는 경우 → 그냥 jsPlumb로 바로 연결
-               const connection = instance.connect({
-                  source: src,
-                  target: tgt,
-                  anchors: connData?.anchors || ['Continuous', 'Continuous'],
-                  connector: ['Flowchart', { cornerRadius: 5 }],
-                  paintStyle: { stroke: '#999', strokeWidth: 1 },
-               });
+            // ⛔️ 여기는 중복 intersects 검사 제거됨!
 
-               const connSvg = connection.getConnector().canvas;
-               const pathEl = connSvg.querySelector('path');
-               if (pathEl) {
-                  const d = pathEl.getAttribute('d');
-                  const bgPath = document.createElementNS(
-                     'http://www.w3.org/2000/svg',
-                     'path'
-                  );
-                  bgPath.setAttribute('d', d);
-                  bgPath.setAttribute('stroke', 'white');
-                  bgPath.setAttribute('stroke-width', '5');
-                  bgPath.setAttribute('fill', 'none');
-                  connSvg.insertBefore(bgPath, pathEl);
-               }
-
-               if (connType) {
-                  connSvg.classList.add(`conn-${connType}`);
-               }
-
-               return; // ⭐⭐⭐ 여기서 끝내면 됨 (waypoint 처리로 안 넘어감)
-            }
-
+            // ⭐ Dijkstra path
             const path = dijkstra(
                vertices,
                edgesVG,
@@ -245,34 +225,10 @@ fetch('demo.json')
                targetVertex
             );
 
-            if (path.length >= 2) {
+            if (path.length >= 3) {
                const waypoints = pathToWaypoints(path, src, tgt);
 
                let prev = src;
-               const overlays = [];
-
-               if (connType === 'current') {
-                  overlays.push([
-                     'Custom',
-                     {
-                        create: makeCurrentSvg,
-                        location: 0.5,
-                     },
-                  ]);
-               }
-
-               overlays.push(['Arrow', { width: 7, length: 8, location: 1 }]);
-
-               if (connLabel) {
-                  overlays.push([
-                     'Label',
-                     {
-                        label: connLabel,
-                        location: 0.5,
-                        cssClass: `label-${connLabelType}`,
-                     },
-                  ]);
-               }
 
                waypoints.forEach((wp) => {
                   const connection = instance.connect({
@@ -281,35 +237,32 @@ fetch('demo.json')
                      anchors: connData?.anchors || ['Continuous', 'Continuous'],
                      connector: ['Flowchart', { cornerRadius: 0 }],
                      paintStyle: { stroke: '#999', strokeWidth: 1 },
-                     overlays: [],
+                     overlays: [], // waypoint 연결은 Arrow 없음
                   });
                   prev = wp.id;
+
                   const connSvg = connection.getConnector().canvas;
                   const pathEl = connSvg.querySelector('path');
 
                   if (pathEl) {
-                     // path의 d 복사
                      const d = pathEl.getAttribute('d');
-
-                     // 흰색 밑줄용 path 생성
                      const bgPath = document.createElementNS(
                         'http://www.w3.org/2000/svg',
                         'path'
                      );
                      bgPath.setAttribute('d', d);
                      bgPath.setAttribute('stroke', 'white');
-                     bgPath.setAttribute('stroke-width', '5'); // 원하는 두께
+                     bgPath.setAttribute('stroke-width', '5');
                      bgPath.setAttribute('fill', 'none');
-
-                     // 기존 path 앞에 추가 (밑으로 깔리게)
                      connSvg.insertBefore(bgPath, pathEl);
                   }
-                  // connType 별로 class는 추가할 수 있음
+
                   if (connType) {
                      connSvg.classList.add(`conn-${connType}`);
                   }
                });
 
+               // 마지막 segment
                const connection = instance.connect({
                   source: prev,
                   target: tgt,
@@ -323,20 +276,15 @@ fetch('demo.json')
                const pathEl = connSvg.querySelector('path');
 
                if (pathEl) {
-                  // path의 d 복사
                   const d = pathEl.getAttribute('d');
-
-                  // 흰색 밑줄용 path 생성
                   const bgPath = document.createElementNS(
                      'http://www.w3.org/2000/svg',
                      'path'
                   );
                   bgPath.setAttribute('d', d);
                   bgPath.setAttribute('stroke', 'white');
-                  bgPath.setAttribute('stroke-width', '5'); // 원하는 두께
+                  bgPath.setAttribute('stroke-width', '5');
                   bgPath.setAttribute('fill', 'none');
-
-                  // 기존 path 앞에 추가 (밑으로 깔리게)
                   connSvg.insertBefore(bgPath, pathEl);
                }
 

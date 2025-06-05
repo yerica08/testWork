@@ -4,7 +4,7 @@
          "id": "영업팀",
          "label": "<div class='node_wrapper'><div class='node_title'><span>영업팀</span></div></div>",
          "type": "ellipse",
-         "x": 290,
+         "x": 270,
          "y": 40,
          "width": 150,
          "height": 38
@@ -13,7 +13,7 @@
          "id": "외근내근",
          "label": "외근/내근",
          "type": "diamond",
-         "x": 290,
+         "x": 270,
          "y": 120,
          "width": 150,
          "height": 80
@@ -22,7 +22,7 @@
          "id": "외근",
          "label": "외근",
          "type": "rectangle-gray",
-         "x": 145,
+         "x": 150,
          "y": 305,
          "width": 80,
          "height": 40
@@ -31,7 +31,7 @@
          "id": "내근",
          "label": "내근",
          "type": "rectangle-gray",
-         "x": 505,
+         "x": 465,
          "y": 570,
          "width": 80,
          "height": 40
@@ -41,7 +41,7 @@
          "id": "거래처관리",
          "label": "거래처 관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 230,
          "width": 140,
          "height": 30
@@ -50,7 +50,7 @@
          "id": "시장동향파악",
          "label": "시장동향파악",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 270,
          "width": 140,
          "height": 30
@@ -59,7 +59,7 @@
          "id": "신규업체개발",
          "label": "신규업체개발",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 310,
          "width": 140,
          "height": 30
@@ -68,7 +68,7 @@
          "id": "목표관리",
          "label": "목표관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 350,
          "width": 140,
          "height": 30
@@ -77,7 +77,7 @@
          "id": "지원업무",
          "label": "지원업무",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 390,
          "width": 140,
          "height": 30
@@ -87,7 +87,7 @@
          "id": "업체단가관리",
          "label": "업체단가관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 460,
          "width": 140,
          "height": 30
@@ -96,7 +96,7 @@
          "id": "미결관리",
          "label": "미결관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 500,
          "width": 140,
          "height": 30
@@ -105,7 +105,7 @@
          "id": "반품관리",
          "label": "반품관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 540,
          "width": 140,
          "height": 30
@@ -114,7 +114,7 @@
          "id": "여신체크",
          "label": "여신체크",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 580,
          "width": 140,
          "height": 30
@@ -123,7 +123,7 @@
          "id": "전표관리",
          "label": "전표관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 620,
          "width": 140,
          "height": 30
@@ -132,7 +132,7 @@
          "id": "상품홍보Fax",
          "label": "상품홍보(Fax)",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 660,
          "width": 140,
          "height": 30
@@ -141,7 +141,7 @@
          "id": "수주관리",
          "label": "수주관리",
          "type": "rectangle2",
-         "x": 295,
+         "x": 275,
          "y": 700,
          "width": 140,
          "height": 30
@@ -150,8 +150,8 @@
          "id": "수주서입력",
          "label": "수주서입력",
          "type": "rectangle2",
-         "x": 295,
-         "y": 760,
+         "x": 275,
+         "y": 770,
          "width": 140,
          "height": 30
       },
@@ -159,8 +159,8 @@
          "id": "여신확인요청",
          "label": "여신확인<br/>요청",
          "type": "diamond",
-         "x": 290,
-         "y": 860,
+         "x": 270,
+         "y": 845,
          "width": 150,
          "height": 80
       },
@@ -168,7 +168,7 @@
          "id": "여신증액한도판단",
          "label": "여신증액,<br/>한도판단",
          "type": "diamond",
-         "x": 45,
+         "x": 60,
          "y": 750,
          "width": 150,
          "height": 80
@@ -177,7 +177,7 @@
          "id": "여신문제보완",
          "label": "업체서류 보완 및<br/>문제사항 통보 후<br/>매출제제",
          "type": "rectangle-gray",
-         "x": 45,
+         "x": 60,
          "y": 610,
          "width": 150,
          "height": 80
@@ -186,7 +186,7 @@
          "id": "재고유무",
          "label": "재고유무",
          "type": "diamond",
-         "x": 45,
+         "x": 60,
          "y": 980,
          "width": 150,
          "height": 80

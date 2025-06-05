@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Document</title>
       <script src="./jsplumb.min.js"></script>
+      <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/elkjs/lib/elk.bundled.js"></script>
       <link rel="stylesheet" href="./test.css" />
    </head>
@@ -13,7 +14,7 @@
          id="canvas"
          style="
             position: relative;
-            width: 1000px;
+            width: 800px;
             height: 1000px;
             border: 1px solid #ccc;
          "
@@ -52,48 +53,38 @@
             </clipPath>
          </defs>
       </svg>
-
-      <!-- current! -->
-      <!-- <svg
-         xmlns="http://www.w3.org/2000/svg"
-         width="30"
-         height="30"
-         viewBox="0 0 30 30"
-         fill="none"
-         id="current"
-      >
-         <rect width="30" height="30" rx="15" fill="#4CD97B" />
-         <path
-            d="M6 14L14 21.5L24 8.5"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-         />
-      </svg> -->
-
-      <!-- warning! -->
-      <!-- <svg
-         xmlns="http://www.w3.org/2000/svg"
-         width="30"
-         height="30"
-         viewBox="0 0 30 30"
-         fill="none"
-         id="warning"
-      >
-         <rect width="30" height="30" rx="15" fill="#EB8D9A" />
-         <path
-            d="M7.25 7.25L22.75 22.75"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-         />
-         <path
-            d="M22.75 7.25L7.25 22.75"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-         />
-      </svg> -->
+      <svg width="0" height="0">
+         <defs>
+            <filter
+               id="white-outline"
+               x="-50%"
+               y="-50%"
+               width="200%"
+               height="200%"
+            >
+               <!-- Source Alpha (shape) 확장 -->
+               <feMorphology
+                  in="SourceAlpha"
+                  operator="dilate"
+                  radius="2"
+                  result="expanded"
+               />
+               <!-- 채우기 (white) -->
+               <feFlood flood-color="white" result="white" />
+               <feComposite
+                  in="white"
+                  in2="expanded"
+                  operator="in"
+                  result="white-outline"
+               />
+               <!-- 합치기 -->
+               <feMerge>
+                  <feMergeNode in="white-outline" />
+                  <feMergeNode in="SourceGraphic" />
+               </feMerge>
+            </filter>
+         </defs>
+      </svg>
       <script src="./test.js"></script>
    </body>
 </html>

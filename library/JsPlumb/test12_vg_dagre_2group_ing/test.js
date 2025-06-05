@@ -27,26 +27,26 @@ fetch('demo.json')
          // instance.draggable(div, {
          //    grid: [10, 10],
          // });
-         // instance.draggable(div);
-         instance.draggable(div, {
-            stop: function (params) {
-               console.log(
-                  '🟢 Drag stopped (via draggable.stop)! → Recomputing VG'
-               );
+         instance.draggable(div);
+         // instance.draggable(div, {
+         //    stop: function (params) {
+         //       console.log(
+         //          '🟢 Drag stopped (via draggable.stop)! → Recomputing VG'
+         //       );
 
-               instance.deleteEveryConnection();
+         //       instance.deleteEveryConnection();
 
-               requestAnimationFrame(() => {
-                  // 첫 frame 에서 jsPlumb repaint → 레이아웃 업데이트 유도
-                  instance.repaintEverything();
+         //       requestAnimationFrame(() => {
+         //          // 첫 frame 에서 jsPlumb repaint → 레이아웃 업데이트 유도
+         //          instance.repaintEverything();
 
-                  // 두 번째 frame 에서 VG 실행 → 최신 좌표 사용 가능
-                  requestAnimationFrame(() => {
-                     runVG();
-                  });
-               });
-            },
-         });
+         //          // 두 번째 frame 에서 VG 실행 → 최신 좌표 사용 가능
+         //          requestAnimationFrame(() => {
+         //             runVG();
+         //          });
+         //       });
+         //    },
+         // });
       });
 
       // ⭐ dynamic spacing + 방향 자동
@@ -224,47 +224,78 @@ fetch('demo.json')
       );
 
       // ⭐ dagre.js 레이아웃 (compound graph!)
-      const g = new dagre.graphlib.Graph({ compound: true });
-      g.setGraph({
-         rankdir: rankdir,
+      // ⭐⭐ 1️⃣ 트리 레벨 계산
+      const nodeLevels = new Map();
+
+      function computeLevels() {
+         const queue = [];
+         data.nodes.forEach((node) => {
+            if ((inDegreeMap.get(node.id) || 0) === 0) {
+               nodeLevels.set(node.id, 1); // 루트 노드 → level 1
+               queue.push(node.id);
+            }
+         });
+
+         while (queue.length > 0) {
+            const current = queue.shift();
+            const currentLevel = nodeLevels.get(current);
+
+            data.connections
+               .filter((conn) => conn.source === current)
+               .forEach((conn) => {
+                  if (!nodeLevels.has(conn.target)) {
+                     nodeLevels.set(conn.target, currentLevel + 1);
+                     queue.push(conn.target);
+                  }
+               });
+         }
+
+         // 확인용 로그
+         console.log('📌 Node Levels:', nodeLevels);
+      }
+
+      computeLevels();
+
+      // ⭐⭐ 2️⃣ level 1~2 TB 레이아웃
+      const gLevelTB = new dagre.graphlib.Graph();
+      gLevelTB.setGraph({
+         rankdir: 'TB',
          nodesep: dynamicNodesep,
          ranksep: dynamicRanksep,
          marginx: 20,
          marginy: 20,
       });
-      g.setDefaultEdgeLabel(() => ({}));
+      gLevelTB.setDefaultEdgeLabel(() => ({}));
 
-      // 노드 등록
+      // level 1, 2 노드 등록
       data.nodes.forEach((node) => {
-         g.setNode(node.id, { width: node.width, height: node.height });
+         const level = nodeLevels.get(node.id);
+         if (level === 1 || level === 2) {
+            gLevelTB.setNode(node.id, {
+               width: node.width,
+               height: node.height,
+            });
+         }
       });
 
-      // ⭐ 자동 그룹 노드 등록 + 자동 그룹핑 적용
-      groupCandidates.forEach((groupId) => {
-         const groupNodeId = groupId + '_그룹';
-         g.setNode(groupNodeId, { width: 10, height: 10, isGroup: true });
-
-         const childList = getDescendants(groupId, data.connections);
-
-         childList.forEach((childId) => {
-            g.setParent(childId, groupNodeId);
-         });
-      });
-
-      // connections 등록
+      // level 1, 2 edges 등록
       data.connections.forEach((conn) => {
-         g.setEdge(conn.source, conn.target);
+         const sourceLevel = nodeLevels.get(conn.source);
+         const targetLevel = nodeLevels.get(conn.target);
+         if (
+            (sourceLevel === 1 || sourceLevel === 2) &&
+            (targetLevel === 1 || targetLevel === 2)
+         ) {
+            gLevelTB.setEdge(conn.source, conn.target);
+         }
       });
 
-      dagre.layout(g);
+      // 레이아웃 실행
+      dagre.layout(gLevelTB);
 
-      // ⭐ 노드 위치 반영
-      g.nodes().forEach((id) => {
-         const node = g.node(id);
-
-         // 그룹 노드는 skip
-         if (node.isGroup) return;
-
+      // 노드 위치 적용
+      gLevelTB.nodes().forEach((id) => {
+         const node = gLevelTB.node(id);
          const div = document.getElementById(id);
          if (div) {
             div.style.left = `${node.x - node.width / 2}px`;
@@ -274,66 +305,55 @@ fetch('demo.json')
          }
       });
 
-      // ⭐ VG 준비
-      const nodes = Array.from(document.querySelectorAll('.flow-node'));
-      const obstacles = nodes.map((node) => node.getBoundingClientRect());
-      const vertices = extractVertices(nodes);
+      // ⭐⭐ 3️⃣ level ≥3 LR 레이아웃
+      const gLevelLR = new dagre.graphlib.Graph();
+      gLevelLR.setGraph({
+         rankdir: 'LR',
+         nodesep: dynamicNodesep,
+         ranksep: dynamicRanksep,
+         marginx: 20,
+         marginy: 20,
+      });
+      gLevelLR.setDefaultEdgeLabel(() => ({}));
 
-      data.connections.forEach((edge) => {
-         const sourceEl = document
-            .getElementById(edge.source)
-            .getBoundingClientRect();
-         const targetEl = document
-            .getElementById(edge.target)
-            .getBoundingClientRect();
-
-         const sourceVertex = {
-            x: sourceEl.left + sourceEl.width / 2,
-            y: sourceEl.top + sourceEl.height / 2,
-         };
-
-         const targetVertex = {
-            x: targetEl.left + targetEl.width / 2,
-            y: targetEl.top + targetEl.height / 2,
-         };
-
-         const allVertices = [...vertices, sourceVertex, targetVertex];
-         const visibilityEdges = computeVisibilityEdges(allVertices, obstacles);
-
-         const path = dijkstra(
-            allVertices,
-            visibilityEdges,
-            sourceVertex,
-            targetVertex
-         );
-
-         if (path.length > 0) {
-            const waypoints = pathToWaypointsVG(path, edge.source, edge.target);
-
-            let prev = edge.source;
-            waypoints.forEach((wp) => {
-               instance.connect({
-                  source: prev,
-                  target: wp.id,
-                  anchors: ['Continuous', 'Continuous'],
-                  connector: ['Flowchart', { cornerRadius: 5, stub: 30 }],
-                  paintStyle: { stroke: '#999', strokeWidth: 1 },
-                  overlays: [['Arrow', { width: 7, length: 8, location: 1 }]],
-               });
-               prev = wp.id;
-            });
-
-            instance.connect({
-               source: prev,
-               target: edge.target,
-               anchors: ['Continuous', 'Continuous'],
-               connector: ['Flowchart', { cornerRadius: 5, stub: 30 }],
-               paintStyle: { stroke: '#999', strokeWidth: 1 },
-               overlays: [['Arrow', { width: 7, length: 8, location: 1 }]],
+      // level ≥3 노드 등록
+      data.nodes.forEach((node) => {
+         const level = nodeLevels.get(node.id);
+         if (level >= 3) {
+            gLevelLR.setNode(node.id, {
+               width: node.width,
+               height: node.height,
             });
          }
       });
 
+      // level ≥3 edges 등록
+      data.connections.forEach((conn) => {
+         const sourceLevel = nodeLevels.get(conn.source);
+         const targetLevel = nodeLevels.get(conn.target);
+         if (sourceLevel >= 3 && targetLevel >= 3) {
+            gLevelLR.setEdge(conn.source, conn.target);
+         }
+      });
+
+      // 레이아웃 실행
+      dagre.layout(gLevelLR);
+
+      // Y 오프셋 적용 → TB 아래에 배치
+      const levelLR_OffsetY = 400; // 필요시 조정 가능 (원하는 거리)
+
+      gLevelLR.nodes().forEach((id) => {
+         const node = gLevelLR.node(id);
+         const div = document.getElementById(id);
+         if (div) {
+            div.style.left = `${node.x - node.width / 2}px`;
+            div.style.top = `${node.y - node.height / 2 + levelLR_OffsetY}px`;
+         } else {
+            console.warn(`⚠️ DOM not found for node.id=${id}`);
+         }
+      });
+
+      // ⭐⭐ 4️⃣ 마지막 repaintEverything() 유지
       instance.repaintEverything();
 
       // ⭐ VG utils
@@ -494,6 +514,19 @@ fetch('demo.json')
             .filter((conn) => conn.source === rootId)
             .map((conn) => conn.target);
       }
+      function getNodePositionWithOffset(nodeId) {
+         const el = document.getElementById(nodeId);
+         const rect = el.getBoundingClientRect();
+         const level = nodeLevels.get(nodeId);
+
+         // level ≥3 → LR → Y 오프셋 적용
+         const offsetY = level >= 3 ? levelLR_OffsetY : 0;
+
+         return {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2 + offsetY,
+         };
+      }
 
       // ⭐ runVG() 함수는 이렇게 만들면 됨:
       function runVG() {
@@ -509,22 +542,8 @@ fetch('demo.json')
          const vertices = extractVertices(nodes);
 
          data.connections.forEach((edge) => {
-            const sourceEl = document
-               .getElementById(edge.source)
-               .getBoundingClientRect();
-            const targetEl = document
-               .getElementById(edge.target)
-               .getBoundingClientRect();
-
-            const sourceVertex = {
-               x: sourceEl.left + sourceEl.width / 2,
-               y: sourceEl.top + sourceEl.height / 2,
-            };
-
-            const targetVertex = {
-               x: targetEl.left + targetEl.width / 2,
-               y: targetEl.top + targetEl.height / 2,
-            };
+            const sourceVertex = getNodePositionWithOffset(edge.source);
+            const targetVertex = getNodePositionWithOffset(edge.target);
 
             const allVertices = [...vertices, sourceVertex, targetVertex];
             const visibilityEdges = computeVisibilityEdges(

@@ -19,39 +19,27 @@ body {
 }
 .ellipse {
    border-radius: 30px;
-   width: 120px;
-   height: 60px;
+   width: 150px;
+   height: 38px;
    background-color: #aeb8c3;
    color: #fff;
    font-size: 14px;
 }
 .rectangle-gray {
    border-radius: 3px;
-   width: 140px;
-   height: 50px;
+   width: 80px;
+   height: 40px;
    background-color: #f4f4f4;
    border: 1px solid #ddd;
 }
 .rectangle2 {
    border-radius: 10px;
    width: 140px;
-   height: 50px;
+   height: 30px;
    background-color: #fff;
    border: 1px solid #dddddf;
    color: #444;
 }
-/* .diamond {
-   width: 100px;
-   height: 100px;
-   transform: rotate(45deg);
-   background-color: #fff;
-   border: 1px dotted #a7a7a7;
-}
-.diamond span {
-   display: block;
-   transform: rotate(-45deg);
-   line-height: 100px;
-} */
 .diamond {
    position: relative;
    width: 150px;
@@ -73,97 +61,24 @@ body {
 .node_title {
    text-align: center;
 }
-/* end point */
-#canvas .jtk-endpoint {
-   opacity: 0;
-   pointer-events: none; /* ⭐️ 클릭 방지도 가능! */
-}
-#canvas .my-endpoint {
-   width: 10px;
-   height: 10px;
-   background: gray;
-   border-radius: 50%;
-   position: absolute;
-   opacity: 0;
-   transition: opacity 0.2s;
-   z-index: 10;
-}
-
-#canvas .flow-node:hover .my-endpoint {
-   opacity: 1;
-}
-
-.my-endpoint-top {
-   top: -5px;
-   left: 50%;
-   transform: translateX(-50%);
-}
-
-.my-endpoint-bottom {
-   bottom: -5px;
-   left: 50%;
-   transform: translateX(-50%);
-}
-.my-endpoint-left {
-   left: -5px;
-   top: 50%;
-   transform: translateY(-50%);
-}
-.my-endpoint-right {
-   right: -5px;
-   top: 50%;
-   transform: translateY(-50%);
-}
-/* 
-.diamond .my-endpoint-top {
-   top: -5px;
-   left: -5px;
-   transform: translateX(0);
-}
-.diamond .my-endpoint-bottom {
-   bottom: -5px;
-   right: -5px;
-   left: auto;
-   transform: translateX(0);
-}
-
-.diamond .my-endpoint-left {
-   left: -5px;
-   bottom: -5px;
-   top: auto;
-   transform: translateY(0);
-}
-
-.diamond .my-endpoint-right {
-   right: -5px;
-   top: -5px;
-   transform: translateY(0);
-} */
 
 /* zindex 정렬 */
 .jtk-connector {
    z-index: 0; /* 선은 가장 뒤에 */
 }
-
 .jtk-overlay {
    z-index: 1; /* overlay(화살표)는 선 위에 */
 }
-
 .my-endpoint {
    z-index: 10; /* endpoint는 여전히 제일 위 */
 }
+/* end point */
+.jtk-endpoint {
+   z-index: 20;
+   cursor: pointer;
+}
 
-/*.jtk-connector path {
-   stroke: gray;
-   stroke-width: 2;
-   /* "dash" 패턴으로 jump 처럼 보이게 만들기 (가장 단순한 해법) 
-   stroke-dasharray: /* 10 4 10 4;  예시 값 → 직접 조정 가능 
-}*/
-
-/* .jtk-connector {
-   filter: url(#white-outline);
-} */
-
+/* 연결선 라벨 */
 .label-green {
    color: #333;
    background: #e2fbc9;
@@ -187,4 +102,25 @@ body {
    border-radius: 4px;
    font-size: 11px;
    white-space: nowrap;
+}
+
+/* input style */
+input[type='text'] {
+   width: 90%;
+   margin: 5px;
+   border: 0;
+}
+
+/* 편집채널 */
+.property-panel {
+   width: 200px;
+   height: 400px;
+   position: fixed;
+   right: 0;
+   bottom: 0;
+   background-color: #f9f9f9;
+   border: 1px solid #d9d9d9;
+}
+.selected-node {
+   filter: drop-shadow(0 0 4px #ddd);
 }

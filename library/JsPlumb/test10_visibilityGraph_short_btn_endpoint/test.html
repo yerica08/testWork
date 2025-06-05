@@ -9,6 +9,16 @@
       <link rel="stylesheet" href="./test.css" />
    </head>
    <body>
+      <div style="margin-bottom: 10px">
+         <button onclick="addNode('ellipse')">Ellipse 추가</button>
+         <button onclick="addNode('rectangle-gray')">
+            Rectangle Gray 추가
+         </button>
+         <button onclick="addNode('rectangle2')">Rectangle2 추가</button>
+         <button onclick="addNode('diamond')">Diamond 추가</button>
+         <button onclick="showEndpoint()">엔드포인트</button>
+      </div>
+
       <div
          id="canvas"
          style="
@@ -52,48 +62,25 @@
             </clipPath>
          </defs>
       </svg>
+      <div id="property-panel" class="property-panel">
+         <h3>노드 속성</h3>
+         <div>
+            <label>텍스트</label><br />
+            <input type="text" id="prop-text" /><br /><br />
 
-      <!-- current! -->
-      <!-- <svg
-         xmlns="http://www.w3.org/2000/svg"
-         width="30"
-         height="30"
-         viewBox="0 0 30 30"
-         fill="none"
-         id="current"
-      >
-         <rect width="30" height="30" rx="15" fill="#4CD97B" />
-         <path
-            d="M6 14L14 21.5L24 8.5"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-         />
-      </svg> -->
+            <label>너비 (width)</label><br />
+            <input type="number" id="prop-width" /><br /><br />
 
-      <!-- warning! -->
-      <!-- <svg
-         xmlns="http://www.w3.org/2000/svg"
-         width="30"
-         height="30"
-         viewBox="0 0 30 30"
-         fill="none"
-         id="warning"
-      >
-         <rect width="30" height="30" rx="15" fill="#EB8D9A" />
-         <path
-            d="M7.25 7.25L22.75 22.75"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-         />
-         <path
-            d="M22.75 7.25L7.25 22.75"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-         />
-      </svg> -->
+            <label>높이 (height)</label><br />
+            <input type="number" id="prop-height" /><br /><br />
+
+            <label>배경색</label><br />
+            <input type="color" id="prop-bgcolor" /><br /><br />
+
+            <label>테두리색</label><br />
+            <input type="color" id="prop-bordercolor" /><br /><br />
+         </div>
+      </div>
       <script src="./test.js"></script>
    </body>
 </html>
