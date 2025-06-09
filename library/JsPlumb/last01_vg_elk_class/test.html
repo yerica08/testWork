@@ -10,15 +10,10 @@
    </head>
    <body>
       <div style="margin-bottom: 10px">
-         <button onclick="addNode('ellipse')">Ellipse 추가</button>
-         <button onclick="addNode('rectangle-gray')">
-            Rectangle Gray 추가
-         </button>
-         <button onclick="addNode('rectangle2')">Rectangle2 추가</button>
-         <button onclick="addNode('diamond')">Diamond 추가</button>
-         <button onclick="showEndpoint()">엔드포인트</button>
-         <button onclick="exportToJson()">JSON으로 복사</button>
-         <button onclick="renderCanvas2()">Canvas2로 복사</button>
+         <button id="btnAddNode">노드추가</button>
+         <button id="btnShowEndpoint">엔드포인트</button>
+         <button id="btnExport">JSON으로 복사</button>
+         <button id="renderCanvas2">Canvas2로 복사</button>
       </div>
 
       <div
@@ -29,34 +24,7 @@
             height: 1000px;
             border: 1px solid #ccc;
          "
-      >
-         <!-- SVG Layer for ELK Paths -->
-         <svg
-            id="my-svg-layer"
-            style="
-               position: absolute;
-               top: 0;
-               left: 0;
-               width: 100%;
-               height: 100%;
-               pointer-events: none;
-               z-index: 5;
-            "
-         >
-            <defs>
-               <marker
-                  id="arrowhead"
-                  markerWidth="10"
-                  markerHeight="7"
-                  refX="10"
-                  refY="3.5"
-                  orient="auto"
-               >
-                  <polygon points="0 0, 10 3.5, 0 7" fill="#999" />
-               </marker>
-            </defs>
-         </svg>
-      </div>
+      ></div>
       <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
          <defs>
             <clipPath id="diamondClip" clipPathUnits="objectBoundingBox">
@@ -65,19 +33,21 @@
          </defs>
       </svg>
       <div id="property-panel" class="property-panel">
-         <h3>속성</h3>
-
          <!-- Node 전용 -->
          <div id="node-properties" style="display: none">
-            <h4>노드 속성</h4>
+            <h4>노드 편집</h4>
+            <button onclick="ChangeStyle('ellipse')">Ellipse</button>
+            <button onclick="ChangeStyle('rectangle1')">Rectangle Gray</button>
+            <button onclick="ChangeStyle('rectangle2')">Rectangle2</button>
+            <button onclick="ChangeStyle('diamond')">Diamond</button>
             <label>텍스트</label><br />
             <textarea id="prop-text"></textarea><br /><br />
 
             <label>너비 (width)</label><br />
-            <input type="number" id="prop-width" /><br /><br />
+            <input type="number" id="prop-width" step="5" /><br /><br />
 
             <label>높이 (height)</label><br />
-            <input type="number" id="prop-height" /><br /><br />
+            <input type="number" id="prop-height" step="5" /><br /><br />
 
             <label>배경색</label><br />
             <input type="color" id="prop-bgcolor" /><br /><br />
@@ -88,7 +58,7 @@
 
          <!-- Connection 전용 -->
          <div id="connection-properties" style="display: none">
-            <h4>연결선 속성</h4>
+            <h4>연결선 편집</h4>
             <label>선 색상 (stroke)</label><br />
             <input type="color" id="prop-conn-color" /><br /><br />
 
@@ -142,6 +112,6 @@
             </defs>
          </svg>
       </div>
-      <script src="./test.js"></script>
+      <script type="module" src="./test.js"></script>
    </body>
 </html>

@@ -64,23 +64,7 @@ fetch('demo.json')
             mainPath.classList.add('main-path');
          }
 
-         // arrow-path 추가
-         applyArrowPathClass(info.connection);
-      });
-
-      instance.bind('connectionDragStop', (info, event) => {
-         console.log('🔄 connectionDragStop → arrow-path 재적용');
-         applyArrowPathClass(info.connection);
-      });
-
-      instance.bind('connectionMoved', (info, event) => {
-         console.log('🔄 connectionMoved → arrow-path 재적용');
-         applyArrowPathClass(info.connection);
-      });
-
-      instance.bind('connectionDetached', (info, event) => {
-         console.log('🔄 connectionDetached → 필요 시 처리 가능');
-         // 필요하면 cleanup 처리도 가능
+         addBgAndHitPath(info.connection);
       });
 
       // ⭐ 노드 생성
@@ -235,8 +219,6 @@ fetch('demo.json')
                   anchors: connData?.anchors || ['Continuous', 'Continuous'],
                   connector: ['Flowchart', { cornerRadius: 5 }],
                   paintStyle: { stroke: '#999', strokeWidth: 1 },
-                  connectorStyle: { stroke: '#999', strokeWidth: 1 },
-                  connectorHoverStyle: { stroke: '#f00', strokeWidth: 2 },
                   overlays: overlays,
                });
 
@@ -261,7 +243,6 @@ fetch('demo.json')
                      bgPath.setAttribute('stroke-width', '5');
                      bgPath.setAttribute('fill', 'none');
                      bgPath.classList.add('bg-path'); // ⭐⭐ 클래스 추가 (중복 방지용)
-                     bgPath.setAttribute('pointer-events', 'none');
 
                      connSvg.insertBefore(bgPath, pathEl);
 
@@ -274,7 +255,12 @@ fetch('demo.json')
                      hitPath.setAttribute('stroke-width', '10'); // ← 넓은 hit 영역
                      hitPath.setAttribute('fill', 'none');
                      hitPath.classList.add('hit-path');
-                     hitPath.setAttribute('pointer-events', 'stroke'); // ← stroke 영역만 hover 가능
+                     hitPath.setAttribute('pointer-events', 'stroke');
+
+                     hitPath.addEventListener('click', (e) => {
+                        e.stopPropagation(); // 다른 click과 충돌 방지
+                        selectConnection(connection);
+                     });
 
                      connSvg.insertBefore(hitPath, bgPath);
                   }
@@ -309,8 +295,6 @@ fetch('demo.json')
                      anchors: connData?.anchors || ['Continuous', 'Continuous'],
                      connector: ['Flowchart', { cornerRadius: 0 }],
                      paintStyle: { stroke: '#999', strokeWidth: 1 },
-                     connectorStyle: { stroke: '#999', strokeWidth: 1 },
-                     connectorHoverStyle: { stroke: '#f00', strokeWidth: 2 },
                      overlays: [], // waypoint 연결은 Arrow 없음
                   });
                   prev = wp.id;
@@ -329,6 +313,24 @@ fetch('demo.json')
                      bgPath.setAttribute('stroke-width', '5');
                      bgPath.setAttribute('fill', 'none');
                      connSvg.insertBefore(bgPath, pathEl);
+
+                     const hitPath = document.createElementNS(
+                        'http://www.w3.org/2000/svg',
+                        'path'
+                     );
+                     hitPath.setAttribute('d', d);
+                     hitPath.setAttribute('stroke', 'transparent');
+                     hitPath.setAttribute('stroke-width', '10'); // ← 넓은 hit 영역
+                     hitPath.setAttribute('fill', 'none');
+                     hitPath.classList.add('hit-path');
+                     hitPath.setAttribute('pointer-events', 'stroke');
+
+                     hitPath.addEventListener('click', (e) => {
+                        e.stopPropagation(); // 다른 click과 충돌 방지
+                        selectConnection(connection);
+                     });
+
+                     connSvg.insertBefore(hitPath, bgPath);
                   }
 
                   if (connType) {
@@ -364,6 +366,24 @@ fetch('demo.json')
                   bgPath.setAttribute('stroke-width', '5');
                   bgPath.setAttribute('fill', 'none');
                   connSvg.insertBefore(bgPath, pathEl);
+
+                  const hitPath = document.createElementNS(
+                     'http://www.w3.org/2000/svg',
+                     'path'
+                  );
+                  hitPath.setAttribute('d', d);
+                  hitPath.setAttribute('stroke', 'transparent');
+                  hitPath.setAttribute('stroke-width', '10'); // ← 넓은 hit 영역
+                  hitPath.setAttribute('fill', 'none');
+                  hitPath.classList.add('hit-path');
+                  hitPath.setAttribute('pointer-events', 'stroke');
+
+                  hitPath.addEventListener('click', (e) => {
+                     e.stopPropagation(); // 다른 click과 충돌 방지
+                     selectConnection(connection);
+                  });
+
+                  connSvg.insertBefore(hitPath, bgPath);
                }
 
                if (connType) {
@@ -373,44 +393,8 @@ fetch('demo.json')
          });
 
          instance.repaintEverything();
-         applyArrowPathToAllConnections();
       });
    });
-
-// ⭐ UTILITIES
-
-// function extractVertices(nodes) {
-//    const vertices = [];
-//    const margin = 10;
-//    const canvasBox = document.getElementById('canvas').getBoundingClientRect();
-
-//    nodes.forEach((node) => {
-//       const box = node.getBoundingClientRect();
-//       const left = box.left - canvasBox.left;
-//       const top = box.top - canvasBox.top;
-
-//       vertices.push({ x: left, y: top });
-//       vertices.push({ x: left + box.width, y: top });
-//       vertices.push({ x: left, y: top + box.height });
-//       vertices.push({ x: left + box.width, y: top + box.height });
-
-//       vertices.push({ x: left + box.width / 2, y: top });
-//       vertices.push({ x: left + box.width / 2, y: top + box.height });
-//       vertices.push({ x: left, y: top + box.height / 2 });
-//       vertices.push({ x: left + box.width, y: top + box.height / 2 });
-
-//       vertices.push({ x: left - margin, y: top - margin });
-//       vertices.push({ x: left + box.width + margin, y: top - margin });
-//       vertices.push({ x: left - margin, y: top + box.height + margin });
-//       vertices.push({
-//          x: left + box.width + margin,
-//          y: top + box.height + margin,
-//       });
-//    });
-
-//    return vertices;
-// }
-// ⭐ UTILITIES
 
 function extractObstacleVertices(obstacles) {
    const margin = 5;
@@ -649,13 +633,26 @@ function getAnchorPoint(box, anchor) {
 function createNodeElement(node) {
    const div = document.createElement('div');
    div.id = node.id;
-   div.className = node.type;
    div.style.position = 'absolute';
    div.style.left = node.x + 'px';
    div.style.top = node.y + 'px';
    div.style.width = node.width + 'px';
    div.style.height = node.height + 'px';
+   div.style.backgroundColor =
+      node.backgroundColor === 'transparent'
+         ? node.backgroundColor
+         : '#' + node.backgroundColor;
+   div.style.color =
+      node.color === 'transparent' ? node.color : '#' + node.color;
+   div.style.borderColor =
+      node.borderColor === 'transparent'
+         ? node.borderColor
+         : '#' + node.borderColor;
+   div.style.fontSize = node.fontSize + 'px';
+   div.style.fontWeight = node.fontWeight;
+   div.style.borderRadius = node.borderRadius + 'px';
    div.classList.add('flow-node');
+   if (node.type == 'diamond') div.classList.add('diamond');
 
    const span = document.createElement('span');
    span.innerHTML = node.label || '';
@@ -676,27 +673,70 @@ function createNodeElement(node) {
    addEndpoints(node.id);
 }
 
-function addNode(type) {
-   const newNode = {
-      id: `new-node-${Date.now()}`,
-      type: type,
-      x: 20, // ← 고정 위치 (왼쪽에서 20px)
-      y: 20, // ← 고정 위치 (위에서 20px)
-      width: 140,
-      height: 50,
-      label: type + ' 노드',
-   };
+const baseStyleList = {
+   ellipse: {
+      width: '150px',
+      height: '40px',
+      backgroundColor: '#aeb8c3',
+      color: '#ffffff',
+      fontSize: '14px',
+      fontWeight: '400',
+      borderColor: 'transparent',
+      borderRadius: '30px',
+   },
+   rectangle1: {
+      width: '80px',
+      height: '40px',
+      backgroundColor: '#f4f4f4',
+      color: '#222222',
+      fontSize: '13px',
+      fontWeight: '400',
+      borderColor: '#dddddd',
+      borderRadius: '3px',
+   },
+   rectangle2: {
+      width: '140px',
+      height: '30px',
+      backgroundColor: '#ffffff',
+      color: '#444444',
+      fontSize: '14px',
+      fontWeight: '400',
+      borderColor: '#dddddf',
+      borderRadius: '10px',
+   },
+   diamond: {
+      width: '150px',
+      height: '80px',
+      backgroundColor: 'transparent',
+      color: '#222222',
+      fontSize: '14px',
+      fontWeight: '500',
+      borderColor: 'transparent',
+      borderRadius: '0',
+   },
+};
 
-   // 타입별 크기 예외 처리
-   if (type === 'ellipse') {
-      newNode.width = 120;
-      newNode.height = 60;
+function ChangeStyle(type) {
+   if (type === 'ellipse' || type == 'rectangle1' || type == 'rectangle2') {
+      selectedNode.classList.remove('diamond');
    } else if (type === 'diamond') {
-      newNode.width = 150;
-      newNode.height = 80;
+      selectedNode.classList.add('diamond');
    }
+   const styleSet = baseStyleList[`${type}`];
+   //debugger;
 
-   createNodeElement(newNode);
+   selectedNode.style.width = styleSet.width;
+   selectedNode.style.height = styleSet.height;
+   selectedNode.style.backgroundColor = styleSet.backgroundColor;
+   selectedNode.style.color = styleSet.color;
+   selectedNode.style.fontSize = styleSet.fontSize;
+   selectedNode.style.fontWeight = styleSet.fontWeight;
+   selectedNode.style.borderColor = styleSet.borderColor;
+   selectedNode.style.borderRadius = styleSet.borderRadius;
+
+   requestAnimationFrame(() => {
+      instance.revalidate(selectedNode);
+   });
 }
 
 function addEndpoints(nodeId) {
@@ -716,8 +756,6 @@ function addEndpoints(nodeId) {
             stroke: '#ffffff',
          },
          connector: ['Flowchart', { cornerRadius: 5 }],
-         connectorStyle: { stroke: '#999', strokeWidth: 1 },
-         connectorHoverStyle: { stroke: '#f00', strokeWidth: 2 },
       });
    });
 }
@@ -803,12 +841,18 @@ document.getElementById('prop-width').addEventListener('input', () => {
    if (selectedNode) {
       selectedNode.style.width =
          document.getElementById('prop-width').value + 'px';
+      requestAnimationFrame(() => {
+         instance.revalidate(selectedNode);
+      });
    }
 });
 document.getElementById('prop-height').addEventListener('input', () => {
    if (selectedNode) {
       selectedNode.style.height =
          document.getElementById('prop-height').value + 'px';
+      requestAnimationFrame(() => {
+         instance.revalidate(selectedNode);
+      });
    }
 });
 document.getElementById('prop-bgcolor').addEventListener('input', () => {
@@ -931,14 +975,18 @@ function exportToJson() {
 
       return {
          id: nodeEl.id,
-         type: nodeEl.classList.contains('flow-node')
-            ? nodeEl.classList[0]
-            : nodeEl.className,
+         type: nodeEl.classList.contains('diamond') ? 'diamond' : 'square',
          x: rect.left - canvasRect.left,
          y: rect.top - canvasRect.top,
          width: parseInt(nodeEl.style.width),
          height: parseInt(nodeEl.style.height),
-         label: nodeEl.querySelector('span')?.innerText || '',
+         backgroundColor: rgbToHex(nodeEl.style.backgroundColor),
+         color: rgbToHex(nodeEl.style.color),
+         fontSize: parseInt(nodeEl.style.fontSize),
+         fontWeight: parseInt(nodeEl.style.fontWeight),
+         borderColor: rgbToHex(nodeEl.style.borderColor),
+         borderRadius: parseInt(nodeEl.style.borderRadius),
+         label: nodeEl.querySelector('span')?.innerHTML || '',
       };
    });
 
@@ -1029,16 +1077,31 @@ function renderCanvas2() {
    exportData.nodes.forEach((node) => {
       const div = document.createElement('div');
       div.id = node.id + '_copy';
-      div.className = node.type;
       div.style.position = 'absolute';
       div.style.left = node.x + 'px';
       div.style.top = node.y + 'px';
       div.style.width = node.width + 'px';
       div.style.height = node.height + 'px';
+      div.style.backgroundColor =
+         node.backgroundColor === 'transparent'
+            ? node.backgroundColor
+            : '#' + node.backgroundColor.replace('#', '');
+      div.style.color =
+         node.color === 'transparent'
+            ? node.color
+            : '#' + node.color.replace('#', '');
+      div.style.fontSize = node.fontSize + 'px';
+      div.style.fontWeight = node.fontWeight;
+      div.style.borderColor =
+         node.borderColor === 'transparent'
+            ? node.borderColor
+            : '#' + node.borderColor.replace('#', '');
+      div.style.borderRadius = node.borderRadius + 'px';
       div.classList.add('flow-node');
+      if (node.type == 'diamond') div.classList.add('diamond');
 
       const span = document.createElement('span');
-      span.innerText = node.label;
+      span.innerHTML = node.label;
       div.appendChild(span);
 
       canvas2.appendChild(div);
@@ -1062,8 +1125,6 @@ function renderCanvas2() {
                stroke: '#ffffff',
             },
             connector: ['Flowchart', { cornerRadius: 5 }],
-            connectorStyle: { stroke: '#999', strokeWidth: 1 },
-            connectorHoverStyle: { stroke: '#f00', strokeWidth: 2 },
          });
       });
    });
@@ -1076,8 +1137,6 @@ function renderCanvas2() {
          anchors: conn.anchors || ['Continuous', 'Continuous'],
          connector: ['Flowchart', { cornerRadius: 5 }],
          paintStyle: { stroke: '#999', strokeWidth: 1 },
-         connectorStyle: { stroke: '#999', strokeWidth: 1 },
-         connectorHoverStyle: { stroke: '#f00', strokeWidth: 2 },
          overlays: [
             defaultArrowOverlay,
             ...(conn.label
@@ -1089,20 +1148,58 @@ function renderCanvas2() {
 
    newInstance.repaintEverything();
 }
-function applyArrowPathClass(connection) {
-   const arrowOverlay = connection.getOverlay('arrowOverlay');
-   if (arrowOverlay && arrowOverlay.canvas) {
-      const arrowPaths = arrowOverlay.canvas.querySelectorAll('path');
-      if (arrowPaths.length >= 1) {
-         const arrowPath = arrowPaths[arrowPaths.length - 1];
-         arrowPath.classList.add('arrow-path');
-      }
-   }
+function addBaseNode() {
+   const newNode = {
+      id: `new-node-${Date.now()}`,
+      type: 'squre',
+      x: 20, // ← 고정 위치 (왼쪽에서 20px)
+      y: 20, // ← 고정 위치 (위에서 20px)
+      width: 140,
+      height: 30,
+      label: '노드',
+   };
+
+   createNodeElement(newNode);
 }
-function applyArrowPathToAllConnections() {
-   console.log('🔄 전체 연결 arrow-path 재적용');
-   const allConnections = instance.getAllConnections();
-   allConnections.forEach((conn) => {
-      applyArrowPathClass(conn);
-   });
+function addBgAndHitPath(connection) {
+   const connSvg = connection.getConnector().canvas;
+
+   // ⭐ SVG 에 pointer-events 보장
+   connSvg.setAttribute('pointer-events', 'auto');
+
+   const pathEl = connSvg.querySelector('path');
+
+   if (pathEl && !connSvg.querySelector('path.bg-path')) {
+      const d = pathEl.getAttribute('d');
+
+      const bgPath = document.createElementNS(
+         'http://www.w3.org/2000/svg',
+         'path'
+      );
+      bgPath.setAttribute('d', d);
+      bgPath.setAttribute('stroke', 'white');
+      bgPath.setAttribute('stroke-width', '5');
+      bgPath.setAttribute('fill', 'none');
+      bgPath.classList.add('bg-path');
+
+      connSvg.insertBefore(bgPath, pathEl);
+
+      const hitPath = document.createElementNS(
+         'http://www.w3.org/2000/svg',
+         'path'
+      );
+      hitPath.setAttribute('d', d);
+      hitPath.setAttribute('stroke', 'transparent');
+      hitPath.setAttribute('stroke-width', '10');
+      hitPath.setAttribute('fill', 'none');
+      hitPath.classList.add('hit-path');
+      hitPath.setAttribute('pointer-events', 'stroke');
+
+      hitPath.addEventListener('click', (e) => {
+         e.stopPropagation();
+         selectConnection(connection);
+      });
+
+      connSvg.insertBefore(hitPath, bgPath);
+   }
 }

@@ -12,42 +12,16 @@ body {
    flex-direction: column;
    position: absolute;
    z-index: 30;
-   background: #fff;
+   background-color: #fff;
+   border: 1px solid #dddddf;
+   color: #444;
+   border-radius: 10px;
+   font-size: 14px;
    text-align: center;
    cursor: move;
    box-sizing: border-box;
 }
-.ellipse {
-   border-radius: 30px;
-   width: 150px;
-   height: 38px;
-   background-color: #aeb8c3;
-   color: #fff;
-   font-size: 14px;
-}
-.rectangle-gray {
-   border-radius: 3px;
-   width: 80px;
-   height: 40px;
-   background-color: #f4f4f4;
-   border: 1px solid #ddd;
-}
-.rectangle2 {
-   border-radius: 10px;
-   width: 140px;
-   height: 30px;
-   background-color: #fff;
-   border: 1px solid #dddddf;
-   color: #444;
-}
 .diamond {
-   position: relative;
-   width: 150px;
-   height: 80px;
-   font-size: 14px;
-   font-weight: 500;
-   text-align: center;
-   color: #222;
    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="none" ><polygon points="80,0 160,50 80,100 0,50" stroke="%23a7a7a7" stroke-width="1" fill="white"/></svg>');
    background-size: 100% 100%;
    background-repeat: no-repeat;
@@ -64,10 +38,10 @@ body {
 
 /* zindex 정렬 */
 .jtk-connector {
-   z-index: 0; /* 선은 가장 뒤에 */
+   z-index: 5; /* 선은 가장 뒤에 */
 }
 .jtk-overlay {
-   z-index: 1; /* overlay(화살표)는 선 위에 */
+   z-index: 6; /* overlay(화살표)는 선 위에 */
 }
 .my-endpoint {
    z-index: 10; /* endpoint는 여전히 제일 위 */
@@ -82,16 +56,16 @@ body {
    display: block;
 }
 /* 연결선 */
-.hit-path {
-   cursor: pointer;
-}
 svg path:last-of-type,
 .main-path,
 .bg-path {
    pointer-events: none;
 }
-.selected-connection .main-path,
-.hit-path:hover + .main-path {
+.hit-path {
+   cursor: pointer;
+}
+.hit-path:hover ~ .main-path,
+.selected-connection .main-path {
    stroke-width: 2;
 }
 .selected-connection + .jtk-overlay,
@@ -101,29 +75,22 @@ svg path:last-of-type,
 }
 
 /* 연결선 라벨 */
-.label-green {
+div.jtk-overlay {
+   background-color: #fff;
    color: #333;
+   padding: 2px 5px;
+   border-radius: 4px;
+   font-size: 11px;
+   white-space: nowrap;
+}
+div.jtk-overlay.label-green {
    background: #e2fbc9;
-   padding: 2px 5px;
-   border-radius: 4px;
-   font-size: 11px;
-   white-space: nowrap;
 }
-.label-pink {
-   color: #333;
+div.jtk-overlay.label-pink {
    background: #ffeaf1;
-   padding: 2px 5px;
-   border-radius: 4px;
-   font-size: 11px;
-   white-space: nowrap;
 }
-.label-gray {
-   color: #333;
+div.jtk-overlay.label-gray {
    background: #f4f4f4;
-   padding: 2px 5px;
-   border-radius: 4px;
-   font-size: 11px;
-   white-space: nowrap;
 }
 
 /* input style */
