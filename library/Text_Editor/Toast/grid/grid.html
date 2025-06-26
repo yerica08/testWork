@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>grid01</title>
+      <!-- 📦 Toast UI Editor -->
+      <link
+         rel="stylesheet"
+         href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+      />
+      <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+      <!-- 📦 Toast UI Grid -->
+      <link
+         rel="stylesheet"
+         href="https://uicdn.toast.com/grid/latest/tui-grid.css"
+      />
+      <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+   </head>
+   <body>
+      <h3>📝 에디터</h3>
+      <div id="editor"></div>
+
+      <button onclick="renderGrid()">📊 그리드 렌더링</button>
+
+      <h3>📋 Toast Grid</h3>
+      <div id="grid" style="margin-top: 20px"></div>
+
+      <script>
+         let grid; // 🔹 전역 Grid 인스턴스
+         const text = [
+            { name: '홍길동', age: 30, job: '개발자' },
+            { name: '김영희', age: 25, job: '디자이너' },
+         ];
+
+         const text2 = `| 이름   | 나이 | 직업     |
+|--------|------|----------|
+| 홍길동 | 30   | 개발자   |
+| 김영희 | 25   | 디자이너 |
+| 이순신 | 40   | 기획자   |
+`;
+
+         const editor = new toastui.Editor({
+            el: document.querySelector('#editor'),
+            height: '300px',
+            initialEditType: 'markdown',
+            previewStyle: 'vertical',
+            initialValue: text2,
+         });
+
+         const columns = [
+            { header: '이름', name: 'name' },
+            { header: '나이', name: 'age' },
+            { header: '직업', name: 'job' },
+         ];
+
+         window.addEventListener('DOMContentLoaded', () => {
+            grid = new tui.Grid({
+               el: document.getElementById('grid'),
+               data: [],
+               columns: [
+                  {
+                     header: '이름',
+                     name: 'name',
+                  },
+                  {
+                     header: '나이',
+                     name: 'age',
+                     editor: 'text',
+                  },
+                  {
+                     header: '직업',
+                     name: 'job',
+                  },
+               ],
+               bodyHeight: 200,
+            });
+         });
+
+         /*function renderGrid() {
+            const content = editor.getMarkdown();
+            let data;
+
+            try {
+               data = JSON.parse(content);
+            } catch (e) {
+               alert('에디터 내용이 JSON 형식이 아닙니다.');
+               return;
+            }
+
+            if (!grid) {
+               alert('Grid 인스턴스가 아직 준비되지 않았습니다.');
+               return;
+            }
+
+            // ✅ 기존 Grid에 데이터만 갱신
+            grid.resetData(data);
+         }*/
+
+         // 3. 마크다운 테이블 파싱 함수
+         function parseMarkdownTable(md) {
+            const lines = md
+               .trim()
+               .split('\n')
+               .filter((line) => line.startsWith('|'));
+            if (lines.length < 2) return { columns: [], data: [] };
+
+            const header = lines[0]
+               .split('|')
+               .map((cell) => cell.trim())
+               .filter((cell) => cell);
+            const columns = header.map((col) => ({ header: col, name: col }));
+
+            const data = lines.slice(2).map((line) => {
+               const cells = line
+                  .split('|')
+                  .map((cell) => cell.trim())
+                  .filter((cell) => cell);
+               const row = {};
+               header.forEach((key, idx) => {
+                  row[key] = cells[idx] || '';
+               });
+               return row;
+            });
+
+            return { columns, data };
+         }
+
+         // 4. 버튼 클릭 시 실행
+         function renderGrid() {
+            const markdown = editor.getMarkdown();
+            const { columns, data } = parseMarkdownTable(markdown);
+
+            if (columns.length === 0 || data.length === 0) {
+               alert('마크다운 테이블 형식이 올바르지 않거나 내용이 없습니다.');
+               return;
+            }
+
+            // 기존 컬럼/데이터 재설정
+            grid.setColumns(columns);
+            grid.resetData(data);
+         }
+      </script>
+   </body>
+</html>

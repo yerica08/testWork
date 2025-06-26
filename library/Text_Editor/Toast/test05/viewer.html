@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>에디터결과</title>
+      <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css" />
+      <style>
+         .wrapper {
+            display: flex;
+         }
+         .wrapper > div {
+            width: 33%;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 1px solid #000;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="wrapper">
+         <div id="jsonDirty"></div>
+         <div id="jsonClean"></div>
+         <div id="result"></div>
+      </div>
+      <!-- 1) Toast UI Viewer -->
+      <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"></script>
+
+      <script>
+         document.addEventListener('DOMContentLoaded', () => {
+            // 1) 저장해 둔 내용 불러오기
+            // const content = sessionStorage.getItem('tui-content') || '';
+            const dirty = localStorage.getItem('dirty-content') || '';
+            const clean = localStorage.getItem('clean-content') || '';
+            document.querySelector('#jsonDirty').innerHTML = dirty;
+            document.querySelector('#jsonClean').innerHTML = clean;
+            // 2) Viewer 생성
+            const Viewer = new toastui.Editor({
+               el: document.querySelector('#result'),
+               viewer: true,
+               initialValue: dirty,
+            });
+         });
+
+         /*
+         document.addEventListener('DOMContentLoaded', () => {
+            fetch('testSanitization.json')
+               .then((res) => res.json())
+               .then((test) => {
+                  new toastui.Editor({
+                     el: document.querySelector('#result'),
+                     viewer: true,
+                     initialValue: test,
+                  });
+               })
+               .catch((err) => console.error(err));
+         });
+         */
+      </script>
+   </body>
+</html>

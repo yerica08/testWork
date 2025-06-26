@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>calendar01</title>
+      <link
+         rel="stylesheet"
+         href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css"
+      />
+      <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+      <style>
+         .calendar-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+         }
+         #calendar {
+            width: 1200px;
+            height: 800px;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="calendar-wrapper">
+         <div id="calendar"></div>
+      </div>
+
+      <script>
+         const Calendar = tui.Calendar;
+
+         const calendar = new Calendar('#calendar', {
+            defaultView: 'month', // 'day', 'week', 'month'
+            usageStatistics: false,
+            template: {
+               time(event) {
+                  const { start, end, title } = event;
+
+                  return `<span style="color: #333;">${formatTime(
+                     start
+                  )}~${formatTime(end)} ${title}</span>`;
+               },
+               allday(event) {
+                  return `<span style="color: gray;">${event.title}</span>`;
+               },
+            },
+            calendars: [
+               {
+                  id: 'cal1',
+                  name: 'Personal',
+                  backgroundColor: '#03bd9e',
+               },
+               {
+                  id: 'cal2',
+                  name: 'Work',
+                  backgroundColor: '#b4e6ff',
+               },
+               {
+                  id: 'cal3',
+                  name: 'Work',
+                  backgroundColor: '#ffb1b1',
+               },
+               {
+                  id: 'cal4',
+                  name: 'Work',
+                  backgroundColor: '#b4f1e4',
+               },
+               {
+                  id: 'cal5',
+                  name: 'Work',
+                  backgroundColor: '#fff597',
+               },
+            ],
+         });
+
+         calendar.createEvents([
+            {
+               id: '1',
+               calendarId: 'cal1',
+               title: '회의',
+               category: 'time',
+               start: '2025-06-18T10:30:00',
+               end: '2025-06-18T12:30:00',
+            },
+            {
+               id: '2',
+               calendarId: 'cal2',
+               title: '작업1',
+               category: 'time',
+               start: '2025-06-18T12:30:00',
+               end: '2025-06-20T14:30:00',
+            },
+            {
+               id: '3',
+               calendarId: 'cal3',
+               title: '작업2',
+               category: 'time',
+               start: '2025-06-03T10:30:00',
+               end: '2025-06-09T12:30:00',
+            },
+            {
+               id: '4',
+               calendarId: 'cal4',
+               title: '작업4',
+               category: 'time',
+               start: '2025-06-23T10:30:00',
+               end: '2025-06-25T12:30:00',
+            },
+            {
+               id: '5',
+               calendarId: 'cal5',
+               title: '작업5',
+               category: 'time',
+               start: '2025-06-09T10:30:00',
+               end: '2025-06-12T12:30:00',
+            },
+            {
+               id: '6',
+               calendarId: 'cal3',
+               title: '중부 출장',
+               category: 'time',
+               start: '2025-06-06T10:30:00',
+               end: '2025-06-06T12:30:00',
+            },
+            {
+               id: '7',
+               calendarId: 'cal3',
+               title: '보고',
+               category: 'time',
+               start: '2025-06-18T10:30:00',
+               end: '2025-06-19T12:30:00',
+            },
+         ]);
+
+         function formatTime(date) {
+            const d = new Date(date);
+            const hours = d.getHours().toString().padStart(2, '0');
+            const minutes = d.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+         }
+      </script>
+   </body>
+</html>

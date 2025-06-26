@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <style>
+         #onlyoffice-wrap {
+            height: 800px;
+         }
+         #drop-zone {
+            border: 2px dashed #aaa;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+         }
+         #drop-zone.hover {
+            border-color: #333;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- spreadsheet -->
+      <div id="drop-zone">여기에 파일을 드래그 앤 드롭하세요</div>
+      <div id="onlyoffice-wrap">
+         <div id="spreadsheet-container"></div>
+      </div>
+      <!-- docker로 설치한 로컬 document server를 사용하는 경우 -->
+      <script src="http://localhost/web-apps/apps/api/documents/api.js"></script>
+      <script src="test.js"></script>
+   </body>
+</html>

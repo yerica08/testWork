@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>test5 / 보안 테스트</title>
+      <!-- ✅ Editor Core CSS -->
+      <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+      <style></style>
+   </head>
+   <body>
+      <button onclick="fetchHTML()">HTML 불러오기</button>
+      <button onclick="fetchMarkdown()">Markdown 불러오기</button>
+      <button onclick="fetchtest()">보안필터링 테스트</button>
+      <button onclick="ChangeJsonHTML()">HTML으로 내보내기</button>
+      <button onclick="ChangeJsonMarkdown()">Markdown으로 내보내기</button>
+      <a onclick="sendMarkdown()" href="./viewer.html" target="_blank">Markdown으로 저장</a>
+      <a onclick="sendHTML()" href="./viewer.html" target="_blank">HTML로 저장</a>
+      <h2>✅ Toast UI Editor 보안 테스트</h2>
+      <div class="editor-wrap">
+         <div id="editor"></div>
+      </div>
+      <!-- ✅ Core Editor JS -->
+      <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+      <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.js"></script>
+      <!-- 2) DOMPurify -->
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js" integrity="sha256-.../Y=" crossorigin="anonymous"></script>
+
+      <script src="test.js"></script>
+   </body>
+</html>

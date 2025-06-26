@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+   <head>
+      <meta charset="UTF-8" />
+      <title>test2 / Toast UI Editor + 플러그인</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <!-- ✅ Editor Core CSS -->
+      <link
+         rel="stylesheet"
+         href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+      />
+
+      <!-- ✅ Prism CSS (코드 하이라이트용) -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+      />
+
+      <!-- ✅ Color Picker CSS (colorSyntax 필수) -->
+      <link
+         rel="stylesheet"
+         href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.min.css"
+      />
+   </head>
+   <body>
+      <h2>✅ Toast UI Editor + Chart Plugin</h2>
+      <div id="editor"></div>
+
+      <!-- ✅ Chart.js (chart 플러그인 의존성) -->
+      <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+
+      <!-- ✅ TUI Color Picker (colorSyntax 플러그인 의존성) -->
+      <script src="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.min.js"></script>
+
+      <!-- ✅ Core Editor JS -->
+      <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+      <script src="https://uicdn.toast.com/editor/latest/i18n/ko.js"></script>
+
+      <!-- ✅ Plugins -->
+      <script src="https://uicdn.toast.com/editor-plugin-chart/latest/toastui-editor-plugin-chart.min.js"></script>
+      <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"></script>
+      <script src="https://uicdn.toast.com/editor-plugin-color-syntax/latest/toastui-editor-plugin-color-syntax.min.js"></script>
+      <script src="https://uicdn.toast.com/editor-plugin-table-merged-cell/latest/toastui-editor-plugin-table-merged-cell.min.js"></script>
+      <script src="https://uicdn.toast.com/editor-plugin-uml/latest/toastui-editor-plugin-uml.min.js"></script>
+
+      <!-- ✅ 에디터 초기화 -->
+      <script>
+         console.log('window.Chart:', window.Chart);
+         window.addEventListener('load', () => {
+            const editor = new toastui.Editor({
+               el: document.querySelector('#editor'),
+               height: '500px',
+               initialEditType: 'markdown',
+               previewStyle: 'vertical',
+               language: 'ko',
+               initialValue: `
+## 📊 2025년 상반기 매출
+
+\`\`\`chart
+{
+  "type": "bar",
+  "data": {
+    "labels": ["1월", "2월", "3월"],
+    "datasets": [
+      { "label": "매출", "data": [100, 200, 150] }
+    ]
+  }
+}
+\`\`\`
+        `,
+               // ✅ plugins 배열은 toastui.Editor.plugin.명으로 전달
+               plugins: [
+                  toastui.Editor.plugin.chart,
+                  toastui.Editor.plugin.codeSyntaxHighlight,
+                  toastui.Editor.plugin.colorSyntax,
+                  toastui.Editor.plugin.tableMergedCell,
+                  toastui.Editor.plugin.uml,
+               ],
+            });
+         });
+      </script>
+   </body>
+</html>
